@@ -1,0 +1,80 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.welcome {
+    background-color: #c1e4fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Preenche 100% da altura da janela */
+    text-align: center;
+}
+
+.scrennStart {
+    font-family: "Poppins", sans-serif;
+    background-color: #c1e4fa;
+    padding: 5%;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.scrennStart h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.kidImage {
+    width: 30%;
+    color: #4a90e2;
+}
+
+.scrennStart a {
+    font-size: 1.2rem;
+    color: white;
+    background-color: #0903c7;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.scrennStart a:hover {
+    background-color: #357abd;
+}
+
+@media(max-width: 400px) {
+    .welcome {
+        height: 100vh; /* Ajuste também para 100vh */
+        width: 100%; /* Garante que a largura seja a máxima */
+    }
+
+    .scrennStart {
+        padding: 10%;
+    }
+
+
+    .kidImage {
+        width: 65%;
+        
+    }
+
+    .scrennStart h1 {
+        padding-left: 20px;
+        font-size: 1.8rem;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .scrennStart a {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+}
