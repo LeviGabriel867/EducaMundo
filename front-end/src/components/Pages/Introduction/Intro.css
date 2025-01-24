@@ -1,0 +1,37 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Garante que o pai tenha altura total */
+}
+.Introduction{
+    padding: 5px;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(123, 123, 123, 0.264);
+    box-shadow: 10px 10px 15px 15px rgba(252, 182, 255, 0.5);
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 95%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+}
+.Container1, .Container2{
+    font-size: 1.5rem;
+    display: flex;
+    font-weight: bold;
+
+}
+
+.CellPhone{
+    width: 40%;
+   
+
+}
