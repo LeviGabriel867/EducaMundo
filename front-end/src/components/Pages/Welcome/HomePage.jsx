@@ -1,6 +1,7 @@
 import { FaCircleUser } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Kid from '../../../assets/kidHomePage.png'
+import educaMundo from '../../../assets/educaMundo.png'
 import './HomePage.css'
 
 function HomePage(){
@@ -10,6 +11,7 @@ function HomePage(){
                 <h1>Bem-vindo(a) ao EducaMundo</h1>
                 <img src={Kid} alt="Ilustração de criança" className="kidImage"/>
                 <Link to="/Intro">Clique aqui para entrar</Link>
+                <img src={educaMundo} alt="educaMundo" className="educaMundoImage" />
             </div>
             
         </div>

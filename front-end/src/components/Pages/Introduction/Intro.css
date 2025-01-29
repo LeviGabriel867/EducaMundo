@@ -35,3 +35,20 @@ html, body {
    
 
 }
+
+
+@media(max-width:400px){
+    .Introduction{
+        width: 90%;
+    }
+    .Introduction p{
+        font-size: 20px;
+    }
+    .Container1{
+        padding-bottom: 50px;
+    }
+    .KidIntroduction, .CellPhone{
+        width: 30%;
+        height: 70%;
+    }
+}

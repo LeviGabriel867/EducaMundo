@@ -35,6 +35,9 @@ html, body {
     width: 30%;
     color: #4a90e2;
 }
+.educaMundoImage{
+    width: 45%;
+}
 
 .scrennStart a {
     font-size: 1.2rem;
@@ -76,5 +79,8 @@ html, body {
     .scrennStart a {
         font-size: 0.8rem;
         padding: 8px 16px;
+    }
+    .educaMundoImage{
+        width: 55%;
     }
 }

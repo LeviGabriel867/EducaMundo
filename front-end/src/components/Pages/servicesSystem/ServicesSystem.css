@@ -1,0 +1,56 @@
+.ServicesSystem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%; /* Ocupa toda a altura da tela */
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+
+}
+.ServicesSystem a {
+    text-decoration: none;
+}
+
+.OptionsContainer {
+    display: flex;
+    flex-direction: column; /* Organiza os itens em uma coluna */
+    gap: 20px; /* Espaçamento entre os itens */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
+}
+
+.ButtonOptions {
+    border: 1.5px solid rgb(255, 255, 255);
+    border-radius: 18px;
+    background-color: #186797;
+    box-shadow: 0 0 15px 5px rgba(253, 219, 254, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 2.5vh;
+    width: 50vw;
+    gap: 20px;
+    height: 40vh;
+    padding: 10px;
+    text-align: start;
+    margin-bottom: 20px; /* Espaçamento entre os botões */
+    text-decoration: none;
+
+}
+
+
+@media(max-width: 400px){
+    .ServicesSystem{
+    width: auto;
+    height: auto;
+    }
+    .cabecalho{
+        font-size: 17px
+    }
+}
+    
+    
