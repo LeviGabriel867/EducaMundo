@@ -1,0 +1,3 @@
+- Em atividades eu precisarei de um get para buscar todas as atividades de uma determinada area e um post na seção de ADM para add atividades
+- Seção de deixar as duvidas seguirá a mesma logica
+

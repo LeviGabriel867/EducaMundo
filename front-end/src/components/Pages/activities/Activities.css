@@ -1,0 +1,59 @@
+.father{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.paragraph{
+    display: inline-flex;
+    margin-left:40%;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(172, 235, 243);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20%;
+    justify-content: center;
+    
+}
+.father p{
+    width: 70%; /* Define a largura para ocupar metade da página */
+    text-align: center; /* Opcional: centraliza o texto */
+    margin: 0 auto; /* Centraliza o parágrafo na tela */
+    font-size: 20px;
+}
+
+
+
+@media (max-width: 400px) {
+    .father {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* Alinha os filhos horizontalmente */
+        width: 85%;
+        margin: 0 auto; /* Centraliza horizontalmente */
+    }
+    .paragraph{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center ;
+        margin: auto;
+        padding: 5px;
+        font-size: 30px;
+        width: 50%;
+        
+    }
+    .footer p{
+        font-size: 0.8rem;
+        width: 100%;
+        font-weight: bold;
+
+    }
+    .container-activities p{
+        width: auto;
+        font-size: 15px;
+    }
+
+}
