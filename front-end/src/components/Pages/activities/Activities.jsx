@@ -1,18 +1,17 @@
 import { useState } from "react";
-import Suggestions from "../suggestions/Suggestions.jsx"; 
 import ButtonActivities from "../../button/buttonActivities/ButtonActivities.jsx";
 import Pictures from "./pictures/Pictures.jsx";
 import Portuguese from "./portuguese/Portuguese.jsx";
 import Literacy from "./literacy/Literacy.jsx";
-import Surpraise from "./surpraise/Surpraise.jsx"
-import Math from './mathematics/Math.jsx'
+import Surpraise from "./surpraise/Surpraise.jsx";
+import Math from './mathematics/Math.jsx';
 
 import PictureImg from "../../../assets/activitiesImage.png"; 
 import MathImg from "../../../assets/activitiesMath.png";
 import PortugueseImg from "../../../assets/activitiesPortuguese.png";
 import LiteracyImg from "../../../assets/activitiesLiteracy.png";
 import SurpraiseImg from "../../../assets/activitiesSurpraise.png";
-import './Activities.css'
+import './Activities.css';
 
 function Activities() {
     const [activeComponent, setActiveComponent] = useState(null); // Estado para armazenar o componente ativo
@@ -22,24 +21,23 @@ function Activities() {
             <div className="son">
                 <h1 className="paragraph">Atividades</h1>
                 {activeComponent === "literacy" ? (
-                    <Literacy />
+                    <Literacy category="Atividade de alfabetização" />
                 ) : activeComponent === "pictures" ? (
-                    <Pictures />
+                    <Pictures category="Atividade de pintura" />
                 ) : activeComponent === "portuguese" ? (
-                    <Portuguese/> 
+                    <Portuguese category="Atividade de português" />
                 ) : activeComponent === "surpraise" ? (
-                    <Surpraise/>
+                    <Surpraise category="Atividade surpresa" />
                 ) : activeComponent === "math" ? (
-                    <Math/>
-                ):
-                (
+                    <Math category="Atividade de matemática básica" />
+                ) : (
                     <div className="container-activities">
                         <ButtonActivities 
-                            shouldShowComponent={false} // Nenhum componente está sendo mostrado inicialmente
+                            shouldShowComponent={false} 
                             img={PictureImg} 
                             h1="Atividade de pintura"
                             paragraph="Aqui você encontra atividades de pintura de diferentes níveis e idades."
-                            onClick={() => setActiveComponent("pictures")} // Define qual componente deve ser renderizado
+                            onClick={() => setActiveComponent("pictures")} 
                         />
                         
                         <ButtonActivities
@@ -47,7 +45,7 @@ function Activities() {
                             img={MathImg}
                             h1="Atividade de matemática básica"
                             paragraph="Aqui é onde a matemática ganha vida e é apresentada de uma forma mais que especial."
-                            onClick={() => setActiveComponent("math")} // Define outro componente a ser renderizado
+                            onClick={() => setActiveComponent("math")} 
                         />
 
                         <ButtonActivities
@@ -77,11 +75,9 @@ function Activities() {
                 )}
             </div>
             <div className="footer">
-                    <p>As atividades contidas nessa sessão serão atualizadas semanalmente, sempre com conteúdos novos e preparados especialemente para o professor e aluno(a).</p>
-
+                <p>As atividades contidas nessa sessão serão atualizadas semanalmente, sempre com conteúdos novos e preparados especialemente para o professor e aluno(a).</p>
             </div>
         </div>
-        
     );
 }
 

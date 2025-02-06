@@ -7,6 +7,7 @@ import cors from "cors"
 const app = express();
 app.use(express.json());
 app.use(cors( ))
+app.use("/uploads", express.static("uploads"));
 
 // Configuração do multer para upload de arquivos
 const storage = multer.diskStorage({
@@ -49,7 +50,7 @@ app.post("/single", upload.single("image"), async (req, res) => {
 app.get("/activities", async (req, res) => {
   try {
     const {category} = req.query;
-    const activities = category ? await ActivitiesModel.find({category}) : alert("Sem atividades cadastradas") ;
+    const activities = category ? await ActivitiesModel.find({category}) : [] ;
     res.json(activities)
   } catch (error) {
     res.status(500).json({error: error.message})
