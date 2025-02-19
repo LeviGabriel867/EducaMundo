@@ -1,9 +1,12 @@
-function Math(){
+import { useState, useEffect } from "react"
+import UploadActivities from "../InteracionComponent/UploadActivities"
+function Math({category}){
     return(
-        <div>
-            <h1>Atividade de matematica 1</h1>
-        </div>
-    )
-}
+        <UploadActivities category={category}/>
+)}
+    
+    
+    
+    
 
 export default Math

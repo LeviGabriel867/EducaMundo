@@ -1,9 +1,13 @@
 import express from "express";
+import dotenv from 'dotenv'
 import mongoose from "mongoose";
 import multer from "multer";
 import { ActivitiesModel } from "./models/Activities.js"; // Importando o modelo corrigido
 import cors from "cors"
+import connectDB from './config/dataBase/ConnectDB.js'
+import { VideosModel } from "./models/Videos.js";
 
+dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors( ))
@@ -30,13 +34,14 @@ app.post("/single", upload.single("image"), async (req, res) => {
 
     // Extrai os dados do arquivo e do corpo da requisição
     const { path } = req.file; // Caminho do arquivo salvo
-    const { name, category } = req.body; // Dados da atividade
+    const { name, category, description } = req.body; // Dados da atividade
 
     // Cria uma nova atividade no banco de dados
     const newActivity = new ActivitiesModel({
       name,
       path,
       category,
+      description,
     });
 
     await newActivity.save(); // Salva a atividade no banco de dados
@@ -57,16 +62,59 @@ app.get("/activities", async (req, res) => {
   }
 })
 
-// Iniciar o servidor e conectar ao banco de dados
-const PORT = 8080;
-app.listen(PORT, async () => {
+
+
+
+app.post("/uploadVideos", async (req, res) => {
   try {
-    // Conecta ao banco de dados MongoDB
-    await mongoose.connect("mongodb+srv://levigabriel:levi40028922@lifeFit.kpf5o.mongodb.net/educaMundo?retryWrites=true&w=majority&appName=lifefit");
-    console.log("Database connected successfully");
-    console.log(`Server running on port ${PORT}`);
+    const { category, URLs } = req.body;
+
+    // Verificação básica dos campos obrigatórios
+    if (!category || !URLs) {
+      return res.status(400).json({ msg: "Category and URLs are required" });
+    }
+
+    const newVideo = new VideosModel({ URLs, category });
+
+    await newVideo.save();
+    res.status(201).json({ msg: "Video uploaded successfully" });
   } catch (error) {
-    console.error("Error connecting to the database:", error);
-    process.exit(1); // Encerra o processo se a conexão com o banco de dados falhar
+    console.error("Error in uploaded URL:", error);
+    res.status(500).json({ msg: "Error in uploaded URL", error: error.message });
   }
 });
+
+app.get('/uploadVideos', async (req, res) => {
+  try {
+    const {category} = req.query
+    let videos
+
+    if(category){
+      videos = await VideosModel.find({category : category})
+    }
+    else{
+      videos = []
+    }
+    res.json(videos)
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  } 
+    
+  
+})
+// Iniciar o servidor e conectar ao banco de dados
+const PORT = 8080;
+
+(async () => {
+  try {
+    await connectDB()
+    console.log("Database connected. Starting server...");
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`) })
+  } catch (error) {
+    console.log(error)
+  }
+ 
+ 
+})()

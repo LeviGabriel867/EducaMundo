@@ -1,8 +1,8 @@
-function Surpraise(){
+import UploadActivities from "../InteracionComponent/UploadActivities"
+
+function Surpraise({category}){
     return(
-        <div>
-            <h1>Atividades surpresa</h1>
-        </div>
+        <UploadActivities category={category}/>
     )
 }
 

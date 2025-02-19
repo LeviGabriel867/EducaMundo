@@ -1,8 +1,8 @@
-function Portuguese(){
+import UploadActivities from "../InteracionComponent/UploadActivities"
+
+function Portuguese({category}){
     return(
-        <div>
-            <h1>Atividades de portugues</h1>
-        </div>
+        <UploadActivities category={category}/>
     )
 }
 

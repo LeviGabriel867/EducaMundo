@@ -1,8 +1,7 @@
-function Literacy(){
+import UploadActivities from "../InteracionComponent/UploadActivities"
+function Literacy({category}){
     return(
-        <div>
-            <h1>Atividades de alfabetizaçção</h1>
-        </div>
+        <UploadActivities category={category}/>
     )
 }
 

@@ -6,15 +6,18 @@ html, body {
 }
 
 .welcome {
-    background-color: #c1e4fa;
+    background: linear-gradient(to right, #c1e4fa, #a2d2f2, #82c0ea);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 100vh; /* Preenche 100% da altura da janela */
     text-align: center;
 }
 
+
 .scrennStart {
+    border: 2.5px solid rgb(255, 255, 255);
     font-family: "Poppins", sans-serif;
     background-color: #c1e4fa;
     padding: 5%;
@@ -23,6 +26,16 @@ html, body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+.welcome p{
+    font-weight: bold;
+}
+.login-container {
+    display: inline-flex;
+    gap: 2%;
+    width: auto;
 }
 
 .scrennStart h1 {
@@ -39,17 +52,20 @@ html, body {
     width: 45%;
 }
 
-.scrennStart a {
-    font-size: 1.2rem;
+.scrennStart a, .login {
+    font-weight: bold;
+    width: auto;
+    font-size: 1rem;
     color: white;
     background-color: #0903c7;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
-.scrennStart a:hover {
+.scrennStart a:hover, .login:hover{
     background-color: #357abd;
 }
 

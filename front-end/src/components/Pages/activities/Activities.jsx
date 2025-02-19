@@ -31,7 +31,7 @@ function Activities() {
                 ) : activeComponent === "math" ? (
                     <Math category="Atividade de matemática básica" />
                 ) : (
-                    <div className="container-activities">
+                    <div className="containerActivities">
                         <ButtonActivities 
                             shouldShowComponent={false} 
                             img={PictureImg} 

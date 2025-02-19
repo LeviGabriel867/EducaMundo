@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import HomePage from './components/Pages/Welcome/HomePage.jsx'
+import HomePage from './components/Pages/welcome/HomePage.jsx'
 import Intro from './components/Pages/Introduction/Intro.jsx'
 import ServicesSystem from './components/Pages/servicesSystem/ServicesSystem.jsx';
 import Activities from './components/Pages/activities/Activities.jsx'

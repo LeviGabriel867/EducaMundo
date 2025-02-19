@@ -4,6 +4,7 @@ const ActivitiesSchema = new mongoose.Schema({
   name: { type: String, required: true }, 
   path: { type: String, required: true }, 
   category: { type: String, required: true }, 
+  description: {type: String, require: true},
   dateUpload: { type: Date, default: Date.now }, 
 }, {collection: "activities"});
 

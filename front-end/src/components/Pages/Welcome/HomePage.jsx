@@ -13,22 +13,24 @@ function HomePage(){
    
     return(
         
-        <div className="welcome" >
+        <div  >
              {login ? (
                 <Login/>
             ): (
-                <>
-                <div className="scrennStart">
-                <h1>Bem-vindo(a) ao EducaMundo</h1>
-                <img src={Kid} alt="Ilustração de criança" className="kidImage"/>
-                <Link to="/Intro">Clique aqui para entrar</Link>
-                <img src={educaMundo} alt="educaMundo" className="educaMundoImage" />
+                <div className="welcome">
+                    <div className="scrennStart">
+                        <h1>Bem-vindo(a) ao EducaMundo</h1>
+                        <img src={Kid} alt="Ilustração de criança" className="kidImage"/>
+                            <div className="login-container">
+                                <Link to="/Intro">Clique aqui para entrar</Link>
+                                <button onClick={()=> setLogin(true)} className="login">Fazer login</button>
+                            </div>
+                        <img src={educaMundo} alt="educaMundo" className="educaMundoImage" />
 
-                <button onClick={()=> setLogin(true)}>Login</button>
-            </div>
+                                </div>  
+                </div>
                 
-            
-                </>
+        
             )}
             
         </div>
