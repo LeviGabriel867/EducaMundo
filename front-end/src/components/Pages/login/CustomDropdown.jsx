@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const CustomDropdown = ({ options, selected, setSelected }) => {
+const CustomDropdown = ({ options, selected, setSelected, width }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="dropdown">
+    <div style={{width:width}}  className="dropdown">
       <div className="dropdown-header" onClick={() => setIsOpen(!isOpen)}>
         {selected || "Selecione uma categoria"}
       </div>

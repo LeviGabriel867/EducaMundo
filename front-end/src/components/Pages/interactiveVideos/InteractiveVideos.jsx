@@ -13,6 +13,7 @@ function InteractiveVideos() {
     const [activeCategory, setActiveCategory] = useState(null); // Estado para armazenar a categoria selecionada
     const [videos, setVideos] = useState([]);
     const [titles, setTitles] = useState([]);
+    const [playerHeight, setPlayerHeight] = useState("60vh");
 
     useEffect(() => {
         if (!activeCategory) return;
@@ -33,6 +34,21 @@ function InteractiveVideos() {
 
         fetchVideos();
     }, [activeCategory]);
+
+    useEffect(() => {
+        const updateHeight = () => {
+            if (window.innerWidth < 400) {
+                setPlayerHeight("25vh");
+            } else {
+                setPlayerHeight("60vh");
+            }
+        };
+
+        updateHeight(); // Chamar ao carregar
+        window.addEventListener("resize", updateHeight);
+
+        return () => window.removeEventListener("resize", updateHeight);
+    }, []);
 
     useEffect(() => {
         if (videos.length === 0) return;
@@ -60,10 +76,11 @@ function InteractiveVideos() {
     return (
         <div className="father">
             <div className="son">
+                
                 <h1 className="paragraph">Vídeos Interativos</h1>
                 
                 {activeCategory ? (
-                    <div>
+                    <div >
                         <h2 className="selected-category">Categoria: {activeCategory}</h2>
                         {videos.length === 0 ? (
                             <p>Nenhum vídeo encontrado</p>
@@ -71,7 +88,10 @@ function InteractiveVideos() {
                             videos.map((video, index) => (
                                 <div key={index} className="video-container">
                                     <h1>{titles[index] || "Carregando..."}</h1>
-                                    <ReactPlayer url={video.URLs} controls width="50%" />
+                                    
+                                        <ReactPlayer  url={video.URLs} controls width="98%" height={playerHeight} />
+
+                                    
                                 </div>
                             ))
                         )}
@@ -100,7 +120,7 @@ function InteractiveVideos() {
 
                         <ButtonActivities
                             img={PortugueseImg}
-                            h1={"Filmes gratuitos no YouTube para educação especial"}
+                            h1={"Filmes gratuitos para educação especial"}
                             paragraph={"Clique aqui e veja as opções disponíveis."}
                             onClick={() => setActiveCategory("Filmes gratuitos no YouTube para educação especial")}
                         />

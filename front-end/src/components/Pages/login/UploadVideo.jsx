@@ -24,7 +24,7 @@ function UploadVideo() {
     })
 
     const result = await response.json();
-    setMessage(result.msg)
+    setMessage(result.msg) //MSG vem da API
 
     if(response.ok){
         setMessage("Envio realizado com sucesso.")
@@ -39,14 +39,14 @@ function UploadVideo() {
   }
 
   return (
-    <div>
+    <div className="container-video">
         <h2>Selecione a categoria e envie o link do vídeo.</h2>
 
         <form onSubmit={handleSubmit}>
             <label htmlFor="">Insira a URL do vídeo</label>
             <input type="text" placeholder="URL" value={URLs} onChange={(e) => setURLs(e.target.value)} required />
 
-            <CustomDropdown options={categories} selected={category} setSelected={setCategory} /> 
+            <CustomDropdown options={categories} selected={category} setSelected={setCategory} width='100%' /> 
             <button type="submit">Enviar</button> {/*Por está dentro de um form, a propriedade Submit já faz o envio de forma encapsulada*/}
         </form>
       {message && <p>{message}</p>}

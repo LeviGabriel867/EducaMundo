@@ -6,6 +6,7 @@ import { ActivitiesModel } from "./models/Activities.js"; // Importando o modelo
 import cors from "cors"
 import connectDB from './config/dataBase/ConnectDB.js'
 import { VideosModel } from "./models/Videos.js";
+import { SuggestionsModel } from "./models/Suggestions.js";
 
 dotenv.config();
 const app = express();
@@ -52,6 +53,7 @@ app.post("/single", upload.single("image"), async (req, res) => {
   }
 });
 
+//Rota para acessar todas atividades
 app.get("/activities", async (req, res) => {
   try {
     const {category} = req.query;
@@ -64,7 +66,7 @@ app.get("/activities", async (req, res) => {
 
 
 
-
+//Rota para cadastrar URLs de vídeos
 app.post("/uploadVideos", async (req, res) => {
   try {
     const { category, URLs } = req.body;
@@ -84,6 +86,8 @@ app.post("/uploadVideos", async (req, res) => {
   }
 });
 
+
+//Rota para acessar vídeos
 app.get('/uploadVideos', async (req, res) => {
   try {
     const {category} = req.query
@@ -102,6 +106,38 @@ app.get('/uploadVideos', async (req, res) => {
     
   
 })
+
+//Rota para usuário cadastrar sugestões
+
+app.post('/suggestions', async(req, res) => {
+  try {
+    const {suggestionsUsers} = req.body
+
+    if(!suggestionsUsers){
+      return res.status(400).json({msg: "Preencha o campo corretamente"})
+    }
+    const newSuggestions = new SuggestionsModel({suggestionsUsers});
+
+    await newSuggestions.save();
+    res.status(200).json({msg:"Suggestion registered sucessfully"})
+  } catch (error) {
+    console.error("Error in register suggestion")
+    res.status(500).json({msg: "Error in register suggestion", error: error.message})
+  }
+})
+
+//Rota para visualizar sugestões dos usuários
+
+app.get('/suggestions', async(req, res) => {
+  try {
+    let suggestions = await SuggestionsModel.find()
+    res.json(suggestions)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({error:error.message})
+  }
+})
+
 // Iniciar o servidor e conectar ao banco de dados
 const PORT = 8080;
 

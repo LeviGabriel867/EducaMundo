@@ -1,184 +1,368 @@
+/* Estilo geral */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+}
+
+/* Container de login e atividades */
+.container-login,
+.container-activities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 3px solid #fff;
+  padding: 2%;
+  background-color: #c7e1f1;
+  border-radius: 10px;
+  font-size: 1.1vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 2%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+  text-align: center;
+  font-size: 1.5em;
+  color: #333;
+}
+
+/* Formulário */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Containers dos inputs */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-container label {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input-container input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+.file{
+  border: 1px solid white;
+  padding: 5px;
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+}
+.options{
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+  margin: auto;
+  margin-top: 30px;
+}
+
+/* Estilo de botão */
+#submit,
+#homePage {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: #0903c7;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#homePage {
+  background-color: #357abd;
+}
+
+#submit:hover,
+#homePage:hover {
+  background-color: #03c70d;
+}
+
+/* Mensagem */
+.message {
+  color: #d9534f;
+  font-size: 1.1em;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Botões para alternar entre login e cadastro */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Estilos de inputs adicionais */
+.input-container-upload input,
+.input-container-activities input,
+.container-video input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.input-container-upload input {
+  width: auto;
+}
+.input-container-upload,
+.container-video {
+  width: 80%; /* Ajuste o valor conforme necessário */
+  margin: 0 auto; /* Centraliza o contêiner se necessário */
+}
+.input-container-upload input,
+.container-video input {
+  width: 100%; /* Faz com que os inputs ocupem 100% do contêiner */
+  padding: 10px; /* Adiciona algum preenchimento interno para o texto */
+  margin-bottom: 10px; /* Separa os inputs um do outro */
+  border: 1px solid #ccc; /* Adiciona borda */
+  border-radius: 5px; /* Adiciona borda arredondada */
+}
+
+/* Estilo do dropdown */
 .dropdown {
-    position: relative;
-    width: 190px;
-  }
-  
-  .dropdown-header {
-    background: #FFFFFF;
-    color: black;
-    padding: 1px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 0.9vw;
-  }
-  .file{
-    display: flex;
-    align-items: center;
-    gap: 10pxb7uvy6c;
-  }
-  .dropdown-list {
-    position: absolute;
-    width: 100%;
-    background: white;
-    border: 1px solid #ccc;
-    max-height: 150px;
-    overflow-y: auto;
-    z-index: 10;
-  }
-  
-  .dropdown-item {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .dropdown-item:hover {
-    background: #007bff;
-    color: white;
-  }
-  
+  position: relative;
+  width: 80%;
+}
+
+.dropdown-header {
+  background: #ffffff;
+  color: black;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1em;
+  border: 1px solid #ccc;
+}
+
+.dropdown-list {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 12px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.dropdown-item:hover {
+  background: #007bff;
+  color: white;
+}
+
+/* Estilo do campo de upload de arquivo */
 .input-file {
   display: none;
 }
 
-
 .label-file {
-    display: inline-block;
-    background-color: #0903c7;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  background-color: #0903c7;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
 }
 
 .label-file:hover {
-    background-color: #357abd;
+  background-color: #357abd;
 }
 
-.container-login {
-    display: flex;
-    flex-direction: column;
-    width: auto;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid white;
-    padding: 1.5%;
-    height: 50vh;
-    background-color: #c7e1f1;
-    border-radius: 5%;
-    font-size: 1.1vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 2%;
-}
-
-.container-activities{
-    display: flex;
-    flex-direction: column;
-    width: auto;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid white;
-    padding: 1.5%;
-    height: 50vh;
-    background-color: #c7e1f1;
-    border-radius: 5%;
-    font-size: 1.1vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 2%;
-}
-.input-container{
+.file {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  width: auto;
-}
-.input-container-upload input{
-    border-radius: 100px;
-    padding: 5px;
-    gap: 5px;
-    width: 100%;
-    align-items: center;
-    width: auto;
-    flex-direction: column;
-    
-  }
-  #inputOne{
-    margin-bottom: 7px;
-  }
-.input-container-activities input{
-    border-radius: 10px;
-    padding: 5px;
-    width: 100%;
-}
-.input-container label{
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2vw;
-}
-.input-container input{
-    border-radius: 10px;
-    padding: 5px;
-}
-.custom-select {
-  appearance: none; /* Remove o estilo padrão */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: white;
-  border: 2px solid #007bff;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-
-#submit {
-    display: flex;
-    font-weight: bold;
-    width: auto;
-    font-size: 1rem;
-    color: white;
-    background-color: #0903c7;
-    padding: 5px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-#homePage{
-    display: flex;
-    font-weight: bold;
-    width: auto;
-    font-size: 1rem;
-    color: white;
-    background-color: #357abd;
-    padding: 5px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 5px; /* Espaço entre os botões */
-    margin-top: 10px;
+.file p {
+  font-size: 1.1em;
 }
 
-.buttons{
+/* Estilo dos botões para voltar e cadastrar */
+.buttons {
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
 }
-#homePage:hover, #submit:hover{
-    background-color: #03c70d;
+.container-video button{
+  display: flex;
+  font-weight: bold;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-size: 1.1em;
+  padding: 12px;
+  color: white;
+  background-color: #0903c7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.container-video button:hover{
 
+  background-color: #03c70d;
+}
+.buttons button,
+#button-uploadVideo   {
+  padding: 12px;
+  font-size: 1.1em;
+  color: white;
+  background-color: #0903c7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#button-suggestions{
+  padding: 12px;
+  font-size: 1.1em;
+  color: white;
+  background-color: #0903c7;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#button-uploadVideo:hover{
+  background-color: #03c70d;
+
+}
+#button-suggestions:hover{
+  background-color: #03c70d;
+
+}
+.buttons button:hover {
+  background-color: #03c70d;
+}
+
+/* Estilos para os campos de atividade */
+.input-container-upload input {
+  border-radius: 100px;
+  padding: 5px;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+
+#inputOne {
+  margin-bottom: 7px;
+}
+
+/* Mídia Query para telas menores que 400px */
+@media (max-width: 400px) {
+  /* Ajustando o tamanho da fonte */
+  body {
+      font-size: 16px;
+  }
+
+  .container-login,
+  .container-activities {
+      width: 90%;
+      padding: 5%;
+      font-size: 4.3vw; /* Reduz a fonte para se ajustar à tela menor */
+  }
+
+  h1 {
+      font-size: 1.2em;
+  }
+
+  .input-container input,
+  .input-container label,
+  .input-container-upload input {
+      font-size: 0.9em;
+  }
+
+  /* Botões */
+  #submit,
+  #homePage,
+  
+  .buttons button {
+      font-size: 0.9em;
+      padding: 10px 0;
+  }
+  .container-video button{
+    font-size: 0.9em;
+    padding: 10px;
+    width: auto;
+
+  }
+  .message {
+      font-size: 0.9em;
+  }
+
+  .button-container {
+      flex-direction: column;
+  }
+
+  .file {
+      flex-direction: column;
+      font-size: 0.9em;
+  }
+
+  .dropdown-header {
+      padding: 10px;
+      font-size: 1em;
+  }
+
+  .dropdown-item {
+      font-size: 0.9em;
+      padding: 10px;
+  }
+
+  .label-file {
+      font-size: 0.9em;
+      padding: 10px 20px;
+  }
 }

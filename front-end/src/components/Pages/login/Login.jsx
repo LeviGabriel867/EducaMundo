@@ -2,12 +2,14 @@ import { useState } from "react";
 import HomePageComponent from "../welcome/HomePage";
 import CustomDropdown from "./CustomDropdown";
 import UploadVideo from "./UploadVideo";
+import SuggestionsUsers from "./SuggetionsUsers";
+import ViewSuggestions from './ViewSuggestions';
 import "./Login.css";
 
 function Login() {
     const [homePage, setHomePage] = useState(true);
     const [typeUser, setTypeUser] = useState(true);
-    const [uploadVideo, setUploadVideo] = useState(true)
+    const [uploadVideo, setUploadVideo] = useState(true);
     const [img, setImg] = useState("");
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
@@ -18,6 +20,7 @@ function Login() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
     const [isLogin, setIsLogin] = useState(true);
+    const [viewSuggestions, setViewSuggestions] = useState(true); // Controla a visibilidade do ViewSuggestions
 
     const categories = [
         "Atividade de pintura",
@@ -53,6 +56,7 @@ function Login() {
                 if (isLogin) {
                     localStorage.setItem("token", result.token);
                     setTypeUser(false); // Ir para a próxima tela ao fazer login
+                    setUploadVideo(true); // Resetar o estado uploadVideo
                 }
             } else {
                 setMessage(result.message || "Usúario não cadastrado.");
@@ -71,8 +75,8 @@ function Login() {
     };
 
     const handleUpload = (e) => {
-        setUploadVideo(false)
-    }
+        setUploadVideo(false);
+    };
 
     const handleClick = () => {
         const formData = new FormData();
@@ -95,14 +99,12 @@ function Login() {
 
     return (
         <div>
-
             {homePage ? (
                 <>
                     {typeUser ? (
-
                         <div className="container-login">
-
-                            <h1>Insira suas credenciais de administrador</h1>
+                            <h1>SEÇÃO DE ADMINISTRADOR</h1>
+                            <h1>Insira suas credenciais</h1>
                             <form onSubmit={handleSubmit}>
                                 <div className="input-container">
                                     <label htmlFor="email">E-mail:</label>
@@ -154,55 +156,67 @@ function Login() {
                             </form>
                         </div>
                     ) : (
-
                         <div className="container-activities">
+                            {viewSuggestions ? (
+                                <>
+                                    {uploadVideo ? (
+                                        <>
+                                            <h1>Escolha a atividade e sua categoria</h1>
+                                            <div className="input-container-upload">
+                                                <input id="inputOne"
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    type="text"
+                                                    placeholder="Nome da atividade"
+                                                />
+                                                <br />
+                                                <input
+                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    type="text"
+                                                    placeholder="Descrição da atividade"
+                                                />
+                                            </div>
 
-                            <h1>Escolha a atividade e sua categoria</h1>
-                            <div className="input-container-upload">
-                                <input id="inputOne"
-                                    onChange={(e) => setName(e.target.value)}
-                                    type="text"
-                                    placeholder="Nome da atividade"
-                                />
-                                <br />
-                                <input
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    type="text"
-                                    placeholder="Descrição da atividade"
-                                />
-                            </div>
+                                            <CustomDropdown options={categories} selected={category} setSelected={setCategory} />
 
-                            <CustomDropdown options={categories} selected={category} setSelected={setCategory} />
+                                            <br />
+                                            <label htmlFor="file-upload" className="label-file">
+                                                Escolher arquivo
+                                            </label>
+                                            <input
+                                                id="file-upload"
+                                                className="input-file"
+                                                type="file"
+                                                onChange={handleFileChange}
+                                            />
+                                            <div className="file">
+                                                <label>Arquivo selecionado:</label>
+                                                <p>{fileName}</p>
+                                            </div>
 
+                                            <div className="buttons">
+                                                <button id="submit" onClick={() => setTypeUser(true)}>Retornar</button>
+                                                <button id="submit" onClick={handleClick}>Cadastrar</button>
+                                            </div>
 
-                            <label htmlFor="file-upload" className="label-file">
-                                Escolher arquivo
-                            </label>
-                            <input
-                                id="file-upload"
-                                className="input-file"
-                                type="file"
-                                onChange={handleFileChange}
-                            />
+                                            <div className="options">
+                                                <br />
+                                                <button id="button-uploadVideo" onClick={handleUpload}>Cadastrar vídeo</button>
+                                                <SuggestionsUsers onViewSuggestionsClick={() => setViewSuggestions(false)} />
 
-                            <h4>Ou</h4>
-                            {uploadVideo ? (
-                                <button onClick={handleUpload}>Cadastrar vídeo</button>
+                                            </div>
+
+                                        </>
+                                    ) : (
+                                        <>
+                                            <UploadVideo />
+                                            <h4>Ou</h4>
+                                            <button id="button-uploadVideo" onClick={() => setUploadVideo(true)}>Cadastrar atividade</button>
+                                        </>
+                                    )}
+                                </>
                             ) : (
-
-                                <UploadVideo />
+                                <ViewSuggestions />
                             )}
-
-
-                            <div className="file">
-                                <label>Arquivo selecionado:</label>
-                                <p>{fileName}</p>
-                            </div>
-
-                            <div className="buttons">
-                                <button id="submit" onClick={() => setTypeUser(true)}>Retornar</button>
-                                <button id="submit" onClick={handleClick}>Cadastrar</button>
-                            </div>
                         </div>
                     )}
                 </>
