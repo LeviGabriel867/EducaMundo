@@ -18,6 +18,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [isVisible, setIsVisible] = useState(false); // Estado para controlar a visibilidade
     const [isLogin, setIsLogin] = useState(true);
     const [viewSuggestions, setViewSuggestions] = useState(true); // Controla a visibilidade do ViewSuggestions
 
@@ -51,6 +52,15 @@ function Login() {
 
             if (response.ok) {
                 setMessage(isLogin ? "Login realizado com sucesso!" : "Cadastro realizado com sucesso!");
+                setIsVisible(true)
+
+                setTimeout(() => {
+                    setIsVisible(false); // Começa o fade-out
+                }, 2500);
+            
+                setTimeout(() => {
+                    setMessage(""); // Remove a mensagem completamente
+                }, 3500);
 
                 if (isLogin) {
                     localStorage.setItem("token", result.token);
@@ -77,24 +87,66 @@ function Login() {
         setUploadVideo(false);
     };
 
-    const handleClick = () => {
+    const handleClick = async() => {
         const formData = new FormData();
         formData.append("name", name);
         formData.append("category", category);
         formData.append("description", description);
         formData.append("image", img);
-
-        fetch("http://localhost:8080/single", {
-            method: "POST",
-            body: formData,
-        })
-            .then((res) => {
-                console.log(res.msg);
-            })
-            .catch((err) => {
-                console.log(err);
+            
+        try {
+            const response = await fetch("http://localhost:8080/single", {
+                method:"POST",
+                body:formData
             });
+        const data = await response.json() 
+        
+        if(response.ok){
+            setMessage("Atividade enviada com sucesso!");
+            setIsVisible(true)
+
+
+            setName("");
+            setCategory("");
+            setDescription("")
+            setImg("")
+            setFileName("Nenhum arquivo escolhido")
+
+
+            setTimeout(() => {
+                setIsVisible(false); // Começa o fade-out
+            }, 2500);
+
+            setTimeout(()=>{
+                setMessage("")
+            },3500)
+        }else{
+            setMessage(data.msg || "Erro ao enviar atividade")
+            setIsVisible(true)
+            
+            setTimeout(() =>{
+                setIsVisible(false)
+            }, 2500)
+
+            setTimeout(()=>{
+                setMessage("")
+            },3500)
+        }
+        } catch (error) {
+            console.error("Error no envio da atividade", error)
+            setMessage("Erro ao conectar ao servidor")
+            setIsVisible(true)
+            
+            setTimeout(() =>{
+                setIsVisible(false)
+            }, 2500)
+
+            setTimeout(()=>{
+                setMessage("")
+            },3500)
+        }
     };
+    
 
     return (
         <div>
@@ -143,7 +195,9 @@ function Login() {
                                     </div>
                                 )}
 
-                                {message && <p className="message">{message}</p>}
+                                {message && (
+                                    <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
+                                )}
 
                                 <div className="button-container">
                                     <button id="submit" type="submit">{isLogin ? "Login" : "Cadastrar"}</button>
@@ -208,6 +262,10 @@ function Login() {
                     <button id="button-uploadVideo" onClick={handleUpload}>Cadastrar vídeo</button>
                     <SuggestionsUsers onViewSuggestionsClick={() => setViewSuggestions(false)} />
                 </div>
+                {message && (
+                    <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
+                )}
+
             </>
         ) : (
             <>
