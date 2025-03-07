@@ -3,7 +3,6 @@ import HomePageComponent from "../welcome/HomePage";
 import CustomDropdown from "./CustomDropdown";
 import UploadVideo from "./UploadVideo";
 import SuggestionsUsers from "./SuggetionsUsers";
-import ViewSuggestions from './ViewSuggestions';
 import "./Login.css";
 
 function Login() {
@@ -158,65 +157,69 @@ function Login() {
                     ) : (
                         <div className="container-activities">
                             {viewSuggestions ? (
-                                <>
-                                    {uploadVideo ? (
-                                        <>
-                                            <h1>Escolha a atividade e sua categoria</h1>
-                                            <div className="input-container-upload">
-                                                <input id="inputOne"
-                                                    onChange={(e) => setName(e.target.value)}
-                                                    type="text"
-                                                    placeholder="Nome da atividade"
-                                                />
-                                                <br />
-                                                <input
-                                                    onChange={(e) => setDescription(e.target.value)}
-                                                    type="text"
-                                                    placeholder="Descrição da atividade"
-                                                />
-                                            </div>
+    <>
+        {uploadVideo ? (
+            <>
+                <h1>Escolha a atividade e sua categoria</h1>
+                <div className="input-container-upload">
+                    <input
+                        id="inputOne"
+                        onChange={(e) => setName(e.target.value)}
+                        type="text"
+                        placeholder="Nome da atividade"
+                    />
+                    <br />
+                    <input
+                        id="inputOne"
+                        onChange={(e) => setDescription(e.target.value)}
+                        type="text"
+                        placeholder="Descrição da atividade"
+                    />
+                </div>
 
-                                            <CustomDropdown options={categories} selected={category} setSelected={setCategory} />
+                <CustomDropdown options={categories} selected={category} setSelected={setCategory} />
 
-                                            <br />
-                                            <label htmlFor="file-upload" className="label-file">
-                                                Escolher arquivo
-                                            </label>
-                                            <input
-                                                id="file-upload"
-                                                className="input-file"
-                                                type="file"
-                                                onChange={handleFileChange}
-                                            />
-                                            <div className="file">
-                                                <label>Arquivo selecionado:</label>
-                                                <p>{fileName}</p>
-                                            </div>
+                <br />
 
-                                            <div className="buttons">
-                                                <button id="submit" onClick={() => setTypeUser(true)}>Retornar</button>
-                                                <button id="submit" onClick={handleClick}>Cadastrar</button>
-                                            </div>
+                <div className="selectedSuggestions">
+                    <label htmlFor="file-upload" className="label-file">
+                        Escolher arquivo
+                    </label>
+                    <input
+                        id="file-upload"
+                        className="input-file"
+                        type="file"
+                        onChange={handleFileChange}
+                    />
 
-                                            <div className="options">
-                                                <br />
-                                                <button id="button-uploadVideo" onClick={handleUpload}>Cadastrar vídeo</button>
-                                                <SuggestionsUsers onViewSuggestionsClick={() => setViewSuggestions(false)} />
+                    <div className="file">
+                        <label id="labelFileSelected">Arquivo selecionado:</label>
+                        <p>{fileName}</p>
+                    </div>
+                </div>
 
-                                            </div>
+                <div className="buttons">
+                    <button id="submit" onClick={() => setTypeUser(true)}>Retornar</button>
+                    <button id="submit" onClick={handleClick}>Cadastrar</button>
+                </div>
 
-                                        </>
-                                    ) : (
-                                        <>
-                                            <UploadVideo />
-                                            <h4>Ou</h4>
-                                            <button id="button-uploadVideo" onClick={() => setUploadVideo(true)}>Cadastrar atividade</button>
-                                        </>
-                                    )}
-                                </>
-                            ) : (
-                                <ViewSuggestions />
-                            )}
+                <div className="options">
+                    <br />
+                    <button id="button-uploadVideo" onClick={handleUpload}>Cadastrar vídeo</button>
+                    <SuggestionsUsers onViewSuggestionsClick={() => setViewSuggestions(false)} />
+                </div>
+            </>
+        ) : (
+            <>
+                <UploadVideo />
+                <h4>Ou</h4>
+                <button id="button-uploadVideo" onClick={() => setUploadVideo(true)}>Cadastrar atividade</button>
+            </>
+        )}
+    </>
+) : (
+    <SuggestionsUsers onViewSuggestionsClick={() => setViewSuggestions(true)} />
+)}
                         </div>
                     )}
                 </>

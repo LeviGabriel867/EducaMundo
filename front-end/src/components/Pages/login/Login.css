@@ -53,7 +53,9 @@ form {
   flex-direction: column;
   width: 100%;
 }
-
+#inputOne{
+  width: 98%;
+}
 .input-container label {
   font-size: 1.1em;
   font-weight: bold;
@@ -66,15 +68,28 @@ form {
   border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 1em;
+  width: 100%;
+  box-sizing: border-box; /* Evita que o padding afete o tamanho */
+  transition: border-color 0.3s ease-in-out;
 }
+
+.input-container input:focus {
+  border-color: #007bff; /* Azul para indicar foco */
+  outline: none;
+}
+
 .file{
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
   border: 1px solid white;
-  padding: 5px;
+  padding: 16px;
   background-color: #f0f4f8;
   border-radius: 8px;
   margin-bottom: 10px;
-
-}
+  gap: 10px;
+  }
 .options{
   display: inline-flex;
   gap: 20px;
@@ -83,11 +98,37 @@ form {
   margin-top: 30px;
 }
 
+.selectedSuggestions{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 2%;
+}
+
+
+.file p {
+  font-size: 1.em;
+}
+.label-file { 
+  display: block; /* Para que o width funcione */
+  width: 20%; /* Ajustável conforme necessário */
+  font-size: 10px; /* Aumentado para evitar sumir */
+  text-align: center; /* Centraliza o texto */
+  margin: 0; /* Remove espaçamento externo */
+  line-height: 1; /* Ajuste para manter legível */
+}
+#labelFileSelected {
+  margin: auto; 
+}
+
+
+
+
 /* Estilo de botão */
 #submit,
 #homePage {
   width: 100%;
-  padding: 12px 0;
+  padding: 18px 0;
   font-size: 1.1em;
   font-weight: bold;
   text-align: center;
@@ -214,23 +255,15 @@ form {
   background-color: #357abd;
 }
 
-.file {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
 
-.file p {
-  font-size: 1.1em;
-}
 
 /* Estilo dos botões para voltar e cadastrar */
 .buttons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  width: 100%;
+  width: 81%;
+  margin: auto;
   margin-top: 20px;
 }
 .container-video button{
