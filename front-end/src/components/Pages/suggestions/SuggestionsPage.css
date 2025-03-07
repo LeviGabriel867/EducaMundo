@@ -1,0 +1,85 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr; /* Mantém o centro ajustável */
+    grid-template-rows: 1fr ;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: auto;
+    width: auto;
+}
+
+
+
+
+.SuggestionsPage-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: 65%; /* Alterar para 'max-width' */
+    
+    background-color: #f0f4f8;
+    margin: auto; /* Isso agora funciona corretamente */
+    border-radius: 20px;
+    height: auto;
+}
+
+
+.itensList {
+    justify-content: center;
+    gap: 15px;
+    list-style-type: none; /* Remove os marcadores da lista */
+    background-color: #f4f4f4; /* Fundo cinza claro */
+    padding: 10px; /* Adiciona um espaçamento interno */
+    margin: 5px 0; /* Espaçamento entre os itens */
+    border-radius: 5px; /* Borda arredondada */
+    transition: background-color 0.3s ease; /* Efeito de transição */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #42a5f5; /* Linha colorida à esquerda */
+   
+}
+/*.itensList::before {
+    content: "📌"; 
+    margin-right: 8px;
+}
+*/
+
+.itensList:nth-child(odd) {
+    background-color: #e3f2fd; /* Azul claro */
+}
+
+.itensList:nth-child(even) {
+    background-color: #bbdefb; /* Azul um pouco mais escuro */
+}
+
+
+.itensList:hover {
+    background-color: #e0e0e0; /* Cor muda ao passar o mouse */
+}
+
+
+.SuggestionsButton{
+    width: 25%;
+    padding: 8px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #0903c7;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin: auto;
+    margin-top: 10px;   
+}
+.SuggestionsButton:hover{
+    background-color: #03c70d;
+
+}

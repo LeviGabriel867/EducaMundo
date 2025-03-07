@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./SuggestionsPage.css"
 
 function SuggestionsPage() {
     const [suggestions, setSuggestions] = useState([]);
@@ -30,7 +31,7 @@ function SuggestionsPage() {
     }, []);
 
     return (
-        <div style={{ padding: "20px", textAlign: "center" }}>
+        <div className="SuggestionsPage-container">
             <h2>Lista de Sugestões</h2>
             {loading ? (
                 <p>Carregando...</p>
@@ -39,14 +40,14 @@ function SuggestionsPage() {
             ) : suggestions.length > 0 ? (
                 <ul>
                     {suggestions.map((user) => (
-                        <li key={user._id}>{user.suggestionsUsers}</li>
+                        <li className="itensList" key={user._id}>{user.suggestionsUsers}</li>
                     ))}
                 </ul>
             ) : (
                 <p>Nenhuma sugestão disponível</p>
             )}
 
-            <button onClick={() => navigate("/")}>Voltar</button>
+            <button className="SuggestionsButton" onClick={() => navigate("/")}>Voltar</button>
         </div>
     );
 }
