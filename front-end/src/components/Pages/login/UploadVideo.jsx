@@ -47,7 +47,7 @@ function UploadVideo() {
             <input type="text" placeholder="URL" value={URLs} onChange={(e) => setURLs(e.target.value)} required />
 
             <CustomDropdown options={categories} selected={category} setSelected={setCategory} width='100%' /> 
-            <button type="submit">Enviar</button> {/*Por está dentro de um form, a propriedade Submit já faz o envio de forma encapsulada*/}
+            <button id="button-uploadVideo" type="submit">Enviar</button> {/*Por está dentro de um form, a propriedade Submit já faz o envio de forma encapsulada*/}
         </form>
       {message && <p>{message}</p>}
     </div>

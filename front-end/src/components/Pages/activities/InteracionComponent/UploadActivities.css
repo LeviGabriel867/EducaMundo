@@ -1,0 +1,95 @@
+/* UploadActivities.css */
+
+.containerActivities {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; /* Centraliza o título */
+}
+
+.containerActivities h1 {
+    font-size: 2.2rem; /* Reduz o tamanho da fonte do título */
+    margin-bottom: 20px;
+}
+
+.containerActivities ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0;
+}
+
+.containerActivities li {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: left; /* Alinha o conteúdo do item à esquerda */
+}
+
+.containerActivities h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.containerActivities h3 {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.containerActivities img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Media Query para telas menores que 768px (Tablets e Celulares) */
+@media (max-width: 768px) {
+    .containerActivities {
+        padding: 15px;
+    }
+
+    .containerActivities h1 {
+        font-size: 1.8rem; /* Reduz o tamanho da fonte do título */
+        margin-bottom: 15px;
+    }
+
+    .containerActivities li {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .containerActivities h2 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .containerActivities h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Media Query para telas menores que 480px (Celulares menores) */
+@media (max-width: 480px) {
+    .containerActivities {
+        padding: 10px;
+    }
+
+    .containerActivities h1 {
+        font-size: 1.6rem; /* Reduz ainda mais o tamanho da fonte do título */
+        margin-bottom: 10px;
+    }
+
+    .containerActivities li {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .containerActivities h2 {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+
+    .containerActivities h3 {
+        font-size: 0.9rem;
+    }
+}

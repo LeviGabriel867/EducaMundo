@@ -1,7 +1,8 @@
 .father{
     border: 1px solid white;
-    border-radius: 5%;
+    border-radius: 10px;
     margin: auto;
+    margin-top: 5px;
     padding: 20px;
     display: flex;
     align-items: center;
@@ -58,5 +59,11 @@
     .player{
         
         height: 50vh;
+    }
+    .back-button{
+        width: 42%;
+        font-size: 15px;
+        padding: 5px;
+        
     }
 }

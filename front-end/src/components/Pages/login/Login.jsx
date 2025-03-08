@@ -236,21 +236,19 @@ function Login() {
                 <br />
 
                 <div className="selectedSuggestions">
-                    <label htmlFor="file-upload" className="label-file">
-                        Escolher arquivo
-                    </label>
-                    <input
-                        id="file-upload"
-                        className="input-file"
-                        type="file"
-                        onChange={handleFileChange}
-                    />
-
-                    <div className="file">
-                        <label id="labelFileSelected">Arquivo selecionado:</label>
-                        <p>{fileName}</p>
-                    </div>
-                </div>
+    <div className="label-file-container">
+        <label htmlFor="file-upload" className="label-file">
+            Escolher arquivo
+        </label>
+        <input
+            id="file-upload"
+            className="input-file"
+            type="file"
+            onChange={handleFileChange}
+        />
+         <p className="file-name">{fileName}</p> {/* Exibe o nome do arquivo */}
+    </div>
+</div>
 
                 <div className="buttons">
                     <button id="submit" onClick={() => setTypeUser(true)}>Retornar</button>
@@ -270,7 +268,6 @@ function Login() {
         ) : (
             <>
                 <UploadVideo />
-                <h4>Ou</h4>
                 <button id="button-uploadVideo" onClick={() => setUploadVideo(true)}>Cadastrar atividade</button>
             </>
         )}

@@ -32,7 +32,7 @@ function ServicesSystem() {
                     <ButtonOptions 
                         img={component} 
                         h1="Sugestões e Opiniôes" 
-                        paragraph="esta sessão, você pode deixar sua sugestão ou crítica construtiva para melhoramos nosso app. Fique a vontade!"
+                        paragraph="Esta sessão, você pode deixar sua sugestão ou crítica construtiva para melhoramos nosso app. Fique a vontade!"
                     />
                 </Link>
             </div>

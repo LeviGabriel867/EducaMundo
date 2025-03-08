@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import './UploadActivities.css'; // Importe o CSS
+
 
 
 function UploadActivities({category}){

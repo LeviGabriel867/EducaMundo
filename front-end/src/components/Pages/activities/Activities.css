@@ -1,11 +1,11 @@
-.father{
+.father {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    
 }
-.paragraph{
+
+.paragraph {
     display: flex;
     margin: auto;
     padding: 10px;
@@ -18,54 +18,70 @@
     justify-content: center;
     width: 40%;
 }
-.father p{
-    width: auto; /* Define a largura para ocupar metade da página */
-    text-align: center; /* Opcional: centraliza o texto */
-    margin:  auto; /* Centraliza o parágrafo na tela */
+
+.father p {
+    width: auto;
+    text-align: center;
+    margin: auto;
     font-size: 20px;
-    align-items:center;
+    align-items: center;
     flex-direction: column;
 }
-.containerActivities{
+
+.containerActivities {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    width: 100%; /* Largura total do contêiner */
+    box-sizing: border-box; /* Inclui padding e borda na largura */
 }
 
-
+/* Media Query para telas menores que 400px */
 @media (max-width: 400px) {
     .father {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; /* Alinha os filhos horizontalmente */
-        width: 85%;
+        width: 90%; /* Aumenta a largura para preencher a tela */
         margin: 0 auto; /* Centraliza horizontalmente */
+        padding: 10px; /* Adiciona um pequeno padding */
     }
-    .paragraph{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center ;
-        margin: auto;
-        padding: 2px;
-        font-size: 15px;
-        width: 50%;
-        margin-top: 2% ;
-        margin-bottom: 2%;
-        
+
+    .paragraph {
+        padding: 6px; /* Reduz o padding */
+        font-size: 14px; /* Reduz o tamanho da fonte */
+        width: 70%; /* Aumenta a largura */
+        margin-top: 3%; /* Ajusta as margens */
+        margin-bottom: 3%;
     }
-    .footer p{
-        font-size: 0.8rem;
-        width: 100%;
+
+    .father p {
+        font-size: 16px; /* Reduz o tamanho da fonte */
+    }
+
+    .footer p {
+        font-size: 0.75rem; /* Reduz ainda mais para telas menores */
+        width: 95%; /* Aumenta a largura */
         font-weight: bold;
-
-    }
-    .containerActivities p{
-        width: auto;
-        font-size: 18px;
+        text-align: center; /* Garante que o texto esteja centralizado */
     }
 
+    .containerActivities {
+        gap: 8px; /* Reduz o espaçamento entre os botões */
+    }
+
+    .containerActivities p {
+        font-size: 16px; /* Mantém um tamanho legível */
+    }
+}
+
+/* Media Query para telas menores que 320px */
+@media (max-width: 320px) {
+    .paragraph {
+        font-size: 12px; /* Reduz ainda mais o tamanho da fonte */
+        width: 80%; /* Aumenta a largura */
+    }
+
+    .footer p {
+        font-size: 0.7rem; /* Ajusta ainda mais para telas pequenas */
+    }
 }

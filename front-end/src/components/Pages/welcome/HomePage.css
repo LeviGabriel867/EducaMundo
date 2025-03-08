@@ -15,23 +15,23 @@ html, body {
     text-align: center;
 }
 
-
 .scrennStart {
     border: 2.5px solid rgb(255, 255, 255);
     font-family: "Poppins", sans-serif;
     background-color: #c1e4fa;
-    padding: 5%;
+    padding: 5%;  /* Ajustei o padding */
     border-radius: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px; /* Ajustei o gap */
     width: 100%;
-    max-width: 400px;
+    max-width: 580px;  /* Ajustei o max-width */
 }
 .welcome p{
     font-weight: bold;
 }
+
 .login-container {
     display: inline-flex;
     gap: 2%;
@@ -39,26 +39,27 @@ html, body {
 }
 
 .scrennStart h1 {
-    font-size: 2.5rem;
+    font-size: 2.5rem;  /* Reduzi o tamanho da fonte */
     color: #333;
     margin: 0;
 }
 
 .kidImage {
-    width: 30%;
+    width: 35%;  /* Reduzi a imagem */
     color: #4a90e2;
 }
+
 .educaMundoImage{
-    width: 45%;
+    width: 45%;  /* Ajustei o tamanho */
 }
 
 .scrennStart a, .login {
     font-weight: bold;
     width: auto;
-    font-size: 1rem;
+    font-size: 1rem;  /* Reduzi um pouco */
     color: white;
     background-color: #0903c7;
-    padding: 5px 20px;
+    padding: 5px 15px;   /* Ajustei o padding */
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
@@ -69,34 +70,128 @@ html, body {
     background-color: #357abd;
 }
 
-@media(max-width: 400px) {
+/* Media query para telas menores que 768px */
+@media (max-width: 768px) {
     .welcome {
-        height: 100vh; /* Ajuste também para 100vh */
-        width: 100%; /* Garante que a largura seja a máxima */
+        height: 100vh;
+        width: 100%;
+        overflow: auto; /* Habilita a rolagem em telas pequenas, se necessário */
     }
 
     .scrennStart {
-        padding: 10%;
+        padding: 8%;
+        width: 90%;
+        max-width: 400px;
+        max-height: 80vh; /* Mantém a altura máxima */
+        overflow: auto; /* Mantém a rolagem interna */
     }
 
-
     .kidImage {
-        width: 65%;
-        
+        width: 50%;
     }
 
     .scrennStart h1 {
-        padding-left: 20px;
         font-size: 1.8rem;
         text-align: center;
         word-wrap: break-word;
     }
 
-    .scrennStart a {
+    .scrennStart a, .login {
         font-size: 0.8rem;
         padding: 8px 16px;
     }
-    .educaMundoImage{
+
+    .educaMundoImage {
         width: 55%;
     }
 }
+
+/* Media query para telas menores que 400px */
+@media (max-width: 400px) {
+    .welcome {
+        height: 100vh;
+        width: 100%;
+        overflow: auto; /* Habilita a rolagem em telas pequenas, se necessário */
+    }
+
+    .scrennStart {
+        padding: 8%;
+        width: 90%;
+        max-width: 350px;
+        max-height: 90vh; /* Aumentei para telas menores */
+        overflow: auto;
+    }
+
+    .kidImage {
+        width: 60%;
+    }
+
+    .scrennStart h1 {
+        font-size: 1.6rem;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .scrennStart a, .login {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+
+    .educaMundoImage {
+        width: 65%;
+    }
+}
+
+/*
+@media (max-width: 1920px) {
+    .scrennStart {
+        padding: 4%;
+        width: 75%;
+        max-width: 400px;
+        gap: 12px;
+    }
+
+    .scrennStart h1 {
+        font-size: 2.2rem;
+    }
+
+    .kidImage {
+        width: 30%;
+    }
+
+    .educaMundoImage {
+        width: 40%;
+    }
+
+    .scrennStart a, .login {
+        font-size: 0.9rem;
+        padding: 4px 12px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .scrennStart {
+        padding: 3%;
+        width: 65%;
+        max-width: 300px;
+        gap: 10px;
+    }
+
+    .scrennStart h1 {
+        font-size: 1.8rem;
+    }
+
+    .kidImage {
+        width: 25%;
+    }
+
+    .educaMundoImage {
+        width: 35%;
+    }
+
+    .scrennStart a, .login {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+    }
+}
+*/

@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
 .container-activities {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   width: 80%;
   max-width: 800px;
@@ -28,7 +29,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  gap: 2%;
+  gap: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,14 +44,12 @@ body {
   text-align: center;
   margin-top: 10px;
   padding: 4px;
-  border-radius:15px ;
+  border-radius: 15px;
 }
 
 .message.hidden {
   opacity: 0;
 }
-
-
 
 /* Títulos */
 h1 {
@@ -73,9 +72,7 @@ form {
   flex-direction: column;
   width: 100%;
 }
-#inputOne{
-  width: 98%;
-}
+
 .input-container label {
   font-size: 1.1em;
   font-weight: bold;
@@ -89,128 +86,19 @@ form {
   border: 1px solid #ccc;
   font-size: 1em;
   width: 100%;
-  box-sizing: border-box; /* Evita que o padding afete o tamanho */
+  box-sizing: border-box;
   transition: border-color 0.3s ease-in-out;
 }
 
 .input-container input:focus {
-  border-color: #007bff; /* Azul para indicar foco */
+  border-color: #007bff;
   outline: none;
-}
-
-.file{
-  display: flex;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid white;
-  padding: 16px;
-  background-color: #f0f4f8;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  gap: 10px;
-  }
-.options{
-  display: inline-flex;
-  gap: 20px;
-  align-items: center;
-  margin: auto;
-  margin-top: 30px;
-}
-
-.selectedSuggestions{
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  gap: 2%;
-}
-
-
-.file p {
-  font-size: 1.em;
-}
-.label-file { 
-  display: block; /* Para que o width funcione */
-  width: 20%; /* Ajustável conforme necessário */
-  font-size: 10px; /* Aumentado para evitar sumir */
-  text-align: center; /* Centraliza o texto */
-  margin: 0; /* Remove espaçamento externo */
-  line-height: 1; /* Ajuste para manter legível */
-}
-#labelFileSelected {
-  margin: auto; 
-}
-
-
-
-
-/* Estilo de botão */
-#submit,
-#homePage {
-  width: 100%;
-  padding: 18px 0;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  background-color: #0903c7;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-#homePage {
-  background-color: #357abd;
-}
-
-#submit:hover,
-#homePage:hover {
-  background-color: #03c70d;
-}
-
-
-
-/* Botões para alternar entre login e cadastro */
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-}
-
-/* Estilos de inputs adicionais */
-.input-container-upload input,
-.input-container-activities input,
-.container-video input {
-  padding: 10px;
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.input-container-upload input {
-  width: auto;
-}
-.input-container-upload,
-.container-video {
-  width: 80%; /* Ajuste o valor conforme necessário */
-  margin: 0 auto; /* Centraliza o contêiner se necessário */
-}
-.input-container-upload input,
-.container-video input {
-  width: 100%; /* Faz com que os inputs ocupem 100% do contêiner */
-  padding: 10px; /* Adiciona algum preenchimento interno para o texto */
-  margin-bottom: 10px; /* Separa os inputs um do outro */
-  border: 1px solid #ccc; /* Adiciona borda */
-  border-radius: 5px; /* Adiciona borda arredondada */
 }
 
 /* Estilo do dropdown */
 .dropdown {
   position: relative;
-  width: 80%;
+  width: 100%;
 }
 
 .dropdown-header {
@@ -248,12 +136,23 @@ form {
 }
 
 /* Estilo do campo de upload de arquivo */
-.input-file {
-  display: none;
+.selectedSuggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.label-file-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 .label-file {
-  display: inline-block;
+  display: block;
   background-color: #0903c7;
   color: white;
   padding: 12px 25px;
@@ -262,46 +161,85 @@ form {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .label-file:hover {
   background-color: #357abd;
 }
 
+.input-file {
+  display: none;
+}
 
+.file-name {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 5px;
+  text-align: center;
+  word-break: break-word; /* Impede quebras longas */
+}
+
+/* Estilo de botão */
+#submit,
+#homePage {
+  width: 100%;
+  padding: 18px 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: #0903c7;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  margin-top: 1px;
+}
+
+#homePage {
+  background-color: #357abd;
+}
+
+#submit:hover,
+#homePage:hover {
+  background-color: #03c70d;
+}
+
+/* Botões para alternar entre login e cadastro */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Estilos de inputs adicionais */
+.input-container-upload input,
+.input-container-activities input,
+.container-video input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 
 /* Estilo dos botões para voltar e cadastrar */
 .buttons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  width: 81%;
+  width: 100%;
   margin: auto;
   margin-top: 20px;
 }
-.container-video button{
-  display: flex;
-  font-weight: bold;
-  width: 20%;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  font-size: 1.1em;
-  padding: 12px;
-  color: white;
-  background-color: #0903c7;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.container-video button:hover{
 
-  background-color: #03c70d;
-}
 .buttons button,
-#button-uploadVideo   {
+#button-uploadVideo,
+#button-suggestions {
   padding: 12px;
   font-size: 1.1em;
   color: white;
@@ -310,55 +248,60 @@ form {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%; /* Largura total */
+  box-sizing: border-box; /* Garante que o preenchimento não afete a largura */
 }
-#button-suggestions{
-  padding: 12px;
-  font-size: 1.1em;
-  color: white;
-  background-color: #0903c7;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-#button-uploadVideo:hover{
-  background-color: #03c70d;
 
-}
-#button-suggestions:hover{
-  background-color: #03c70d;
-
-}
-.buttons button:hover {
+.buttons button:hover,
+#button-uploadVideo:hover,
+#button-suggestions:hover {
   background-color: #03c70d;
 }
 
 /* Estilos para os campos de atividade */
 .input-container-upload input {
-  border-radius: 100px;
-  padding: 5px;
-  gap: 5px;
+  border-radius: 10px; /* Aumenta o arredondamento */
+  padding: 10px;
   width: 100%;
-  align-items: center;
-  flex-direction: column;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
 }
 
 #inputOne {
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 }
 
-/* Mídia Query para telas menores que 400px */
+/* Estilos para os botões "Cadastrar vídeo" e "Visualizar sugestões" */
+.options {
+  display: flex;
+  flex-direction: column;  /* empilha verticalmente */
+  gap: 5px;  /* Espaçamento */
+  width: 100%; /* Ocupa a largura total */
+  margin: 0 auto 0;  /* Espaço acima, centralizado */
+}
+#button-uploadVideo,
+#button-suggestions {
+  width: 100%;  /* Largura total */
+  box-sizing: border-box;  /* Garante que padding não afete largura */
+}
+
+#button-uploadVideo {
+  width: 100%;  /* Largura total */
+  box-sizing: border-box;  /* Garante que padding não afete largura */
+}
+
+/* Media Query para telas menores que 400px */
 @media (max-width: 400px) {
-  /* Ajustando o tamanho da fonte */
   body {
-      font-size: 16px;
+      font-size: 14px;
   }
 
   .container-login,
   .container-activities {
-      width: 90%;
-      padding: 5%;
-      font-size: 4.3vw; /* Reduz a fonte para se ajustar à tela menor */
+      width: 95%;
+      padding: 3%;
+      font-size: 3.5vw;
   }
 
   h1 {
@@ -371,45 +314,24 @@ form {
       font-size: 0.9em;
   }
 
-  /* Botões */
-  #submit,
-  #homePage,
-  
-  .buttons button {
+  .buttons button,
+  #button-uploadVideo,
+  #button-suggestions {
       font-size: 0.9em;
-      padding: 10px 0;
+      padding: 10px;
   }
-  .container-video button{
-    font-size: 0.9em;
-    padding: 10px;
-    width: auto;
 
-  }
   .message {
       font-size: 0.9em;
   }
 
-  .button-container {
+  .options {
       flex-direction: column;
+      align-items: stretch; /* Estende os itens para preencher a largura */
   }
 
-  .file {
-      flex-direction: column;
-      font-size: 0.9em;
-  }
-
-  .dropdown-header {
-      padding: 10px;
-      font-size: 1em;
-  }
-
-  .dropdown-item {
-      font-size: 0.9em;
-      padding: 10px;
-  }
-
-  .label-file {
-      font-size: 0.9em;
-      padding: 10px 20px;
+   .label-file {
+      font-size: 0.8em;
+      padding: 8px 15px; /* Reduz o preenchimento para telas menores */
   }
 }
