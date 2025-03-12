@@ -33,6 +33,7 @@ function SuggestionsPage() {
     return (
         <div className="SuggestionsPage-container">
             <h2>Lista de Sugestões</h2>
+            <button>Baixar lista</button>
             {loading ? (
                 <p>Carregando...</p>
             ) : error ? (

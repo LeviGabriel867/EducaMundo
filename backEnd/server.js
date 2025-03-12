@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
 import multer from "multer";
 import cors from "cors";
 import fs from "fs";
 import PDFDocument from "pdfkit";
 import connectDB from "./config/dataBase/ConnectDB.js";
 import { ActivitiesModel } from "./models/Activities.js"; 
+import {SuggestionsModel} from './models/Suggestions.js'
+//import { size } from "pdfkit/js/page";
 
 dotenv.config();
 
@@ -28,7 +30,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-
+//Rota para baixar atvidade em formato de PDf
 app.get("/download/:id", async (req, res) => {
   try {
     const activitieForDownload = await ActivitiesModel.findById(req.params.id);
@@ -56,6 +58,71 @@ app.get("/download/:id", async (req, res) => {
     res.status(500).json({ error: "Error generating PDF" });
   }
 });
+
+
+
+// Rota para baixar lista de sugestões em formato PDF
+app.get("/downloadSuggestions", async (req, res) => {
+  try {
+    // 🔹 Busca todas as sugestões no banco de dados
+    const suggestions = await SuggestionsModel.find();
+
+    if (!suggestions || suggestions.length === 0) {
+      return res.status(404).json({ error: "Suggestions not found" });
+    }
+
+    // 🔹 Criando o documento PDF
+    const doc = new PDFDocument({ size: "A4", margins: { top: 50, left: 50, right: 50, bottom: 50 } }); // Margens para melhor visualização
+
+    // 🔹 Configura o cabeçalho para download do arquivo PDF
+    const fileName = "sugestoes_dos_usuarios.pdf";
+    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+    res.setHeader("Content-Type", "application/pdf");
+
+    // 🔹 Enviar o PDF diretamente na resposta
+    doc.pipe(res);
+
+    // 🔹 Título do documento
+    doc.fontSize(20).font('Helvetica-Bold').text("Lista de Sugestões dos Usuários", { align: "center" });
+    doc.moveDown(1);
+
+    // 🔹 Adicionando sugestões ao PDF com estilização
+    suggestions.forEach((suggestion, index) => {
+      // 🔹 Cor de fundo para cada sugestão (alternando cores)
+      const backgroundColor = index % 2 === 0 ? '#f0f8ff' : '#e6f7ff'; // Alterna entre AliceBlue e um azul mais claro
+      const textColor = '#000000'; // Cor do texto
+
+      // 🔹 Calcula a altura do retângulo com base no texto
+      const textHeight = doc.heightOfString(`${index + 1}. ${suggestion.suggestionsUsers}`, {
+        width: 500, // Largura máxima para o texto
+        fontSize: 12,
+      });
+
+      const rectHeight = textHeight + 10; // Adiciona padding vertical
+
+      // 🔹 Desenha o retângulo de fundo
+      doc.rect(50, doc.y, 500, rectHeight) // Posição x, y, largura, altura
+        .fill(backgroundColor);
+
+      // 🔹 Adiciona o texto formatado
+      doc.fontSize(12)
+         .fillColor(textColor)
+         .text(`${index + 1}. ${suggestion.suggestionsUsers}`, 60, doc.y + 5, { // Posição x, y com um pequeno offset
+            width: 480, // Largura um pouco menor para o texto ficar dentro do retângulo
+            align: 'left',
+         });
+
+      doc.moveDown(0.5); // Espaçamento entre as sugestões
+    });
+
+    // 🔹 Finaliza o documento
+    doc.end();
+  } catch (error) {
+    console.error("❌ Erro ao gerar PDF:", error);
+    res.status(500).json({ error: "Erro ao gerar o PDF" });
+  }
+});
+
 
 // 📌 Rota para upload de uma única imagem e criação de uma atividade
 app.post("/single", upload.single("image"), async (req, res) => {
