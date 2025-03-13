@@ -1,4 +1,5 @@
 import express from "express";
+import { ObjectId } from "mongodb";
 import dotenv from "dotenv";
 //import mongoose from "mongoose";
 import multer from "multer";
@@ -59,6 +60,27 @@ app.get("/download/:id", async (req, res) => {
   }
 });
 
+
+//rota para classificar nivel de prioridade de sugestão
+
+//rota para deletar sugestão
+
+
+app.delete("/deleteSuggestions/:id", async (req, res) => {
+  try {
+    const id = new ObjectId(req.params.id); // Converte ID para ObjectId
+    const suggestionForDelete = await SuggestionsModel.deleteOne({ _id: id });
+
+    if (suggestionForDelete.deletedCount === 0) {
+      return res.status(404).json({ msg: "Suggestion not found" });
+    }
+
+    return res.status(200).json({ msg: "Suggestion deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: "Error deleting suggestion", error: error.message });
+  }
+});
 
 
 // Rota para baixar lista de sugestões em formato PDF

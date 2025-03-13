@@ -47,7 +47,7 @@ function UploadActivities({category}){
                 document.body.removeChild(a);
     
             } catch (error) {
-                console.log("Erro ao baixar PDF:", error);
+                console.log("Erro uploaded PDF:", error);
             }
         };
         fetchImg();
