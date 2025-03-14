@@ -1,197 +1,201 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     height: 100%;
+    overflow: hidden;
 }
 
 .welcome {
-    background: linear-gradient(to right, #c1e4fa, #a2d2f2, #82c0ea);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh; /* Preenche 100% da altura da janela */
+    background-color: #94ACFC;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
     text-align: center;
+    overflow: hidden;
 }
 
-.scrennStart {
-    border: 2.5px solid rgb(255, 255, 255);
-    font-family: "Poppins", sans-serif;
-    background-color: #c1e4fa;
-    padding: 5%;  /* Ajustei o padding */
-    border-radius: 5%;
+/* Estilos para a coluna esquerda */
+.welcome .left-side {
+    background-color: #94ACFC;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 50px;
+    height: 100vh;
+    gap: 35%;
+}
+
+.welcome .left-side h1 {
+    font-size: 2em;
+    color: #0903c7;
+    margin-bottom: 10px;
+}
+
+.welcome .left-side h2 {
+    font-size: 1.5em;
+    color: #0903c7;
+    font-weight: bold;
+}
+
+/* Estilos para a coluna direita (content-wrapper) */
+.content-wrapper {
+    background-color: #C4D3FD;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos para os lápis */
+.lapis-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+.lapis-container img {
+    width: 100%;
+    height: auto; /* Mantém a proporção */
+    max-height: 25vh; /* Ajuste este valor! */
+    /*object-fit: cover; /* Garante que a imagem cubra o espaço */
+    display: block;
+}
+
+.lapis-top {
+    top: 0;
+}
+
+.lapis-bottom {
+    bottom: 0;
+}
+
+/* Estilos para o conteúdo central */
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Ajustei o gap */
-    width: 100%;
-    max-width: 580px;  /* Ajustei o max-width */
+    justify-content: center;  /*Centraliza Verticalmente*/
+    padding-top: 10vh; /* Ajuste este valor */
+    padding-bottom: 16vh;  /* Ajuste este valor */
+    z-index: 2;
+    position: relative;
+    height: 70vh;
 }
-.welcome p{
-    font-weight: bold;
+
+.logoEduca {
+    width: 50%;
+    margin-bottom: 0;
+    margin-top: 15vh;
+    padding: 0%;
+    height: auto;
 }
 
 .login-container {
-    display: inline-flex;
-    gap: 2%;
-    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    
 }
 
-.scrennStart h1 {
-    font-size: 2.5rem;  /* Reduzi o tamanho da fonte */
-    color: #333;
-    margin: 0;
-}
-
-.kidImage {
-    width: 35%;  /* Reduzi a imagem */
-    color: #4a90e2;
-}
-
-.educaMundoImage{
-    width: 45%;  /* Ajustei o tamanho */
-}
-
-.scrennStart a, .login {
+.login-container a
+ {
     font-weight: bold;
     width: auto;
-    font-size: 1rem;  /* Reduzi um pouco */
+    font-size: 1.5rem;
     color: white;
-    background-color: #0903c7;
-    padding: 5px 15px;   /* Ajustei o padding */
-    border-radius: 5px;
+    background-color: #7952b3;
+    padding: 10px 20px;
+    border-radius: 20px;
     text-decoration: none;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    border: none;
+}
+.login-container button{
+    font-weight: bold;
+    width: auto;
+    font-size: 1rem;
+    color: white;
+    background-color: #7952b3;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+.login-container a:hover,
+.login-container button:hover {
+    background-color: #673ab7;
 }
 
-.scrennStart a:hover, .login:hover{
-    background-color: #357abd;
+.login-container p {
+    font-weight: bold;
+    margin-bottom: 2vh;
 }
 
-/* Media query para telas menores que 768px */
+/* Media queries (mantenha e ajuste conforme necessário) */
 @media (max-width: 768px) {
     .welcome {
-        height: 100vh;
-        width: 100%;
-        overflow: auto; /* Habilita a rolagem em telas pequenas, se necessário */
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+        .left-side{
+          height: auto;
+        }
     }
 
-    .scrennStart {
-        padding: 8%;
-        width: 90%;
-        max-width: 400px;
-        max-height: 80vh; /* Mantém a altura máxima */
-        overflow: auto; /* Mantém a rolagem interna */
+
+    .content-wrapper {
+        padding: 20px;
     }
 
-    .kidImage {
+    .lapis-container img {
+        max-width: 100%;
+        max-height: 15vh; /* Ajuste para telas menores */
+    }
+     .content{
+      height: auto;
+    }
+    .logoEduca {
         width: 50%;
     }
-
-    .scrennStart h1 {
-        font-size: 1.8rem;
-        text-align: center;
-        word-wrap: break-word;
-    }
-
-    .scrennStart a, .login {
-        font-size: 0.8rem;
-        padding: 8px 16px;
-    }
-
-    .educaMundoImage {
-        width: 55%;
-    }
 }
 
-/* Media query para telas menores que 400px */
 @media (max-width: 400px) {
-    .welcome {
-        height: 100vh;
-        width: 100%;
-        overflow: auto; /* Habilita a rolagem em telas pequenas, se necessário */
+    .logoEduca {
+        margin-top: 0;
+        width: 80%;
     }
-
-    .scrennStart {
-        padding: 8%;
-        width: 90%;
-        max-width: 350px;
-        max-height: 90vh; /* Aumentei para telas menores */
-        overflow: auto;
+    .login-container{
+        
+        
     }
-
-    .kidImage {
-        width: 60%;
+    
+      .lapis-container img {
+        max-height: 10vh; /* Ajuste para telas menores */
     }
-
-    .scrennStart h1 {
-        font-size: 1.6rem;
-        text-align: center;
-        word-wrap: break-word;
+    .welcome .left-side h1 {
+        font-size: 1.5em;
+        color: #0903c7;
+        margin-bottom: 5px;
     }
-
-    .scrennStart a, .login {
-        font-size: 0.7rem;
-        padding: 6px 12px;
-    }
-
-    .educaMundoImage {
-        width: 65%;
+    
+    .welcome .left-side h2 {
+        font-size: 1em;
+        color: #0903c7;
+        font-weight: bold;
     }
 }
-
-/*
-@media (max-width: 1920px) {
-    .scrennStart {
-        padding: 4%;
-        width: 75%;
-        max-width: 400px;
-        gap: 12px;
-    }
-
-    .scrennStart h1 {
-        font-size: 2.2rem;
-    }
-
-    .kidImage {
-        width: 30%;
-    }
-
-    .educaMundoImage {
-        width: 40%;
-    }
-
-    .scrennStart a, .login {
-        font-size: 0.9rem;
-        padding: 4px 12px;
-    }
-}
-
-@media (max-width: 1366px) {
-    .scrennStart {
-        padding: 3%;
-        width: 65%;
-        max-width: 300px;
-        gap: 10px;
-    }
-
-    .scrennStart h1 {
-        font-size: 1.8rem;
-    }
-
-    .kidImage {
-        width: 25%;
-    }
-
-    .educaMundoImage {
-        width: 35%;
-    }
-
-    .scrennStart a, .login {
-        font-size: 0.8rem;
-        padding: 3px 10px;
-    }
-}
-*/
