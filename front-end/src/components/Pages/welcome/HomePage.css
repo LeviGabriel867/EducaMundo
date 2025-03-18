@@ -3,17 +3,17 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
-    overflow: hidden;
+    /* height: 100%;  Removed: No longer needed */
+    /* overflow: hidden; Removed: Allow scrolling */
+    font-family: sans-serif; /* Good practice to set a default font */
 }
 
 .welcome {
     background-color: #94ACFC;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 100vh;
-    text-align: center;
-    overflow: hidden;
+    min-height: 100vh; /* Use min-height instead of height */
+    /* overflow: hidden; Removed: Allow scrolling */
 }
 
 /* Estilos para a coluna esquerda */
@@ -22,12 +22,12 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start;  /* Keep content at the top */
     align-items: flex-start;
     text-align: left;
     padding-left: 50px;
-    height: 100vh;
-    gap: 35%;
+    /* height: 100vh;  Removed: Let content determine height */
+    gap: 35%; /* Consider reducing this gap, or using a different unit */
 }
 
 .welcome .left-side h1 {
@@ -47,10 +47,10 @@ body {
     background-color: #C4D3FD;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; Removed: Let content determine height */
     box-sizing: border-box;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; Removed: Allow scrolling */
 }
 
 /* Estilos para os lápis */
@@ -64,11 +64,10 @@ body {
 }
 
 .lapis-container img {
-    width: 100%;
+    width: 100%;  /* Or a specific width, like 80% */
     height: auto; /* Mantém a proporção */
-    max-height: 25vh; /* Ajuste este valor! */
-    /*object-fit: cover; /* Garante que a imagem cubra o espaço */
-    display: block;
+    max-height: 25vh; /* Keep this, but adjust if needed */
+    display: block; /* Good practice for images */
 }
 
 .lapis-top {
@@ -84,19 +83,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;  /*Centraliza Verticalmente*/
-    padding-top: 10vh; /* Ajuste este valor */
-    padding-bottom: 16vh;  /* Ajuste este valor */
+    justify-content: center; /* Center vertically */
+    /* padding-top: 10vh;  Removed:  Reduce padding */
+    /* padding-bottom: 16vh; Removed:  Reduce padding */
+    padding: 2vh 0; /* Much smaller padding */
     z-index: 2;
     position: relative;
-    height: 70vh;
+    /* height: 70vh; Removed: Let content determine height.  Very important! */
 }
 
 .logoEduca {
-    width: 50%;
-    margin-bottom: 0;
-    margin-top: 15vh;
-    padding: 0%;
+    width: 50%;  /* Or use a max-width */
+    margin-bottom: 2vh; /* Smaller margin */
+    /* margin-top: 32vh; Removed: Major cause of overflow */
+    padding: 0; /* Generally a good idea to reset padding */
     height: auto;
 }
 
@@ -105,11 +105,10 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    
 }
 
-.login-container a
- {
+.login-container a,
+.login-container button {
     font-weight: bold;
     width: auto;
     font-size: 1.5rem;
@@ -121,20 +120,9 @@ body {
     transition: background-color 0.3s ease;
     cursor: pointer;
     border: none;
+    margin-top: 2vh;  /* Add margin-top to the button */
 }
-.login-container button{
-    font-weight: bold;
-    width: auto;
-    font-size: 1rem;
-    color: white;
-    background-color: #7952b3;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    border: none;
-}
+
 .login-container a:hover,
 .login-container button:hover {
     background-color: #673ab7;
@@ -145,18 +133,20 @@ body {
     margin-bottom: 2vh;
 }
 
-/* Media queries (mantenha e ajuste conforme necessário) */
+
+/* Media queries */
+
+/* Existing mobile queries - GOOD! Keep and adjust as needed. */
 @media (max-width: 768px) {
     .welcome {
         grid-template-columns: 1fr;
-        height: auto;
-        min-height: 100vh;
-        overflow: auto;
-        .left-side{
-          height: auto;
-        }
+        height: auto; /* Allow height to adjust to content */
+        min-height: 100vh; /* Still fill the viewport */
+        /* overflow: auto; Removed.  Not needed, and auto is the default. */
     }
-
+    .welcome .left-side {
+        height: auto; /* Important for mobile */
+    }
 
     .content-wrapper {
         padding: 20px;
@@ -164,38 +154,55 @@ body {
 
     .lapis-container img {
         max-width: 100%;
-        max-height: 15vh; /* Ajuste para telas menores */
+        max-height: 15vh;
     }
-     .content{
-      height: auto;
+
+    .content {
+        height: auto; /* Important for mobile */
     }
+
     .logoEduca {
         width: 50%;
     }
 }
 
 @media (max-width: 400px) {
+    /* ... (your existing styles for very small screens) ... */
     .logoEduca {
         margin-top: 0;
         width: 80%;
     }
-    .login-container{
-        
-        
-    }
-    
-      .lapis-container img {
-        max-height: 10vh; /* Ajuste para telas menores */
+  .lapis-container img {
+        max-height: 10vh;
     }
     .welcome .left-side h1 {
         font-size: 1.5em;
         color: #0903c7;
         margin-bottom: 5px;
     }
-    
+
     .welcome .left-side h2 {
         font-size: 1em;
         color: #0903c7;
         font-weight: bold;
+    }
+}
+
+
+/* NEW media query for notebook-like screen heights */
+@media (max-height: 800px) and (min-width: 769px) {
+    .welcome .left-side {
+        gap: 10%; /* Reduce the gap on smaller screens */
+    }
+     .content {
+        padding: 1vh 0; /* Even smaller padding on short screens */
+    }
+     .lapis-container img {
+        max-height: 20vh; /* Reduce max height of images */
+    }
+
+    .login-container a,
+    .login-container button {
+        font-size: 1.2rem; /* Slightly smaller font size */
     }
 }

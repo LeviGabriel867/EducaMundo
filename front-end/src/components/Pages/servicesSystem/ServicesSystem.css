@@ -1,56 +1,325 @@
-.ServicesSystem {
+/* Reset CSS Básico - Use um reset adequado em um projeto real */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none; /* Remove sublinhados de links globalmente */
+    list-style: none; /* Remove marcadores de listas */
+}
+
+body {
+    font-family: sans-serif; /* Usa uma fonte adequada */
+}
+
+.services-system {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o container ocupe pelo menos a altura total da viewport */
+}
+
+.services-system__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem; /* Usa rem para padding */
+    background-color:#7C58FF ; /* Cor de fundo do cabeçalho */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.services-system__logo {
+    height: 50px; /* Ajusta o tamanho do logo conforme necessário */
+}
+
+.services-system__search-bar {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 25px;  /* Cantos arredondados para a barra de pesquisa */
+    padding: 0.5rem 1rem; /* Usa rem para padding */
+    background-color: white;
+}
+
+.services-system__search-bar input {
+    border: none;
+    outline: none;
+    flex-grow: 1; /* Permite que o input ocupe o espaço disponível */
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+
+.services-system__search-bar label {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    color: #555; /* Cor do ícone e do texto */
+    white-space: nowrap;
+}
+
+.search-icon {
+    margin-right: 0.3rem;
+    font-size: 1.2rem;
+}
+
+.services-system__nav {
+    display: flex;
+    gap: 1.5rem;  /* Espaçamento entre os itens de navegação */
+}
+
+.services-system__nav li a {
+    color: #fff; /* Cor dos links de navegação */
+    font-weight: bold;
+    transition: color 0.4s;
+}
+
+.services-system__nav li a:hover {
+    font-size: 1.05rem;
+    color: #ddd; /* Cor mais clara ao passar o mouse */
+}
+
+.services-system__main-content {
+    /* Removido height: 50vh; */
+     margin-top: 3vh; 
+    background: linear-gradient(         /* Padrão W3C (versão final) */
+        to right,
+        #AF87D6 12%,
+        #9854f7 43%,
+        #9961e7 100%
+    );
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 50%; /* Ocupa toda a altura da tela */
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
+    padding: 2rem 0; /* Adiciona padding, incluindo o topo */
 
 }
-.ServicesSystem a {
-    text-decoration: none;
+
+.services-system__main-image {
+    max-width: 100%;
+    height: auto;  /* Alterado para auto para evitar distorção e manter proporção */
+    max-height: 300px; /* Adicionado um max-height para limitar o tamanho em telas grandes */
+    margin-bottom: 1rem;  /* Espaço abaixo da imagem */
+    border-radius: 15px;
+}
+.services-system__title{
+     margin-bottom: 0.5rem; /*margem inferior*/
+     color: #4a2563;  /*Cor do titulo*/
+     text-align: start;
+
+
 }
 
-.OptionsContainer {
+.services-system__options-container {
     display: flex;
-    flex-direction: column; /* Organiza os itens em uma coluna */
-    gap: 20px; /* Espaçamento entre os itens */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    justify-content: center; /* Centraliza os itens verticalmente */
-}
+    justify-content: space-around; /* Distribui os botões horizontalmente */
+    flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+    width: 80%; /* Limita a largura do container */
+    max-width: 1200px; /* Largura máxima para telas maiores */
+    margin: 2rem auto; /* Centraliza o container e adiciona margem vertical */
+    padding: 10px 25px; /*Espaçamento interno*/
 
-.ButtonOptions {
-    border: 1.5px solid rgb(255, 255, 255);
-    border-radius: 18px;
-    background-color: #186797;
-    box-shadow: 0 0 15px 5px rgba(253, 219, 254, 0.5);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 2.5vh;
-    width: 50vw;
-    gap: 20px;
-    height: 40vh;
-    padding: 10px;
+
+}
+.services-system__text-section{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font: italic 16px/1.5 'Open Sans', sans-serif;
+      width: 70%; /*Largura*/
+     padding: 20px; /*Espaçamento*/
+     border-radius: 10px; /*Borda arredondada*/
+
+}
+.services-system-origin{
     text-align: start;
-    margin-bottom: 20px; /* Espaçamento entre os botões */
-    text-decoration: none;
+    width: 50%;
+    margin-left: 3%;
+}
+.button-options {
+   background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;        /* Ajuste conforme necessário */
+    margin-bottom: 1rem; /* Adiciona margem inferior para espaçamento */
+    transition: transform 0.2s, box-shadow 0.2s; /* Transição suave */
+     display: flex;
+     flex-direction: column;
+
 
 }
 
+.button-options:hover {
+    transform: translateY(-5px); /* Leve elevação ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-@media(max-width: 400px){
-    .ServicesSystem{
-    width: auto;
+.button-options img {
+    max-width: 80px; /* Limita o tamanho do ícone */
     height: auto;
+    margin-bottom: 1rem;
+
+}
+
+.button-options h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+}
+
+.button-options p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+
+
+.services-system__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #90c9f6;
+    color: #fff;
+    margin-top: auto; /* Empurra o rodapé para o final */
+
+}
+
+.footer-icon {
+    font-size: 1.5rem;
+    color: #000000;
+    margin: 0 0.5rem; /* Adiciona margem horizontal para espaçamento */
+}
+
+/* Media Queries para Responsividade */
+/* Dispositivos pequenos (telefones) */
+@media (max-width: 600px) {
+    .services-system__header {
+        flex-direction: column;
+        align-items: stretch;
     }
-    .cabecalho{
-        font-size: 17px
+
+    .services-system__search-bar {
+        margin-bottom: 1rem; /* Espaço entre a pesquisa e a navegação */
+        width: 100%;
+    }
+
+     .services-system__nav {
+        justify-content: center; /* Centraliza os links de navegação horizontalmente */
+        width: 100%; /* A navegação ocupa a largura total em telas pequenas */
+    }
+
+    .services-system__options-container {
+        display: flex;
+        justify-content: space-around; /* Distribui os botões horizontalmente */
+        flex-wrap: wrap; /* Permite quebra de linha (já está presente, mas reforçando) */
+        width: 80%;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 10px 25px;
+    }
+    .button-options {
+        width: 90%;
+        margin-bottom: 10px; /* Menos margem para espaçamento mais próximo */
+    }
+
+    .services-system__main-image{
+        max-height: none; /*remove a altura maxima em mobile*/
+    }
+
+    .services-system-origin{
+         width: 95%; /*Ajusta a largura*/
+         margin-left: auto; /*Centraliza*/
+         margin-right: auto;/*Centraliza*/
     }
 }
-    
-    
+
+/* ... (todo o seu CSS anterior, incluindo o reset, estilos gerais, etc.) ... */
+
+/* Media Queries para Responsividade */
+
+/* Dispositivos pequenos (telefones) */
+@media (max-width: 600px) {
+    /* ... (seus estilos para mobile - já estão bons) ... */
+    .services-system__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .services-system__search-bar {
+        margin-bottom: 1rem; /* Espaço entre a pesquisa e a navegação */
+        width: 100%;
+    }
+
+     .services-system__nav {
+        justify-content: center; /* Centraliza os links de navegação horizontalmente */
+        width: 100%; /* A navegação ocupa a largura total em telas pequenas */
+    }
+
+    .services-system__options-container {
+       flex-direction: column;
+        align-items: center; /* Centraliza os botões */
+    }
+    .button-options {
+        width: 90%;
+        margin-bottom: 10px; /* Menos margem para espaçamento mais próximo */
+    }
+
+    .services-system__main-image{
+        max-height: none; /*remove a altura maxima em mobile*/
+    }
+
+    .services-system-origin{
+         width: 95%; /*Ajusta a largura*/
+         margin-left: auto; /*Centraliza*/
+         margin-right: auto;/*Centraliza*/
+    }
+}
+
+
+/* Dispositivos médios (tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  /* ... (seus estilos para tablets - já estão bons) ... */
+   .button-options {
+      width: 45%;
+      margin-bottom: 1.5rem; /* Ajusta o espaçamento para tablets */
+  }
+   .services-system-origin{
+         width: 70%; /*Ajusta a largura*/
+
+    }
+}
+
+/* Notebooks (ajuste aqui) */
+@media (min-width: 1025px) and (max-width: 1440px) { /* Adicionando/ajustando para notebooks */
+  .services-system__options-container {
+    justify-content: space-around; /* Mantém a distribuição, mas pode ajustar se necessário */
+    flex-wrap: wrap;        /* Garante a quebra de linha */
+  }
+  .button-options {
+      width: auto;        /* Permite que os botões se ajustem ao conteúdo */
+      max-width: 30%;  /* Ajuste este valor!  Pode ser necessário diminuir (ex: 28%) */
+      margin: 0.5rem;    /* Reduz a margem, se necessário, para dar mais espaço */
+  }
+}
+
+/* Desktop (telas maiores) - pode precisar de ajustes também, dependendo do seu design */
+@media (min-width: 1441px) {
+    /* Seus estilos para desktop (se houverem). Se não houver, pode deixar vazio. */
+     .services-system__options-container {
+         justify-content: space-around; /*garante o espaçamento*/
+     }
+}
+
+/* Estilos para .services-system__options-container (fora das media queries, para aplicar a todos os tamanhos) */
+.services-system__options-container {
+    display: flex;
+    flex-wrap: wrap; /* Importante! Deve estar aqui também. */
+    width: 80%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 10px 25px;
+}

@@ -1,0 +1,68 @@
+/* hangmanGame.css */
+.hangman-container {
+    /* Estilos gerais para o container do jogo */
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.content-img {
+    margin-bottom: 20px;
+}
+
+.guess-word {
+    font-size: 2em;
+    margin-bottom: 10px;
+    letter-spacing: 0.5em; /* Espaçamento entre as letras/traços */
+}
+
+.letter {
+     display: inline-block; /* Para aplicar largura e espaçamento */
+    width: 1.2em;            /* Largura fixa para cada letra/traço */
+    text-align: center;
+    margin: 0 2px;
+}
+
+.clue {
+    margin-bottom: 20px;
+}
+
+.btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px; /* Espaçamento entre os botões */
+    max-width: 400px; /* Largura máxima para os botões */
+    margin: 0 auto;
+}
+
+.btns button {
+    width: 30px; /* Largura dos botões */
+    height: 30px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.btns button:disabled {
+    cursor: not-allowed;  /* Muda o cursor quando desabilitado*/
+}
+
+.new {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/*hangmanGame.css*/
+.correct {
+    background-color: lightgreen; /* Cor de fundo para letras corretas */
+}
+
+.incorrect {
+    background-color: lightcoral; /* Cor de fundo para letras incorretas */
+}
+.game-over-message{
+    font-size: 1.5em;
+    margin-top:1rem;
+    font-weight: bold;
+}

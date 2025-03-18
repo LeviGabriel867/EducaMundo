@@ -5,16 +5,20 @@ import Lapis from '../../../assets/lapis.png';
 import LapisInverter from '../../../assets/lapisInverter.png';
 import Login from "../login/Login";
 import { useMediaQuery } from 'react-responsive';
+import HangmanGame from "../../games/hangmanGame/hangmanGame.jsx";
 
 import "./HomePage.css";
 
 function HomePage() {
+    //const [login, setLogin] = useState(true);
     const [login, setLogin] = useState(false); // Initialize to false
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
     return (
         <>
             {login ? (  //  Check login state *first*
+                
+                //<HangmanGame/>
                 <Login />
             ) : (
                 <>
@@ -31,7 +35,7 @@ function HomePage() {
                                 <div className="content">
                                     <img src={logoEducaMundo} alt="Ilustração de criança" className="logoEduca" />
                                     <div className="login-container">
-                                        <Link to="/Intro">Clique aqui para entrar</Link>
+                                        <Link to="/Services">Clique aqui para entrar</Link>
                                         <p>Grátis e sem cadastro. É só entrar e usar.</p>
                                         <button onClick={() => setLogin(true)} className="login">
                                             Sessão para administrador
@@ -70,7 +74,7 @@ function HomePage() {
                                             <div className="content">
                                                 <img src={logoEducaMundo} alt="Ilustração de criança" className="logoEduca" />
                                                 <div className="login-container">
-                                                    <Link to="/Intro">Clique aqui para entrar</Link>
+                                                    <Link to="/Services">Clique aqui para entrar</Link>
                                                     <p>Grátis e sem cadastro. É só entrar e usar.</p>
                                                     <button onClick={() => setLogin(true)} className="login">
                                                         Sessão para administrador
