@@ -1,4 +1,6 @@
 import ButtonOptions from  '../ButtonOptions.jsx'
+import './ButtonActivities.css'
+
 function ButtonActivities({ shouldShowComponent, Component, img, h1, paragraph, onClick }) {
     return (
         <div className='container' style={{ cursor: "pointer" }}>

@@ -1,0 +1,23 @@
+.services-system__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem; /* Usa rem para padding */
+    background-color:#7C58FF ; /* Cor de fundo do cabeçalho */
+    box-shadow: 0 2px 4px rgba(255, 2, 2, 0.1); /* Sombra sutil */
+}
+
+@media (max-width: 600px) {
+    .services-system__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 600px) {
+    /* ... (seus estilos para mobile - já estão bons) ... */
+    .services-system__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

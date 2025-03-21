@@ -1,69 +1,85 @@
-.father{
-    border: 1px solid white;
-    border-radius: 10px;
-    margin: auto;
-    margin-top: 5px;
+/* Activities.css */
+
+.father {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d6d9ff; /*  Consider moving this to a higher-level component */
+    font-family: 'Arial', sans-serif; /* Consider moving this to a higher-level component */
+}
+
+.son {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paragraph {
+    font-size: 2rem; /* Adjust as needed */
+    margin-bottom: 20px; /* Adjust as needed */
+    color: #333; /* Adjust as needed */
+    text-align: center;
+    width: 100%; /*  Good for responsiveness */
+}
+
+.containerActivities {
+    width: 100%;
+    display: grid;
+    /*  Start with a single column */
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+    padding-bottom: 20px;
+}
+
+/* Media Query for larger screens */
+@media (min-width: 768px) {  /* Adjust breakpoint as needed */
+    .containerActivities {
+        /*  Switch to multiple columns (example: 2 columns) */
+        grid-template-columns: repeat(2, 1fr);
+        /*  For a more dynamic grid, use: */
+        /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    }
+}
+
+
+/* --- RESPONSIVE PART FOR max-width: 400px --- */
+@media (max-width: 400px) {
+    .containerActivities {
+      /*  Ensure it remains a single column on very small screens */
+      grid-template-columns: 1fr;
+      padding-left: 10px; /* Add some padding */
+      padding-right: 10px;
+    }
+
+    .containerActivities > * {
+      /* Adjust max-width for smaller screens */
+        max-width: 95%; /* Or a specific pixel value, e.g., 300px */
+        height: auto;  /*Allow height adjust*/
+    }
+        .paragraph{
+            font-size: 1.5rem;
+    }
+}
+
+
+/* --- (Keep this outside the media query) --- */
+.containerActivities > * {
+    width: 100%; /* Fill the grid cell width */
+    max-width: 600px; /* Limit max-width for larger screens */
+    height: 280px; /* Set a default height */
+    /* margin: 0 auto;  No longer needed with justify-items: center */
+}
+
+
+.footer {
+    text-align: center;
     padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50%;
-    font-size: 15px;
-}
-.selected-category{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.selected-category{
-    font-size: 25px ;
-    font-weight: bold;
-}
-.video-container h1{
-    display: flex;
-    font-size: 15px;
-    width: 90%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 2px;
-    margin-top: 30px;
-}
-
-
-
-.back-button  {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    margin-top: 2%;
-    margin-bottom: 5%;
-    background-color: #0903c7;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-    background-color: #357abd;
-}
-@media(max-width:400px){
-    .father{
-        width: auto;
-    }
-    .player{
-        
-        height: 50vh;
-    }
-    .back-button{
-        width: 42%;
-        font-size: 15px;
-        padding: 5px;
-        
-    }
+    margin-top: auto; /* Push to the bottom */
+    color: #666;
+    font-size: 0.9rem;
+    width: 100%;
 }

@@ -1,0 +1,27 @@
+.paragraph{
+    background: linear-gradient(         /* Padrão W3C (versão final) */
+        to right,
+        #AF87D6 12%,
+        #9854f7 43%,
+        #9961e7 100%
+    );
+    padding: 12vh;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5vh;
+    margin-bottom: 0;
+}
+#paragraphTwo{
+    color: #e5d3ff;
+    
+}
+
+@media(max-width:400px){
+    .paragraph{
+        padding: 4vh;
+        font-size: 35px;
+        border-radius: 15px;
+        
+    }
+}

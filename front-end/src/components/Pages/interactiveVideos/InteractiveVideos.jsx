@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import ButtonActivities from "../../button/buttonActivities/ButtonActivities.jsx";
-
-import PictureImg from "../../../assets/activitiesImage.png"; 
+import Header from "../../header/Header.jsx";
+import Footer from "../../footer/Footer.jsx";
+import PictureImg from "../../../assets/activitiesImage.png";
 import MathImg from "../../../assets/activitiesMath.png";
 import PortugueseImg from "../../../assets/activitiesPortuguese.png";
-
 
 import "./InteractiveVideos.css";
 
 function InteractiveVideos() {
-    const [activeCategory, setActiveCategory] = useState(null); // Estado para armazenar a categoria selecionada
+    const [activeCategory, setActiveCategory] = useState(null);
     const [videos, setVideos] = useState([]);
     const [titles, setTitles] = useState([]);
-    const [playerHeight, setPlayerHeight] = useState("60vh");
 
     useEffect(() => {
         if (!activeCategory) return;
@@ -25,7 +24,7 @@ function InteractiveVideos() {
                     throw new Error("Erro ao buscar vídeos");
                 }
                 const data = await response.json();
-                console.log("Vídeos recebidos:", data); // Debug
+                console.log("Vídeos recebidos:", data);
                 setVideos(data);
             } catch (error) {
                 console.error("Erro ao buscar vídeos:", error);
@@ -35,20 +34,7 @@ function InteractiveVideos() {
         fetchVideos();
     }, [activeCategory]);
 
-    useEffect(() => {
-        const updateHeight = () => {
-            if (window.innerWidth < 400) {
-                setPlayerHeight("25vh");
-            } else {
-                setPlayerHeight("60vh");
-            }
-        };
 
-        updateHeight(); // Chamar ao carregar
-        window.addEventListener("resize", updateHeight);
-
-        return () => window.removeEventListener("resize", updateHeight);
-    }, []);
 
     useEffect(() => {
         if (videos.length === 0) return;
@@ -61,7 +47,7 @@ function InteractiveVideos() {
                 if (validIds.length === 0) return;
 
                 const response = await fetch(
-                    `https://www.googleapis.com/youtube/v3/videos?id=${validIds.join(",")}&key=AIzaSyCDzcDJSzM1oJSi9NUNuoYGv83MisSX2yc&part=snippet`
+                    `https://www.googleapis.com/youtube/v3/videos?id=${validIds.join(",")}&key=AIzaSyCDzcDJSzM1oJSi9NUNuoYGv83MisSX2yc&part=snippet` //REPLACE WITH YOUR API KEY
                 );
                 const data = await response.json();
                 setTitles(data.items.map((item) => item.snippet.title));
@@ -74,65 +60,63 @@ function InteractiveVideos() {
     }, [videos]);
 
     return (
-        <div className="father">
-            <div className="son">
-                
-                <h1 className="paragraph">Vídeos Interativos</h1>
-                
-                {activeCategory ? (
-                    <div >
-                        <h2 className="selected-category">Categoria: {activeCategory}</h2>
-                        {videos.length === 0 ? (
-                            <p>Nenhum vídeo encontrado</p>
-                        ) : (
-                            videos.map((video, index) => (
-                                <div key={index} className="video-container">
-                                    <h1>{titles[index] || "Carregando..."}</h1>
-                                    
-                                        <ReactPlayer  url={video.URLs} controls width="98%" height={playerHeight} />
+        <div>
+            <Header />
+            <div className="father">
+                <div className="son">
 
-                                    
-                                </div>
-                            ))
-                        )}
-                        <button className="back-button" onClick={() => setActiveCategory(null)}>
-                            Voltar às categorias
-                        </button>
-                    </div>
-                ) : (
-                    <div className="containerActivities">
-                        <ButtonActivities 
-                        
-    
-    
-                            img={PictureImg} 
-                            h1="Vídeo musical educativo"
-                            paragraph="Clique aqui e veja as opções disponíveis."
-                            onClick={() => setActiveCategory("Vídeo musical educativo")} 
-                        />
-                        
-                        <ButtonActivities
-                            img={MathImg}
-                            h1="Vídeo de desenho educativo"
-                            paragraph="Clique aqui e veja as opções disponíveis."
-                            onClick={() => setActiveCategory("Vídeo de desenho educativo")} 
-                        />
+                    <h1 className="paragraph">Vídeos Interativos</h1>
 
-                        <ButtonActivities
-                            img={PortugueseImg}
-                            h1={"Filmes gratuitos para educação especial"}
-                            paragraph={"Clique aqui e veja as opções disponíveis."}
-                            onClick={() => setActiveCategory("Filmes gratuitos no YouTube para educação especial")}
-                        />
+                    {activeCategory ? (
+                        <div>
+                            <h2 className="selected-category">Categoria: {activeCategory}</h2>
+                            {videos.length === 0 ? (
+                                <p>Nenhum vídeo encontrado</p>
+                            ) : (
+                                videos.map((video, index) => (
+                                    <div key={index} className="video-container">
+                                        <h1>{titles[index] || "Carregando..."}</h1>
+                                        {/*  Remove width and height from ReactPlayer */}
+                                        <ReactPlayer url={video.URLs} controls />
+                                    </div>
+                                ))
+                            )}
+                            <button className="back-button" onClick={() => setActiveCategory(null)}>
+                                Voltar às categorias
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="containerActivities">
+                            <ButtonActivities
+                                img={PictureImg}
+                                h1="Vídeo musical educativo"
+                                paragraph="Clique aqui e veja as opções disponíveis."
+                                onClick={() => setActiveCategory("Vídeo musical educativo")}
+                            />
 
-              
-                    </div>
-                )}
+                            <ButtonActivities
+                                img={MathImg}
+                                h1="Vídeo de desenho educativo"
+                                paragraph="Clique aqui e veja as opções disponíveis."
+                                onClick={() => setActiveCategory("Vídeo de desenho educativo")}
+                            />
+
+                            <ButtonActivities
+                                img={PortugueseImg}
+                                h1={"Filmes gratuitos para educação especial"}
+                                paragraph={"Clique aqui e veja as opções disponíveis."}
+                                onClick={() => setActiveCategory("Filmes gratuitos no YouTube para educação especial")}
+                            />
+                        </div>
+                    )}
+                </div>
+                <div className="footer">
+                    <p>Os vídeos são atualizados semanalmente para trazer novos conteúdos educativos.</p>
+                </div>
             </div>
-            <div className="footer">
-                <p>Os vídeos são atualizados semanalmente para trazer novos conteúdos educativos.</p>
-            </div>
+            <Footer />
         </div>
+
     );
 }
 

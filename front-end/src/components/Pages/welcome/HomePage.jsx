@@ -5,7 +5,6 @@ import Lapis from '../../../assets/lapis.png';
 import LapisInverter from '../../../assets/lapisInverter.png';
 import Login from "../login/Login";
 import { useMediaQuery } from 'react-responsive';
-import HangmanGame from "../../games/hangmanGame/hangmanGame.jsx";
 
 import "./HomePage.css";
 

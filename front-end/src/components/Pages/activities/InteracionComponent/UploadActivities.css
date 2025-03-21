@@ -1,95 +1,162 @@
 /* UploadActivities.css */
 
-.containerActivities {
-    width: 100%;
+.containerUploaded { /* Renamed class */
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    text-align: center; /* Centraliza o título */
+    text-align: center; /*  Keep this for the main heading */
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.containerActivities h1 {
-    font-size: 2.2rem; /* Reduz o tamanho da fonte do título */
+.containerUploaded h1 {
+    font-size: 2.2rem;
     margin-bottom: 20px;
+    color: #333;
 }
 
-.containerActivities ul {
-    list-style: none; /* Remove os marcadores da lista */
+.containerUploaded ul {
+    list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column; /* Default: Stack vertically */
+    gap: 20px;
+    align-items: center; /* Center items horizontally */
 }
 
-.containerActivities li {
-    margin-bottom: 20px;
-    padding: 15px;
+.containerUploaded li {
+    padding: 25px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    text-align: left; /* Alinha o conteúdo do item à esquerda */
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    width: 100%; /*  Ensure full width by default */
+    text-align: center; /* Center align text within each li */
+
 }
 
-.containerActivities h2 {
-    font-size: 1.5rem;
+.containerUploaded li:hover {
+    transform: translateY(-3px);
+}
+
+.containerUploaded h2 {
+    font-size: 1.8rem;
     margin-bottom: 10px;
+    color: #444;
+    font-weight: 600;
 }
 
-.containerActivities h3 {
-    font-size: 1.1rem;
-    color: #555;
+.containerUploaded h3 {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    text-align: center; /* Center-align the description */
 }
 
-.containerActivities img {
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.containerUploaded img {
     max-width: 100%;
     height: auto;
-    border-radius: 5px;
-    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: block; /* Remove extra space below inline images */
+
 }
 
-/* Media Query para telas menores que 768px (Tablets e Celulares) */
-@media (max-width: 768px) {
-    .containerActivities {
-        padding: 15px;
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto; /* Center the button */
+
+}
+
+.download-button:hover {
+  background-color: #367c39;
+}
+
+.button-icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.loading-message,
+.error-message,
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+    color: #777;
+}
+
+.error-message {
+    color: #d9534f;
+}
+
+/* --- Media Queries --- */
+
+/* Tablets and Larger */
+@media (min-width: 768px) {
+    .containerUploaded ul {
+        
+        flex-direction: row; /* Arrange items in a row */
+        flex-wrap: wrap;     /* Allow items to wrap */
+        justify-content: center; /* Center items horizontally */
     }
 
-    .containerActivities h1 {
-        font-size: 1.8rem; /* Reduz o tamanho da fonte do título */
-        margin-bottom: 15px;
-    }
-
-    .containerActivities li {
-        padding: 12px;
-        margin-bottom: 15px;
-    }
-
-    .containerActivities h2 {
-        font-size: 1.3rem;
-        margin-bottom: 8px;
-    }
-
-    .containerActivities h3 {
-        font-size: 1rem;
+    .containerUploaded li {
+        
+        width: calc(50% - 20px); /* Two items per row, with gap */
+       /* margin: 0; No longer needed, gap handles spacing */
     }
 }
 
-/* Media Query para telas menores que 480px (Celulares menores) */
-@media (max-width: 480px) {
-    .containerActivities {
-        padding: 10px;
+
+/* Mobile Devices */
+@media (max-width: 767px) {  /* Use 767px to target *below* 768px */
+    .containerUploaded {
+        padding: 10px; /* Less padding on small screens */
+    }
+    .containerUploaded ul{
+        flex-direction: column; /*Ensure column*/
+    }
+      .containerUploaded li{
+        width: 100%; /*Full Width*/
     }
 
-    .containerActivities h1 {
-        font-size: 1.6rem; /* Reduz ainda mais o tamanho da fonte do título */
-        margin-bottom: 10px;
+    .containerUploaded h1 {
+        font-size: 1.8rem;
     }
 
-    .containerActivities li {
-        padding: 10px;
-        margin-bottom: 10px;
+    .containerUploaded h2 {
+        font-size: 1.4rem;
     }
 
-    .containerActivities h2 {
+    .containerUploaded h3 {
         font-size: 1.1rem;
-        margin-bottom: 6px;
     }
-
-    .containerActivities h3 {
-        font-size: 0.9rem;
-    }
+    .download-button {
+       font-size: 0.9rem;
+  }
 }

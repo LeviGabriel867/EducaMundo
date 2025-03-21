@@ -4,6 +4,49 @@
     flex-direction: column;
     justify-content: center;
 }
+/* UploadActivities.css */
+
+.containerActivities {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; /* Centraliza o título */
+}
+
+.containerActivities h1 {
+    font-size: 2.2rem; /* Reduz o tamanho da fonte do título */
+    margin-bottom: 20px;
+}
+
+.containerActivities ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0;
+}
+
+.containerActivities li {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: left; /* Alinha o conteúdo do item à esquerda */
+}
+
+.containerActivities h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.containerActivities h3 {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.containerActivities img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
 
 .paragraph {
     display: flex;
@@ -66,7 +109,9 @@
     }
 
     .containerActivities {
-        gap: 8px; /* Reduz o espaçamento entre os botões */
+        margin-top: 0;
+        margin-bottom: 0;
+        gap: 1px; /* Reduz o espaçamento entre os botões */
     }
 
     .containerActivities p {

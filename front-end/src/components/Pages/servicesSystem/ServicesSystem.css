@@ -17,14 +17,7 @@ body {
     min-height: 100vh; /* Garante que o container ocupe pelo menos a altura total da viewport */
 }
 
-.services-system__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem; /* Usa rem para padding */
-    background-color:#7C58FF ; /* Cor de fundo do cabeçalho */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
+
 
 .services-system__logo {
     height: 50px; /* Ajusta o tamanho do logo conforme necessário */
@@ -117,9 +110,8 @@ body {
     max-width: 1200px; /* Largura máxima para telas maiores */
     margin: 2rem auto; /* Centraliza o container e adiciona margem vertical */
     padding: 10px 25px; /*Espaçamento interno*/
-
-
 }
+
 .services-system__text-section{
    display: flex;
    flex-direction: column;
@@ -144,7 +136,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 30%;        /* Ajuste conforme necessário */
     margin-bottom: 1rem; /* Adiciona margem inferior para espaçamento */
-    transition: transform 0.2s, box-shadow 0.2s; /* Transição suave */
+    transition: transform 0.5s, box-shadow 0.2s; /* Transição suave */
      display: flex;
      flex-direction: column;
 
@@ -156,11 +148,10 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.button-options img {
+.button-options img, .ButtonOptions img {
     max-width: 80px; /* Limita o tamanho do ícone */
     height: auto;
     margin-bottom: 1rem;
-
 }
 
 .button-options h3 {
@@ -173,34 +164,17 @@ body {
     color: #666;
     font-size: 0.9rem;
 }
-
-
-
-.services-system__footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #90c9f6;
-    color: #fff;
-    margin-top: auto; /* Empurra o rodapé para o final */
-
+.ButtonOptions p {
+    color: #666;
+    font-size: 0.9rem;
 }
 
-.footer-icon {
-    font-size: 1.5rem;
-    color: #000000;
-    margin: 0 0.5rem; /* Adiciona margem horizontal para espaçamento */
-}
+
 
 /* Media Queries para Responsividade */
 /* Dispositivos pequenos (telefones) */
 @media (max-width: 600px) {
-    .services-system__header {
-        flex-direction: column;
-        align-items: stretch;
-    }
+    
 
     .services-system__search-bar {
         margin-bottom: 1rem; /* Espaço entre a pesquisa e a navegação */
@@ -243,11 +217,7 @@ body {
 
 /* Dispositivos pequenos (telefones) */
 @media (max-width: 600px) {
-    /* ... (seus estilos para mobile - já estão bons) ... */
-    .services-system__header {
-        flex-direction: column;
-        align-items: stretch;
-    }
+    
 
     .services-system__search-bar {
         margin-bottom: 1rem; /* Espaço entre a pesquisa e a navegação */

@@ -1,0 +1,45 @@
+/* ButtonActivities.css */
+
+.container {
+    width: 100%; /* Make sure the container takes the full width */
+    /* Removed height: 100%; It was causing layout issues and is not necessary */
+    display: flex;          /* Use flexbox for layout within the button */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;    /* Center children horizontally */
+    border: 1px solid #ddd; /* Optional: Add a border for visual separation */
+    border-radius: 15px;     /* Rounded corners */
+    padding: 20px;        /* Spacing inside the button */
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
+  }
+  
+  .container:hover {
+      transform: translateY(-5px); /* Lift the button slightly on hover */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* More pronounced shadow on hover*/
+  }
+  
+  /* Style for the image */
+  .container img {
+      max-width: 100%;  /* Ensure the image doesn't overflow the container */
+      height: auto;      /* Maintain aspect ratio */
+      margin-bottom: 15px; /* Space between image and text */
+      border-radius: 10px;    /* Optional: Rounded corners for the image */
+  }
+  
+  /* Style for the h1 (title) */
+  .container h1 {
+      font-size: 1.25rem; /* Adjust font size as needed */
+      font-weight: bold;
+      margin-bottom: 10px; /* Space between title and paragraph */
+      text-align: center;  /* Center the title */
+      color: #333;       /* Dark gray color */
+  }
+  
+  /* Style for the paragraph */
+  .container p {
+      font-size: 1rem;    /* Adjust font size as needed */
+      text-align: center; /* Center the paragraph text */
+      color: #555;       /* Slightly lighter gray color */
+      line-height: 1.4;    /* Improve readability */
+  }

@@ -9,6 +9,7 @@ import PDFDocument from "pdfkit";
 import connectDB from "./config/dataBase/ConnectDB.js";
 import { ActivitiesModel } from "./models/Activities.js"; 
 import {SuggestionsModel} from './models/Suggestions.js'
+import { VideosModel } from "./models/Videos.js";
 //import { size } from "pdfkit/js/page";
 
 dotenv.config();
