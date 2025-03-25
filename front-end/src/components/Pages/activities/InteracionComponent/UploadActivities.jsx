@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FaFileDownload } from "react-icons/fa";
+
 import './UploadActivities.css';
 
 function UploadActivities({ category }) {
@@ -78,7 +80,7 @@ function UploadActivities({ category }) {
                                 <img src={`http://localhost:8080/${activity.path}`} alt={activity.name} />
                             </div>
                             <button className="download-button" onClick={() => downloadImg({ idImg: activity._id, nameFile: activity.name })}>
-                                <span className="button-icon">⬇️</span> Baixar como PDF
+                                <span className="button-icon">{<FaFileDownload />}</span> Baixar como PDF
                             </button>
 
                         </li>

@@ -34,7 +34,27 @@
     justify-items: center;
     padding-bottom: 20px;
 }
+.back-button{
+  display:flex;
+  margin: 0 auto; /* Center the button */
+  margin-top: 2%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
 
+.back-button:hover{
+    background-color: #367c39;
+}
 /* Media Query for larger screens */
 @media (min-width: 768px) {  /* Adjust breakpoint as needed */
     .containerActivities {

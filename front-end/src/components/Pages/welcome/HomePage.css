@@ -7,6 +7,11 @@ body {
     /* overflow: hidden; Removed: Allow scrolling */
     font-family: sans-serif; /* Good practice to set a default font */
 }
+.services-system__main-image{
+    width: 15%;
+    padding: 0;
+    margin: 0;
+}
 
 .welcome {
     background-color: #94ACFC;
@@ -18,7 +23,7 @@ body {
 
 /* Estilos para a coluna esquerda */
 .welcome .left-side {
-    background-color: #94ACFC;
+    background-color: #1947e0;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -95,6 +100,7 @@ body {
 .logoEduca {
     width: 50%;  /* Or use a max-width */
     margin-bottom: 2vh; /* Smaller margin */
+    margin-top: 20vh;
     /* margin-top: 32vh; Removed: Major cause of overflow */
     padding: 0; /* Generally a good idea to reset padding */
     height: auto;
@@ -185,6 +191,11 @@ body {
         font-size: 1em;
         color: #0903c7;
         font-weight: bold;
+    }
+    .services-system__main-image{
+        width: 40%;
+        padding: 0;
+        margin: 0;
     }
 }
 

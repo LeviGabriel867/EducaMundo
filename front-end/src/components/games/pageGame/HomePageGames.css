@@ -5,23 +5,33 @@
         #9854f7 43%,
         #9961e7 100%
     );
-    padding: 12vh;
+    padding: 11vh;
     align-items: center;
     flex-direction: column;
     width: 100%;
     margin-top: 5vh;
     margin-bottom: 0;
 }
+#paragraphOne{
+    font-size: 1.55rem;
+}
 #paragraphTwo{
     color: #e5d3ff;
-    
+    font-size: 1.09rem;
 }
 
 @media(max-width:400px){
     .paragraph{
         padding: 4vh;
         font-size: 35px;
-        border-radius: 15px;
         
     }
+    #paragraphOne{
+        font-size: 1.15rem;
+    }
+    #paragraphTwo{
+        color: #e5d3ff;
+        font-size: 0.8rem;
+    }
+    
 }

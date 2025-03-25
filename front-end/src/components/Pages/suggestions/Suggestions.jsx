@@ -1,6 +1,8 @@
 import { useState } from "react";
-import './Suggestions.css';
+import Header from '../../header/Header.jsx'
+import Footer from '../../footer/Footer.jsx'
 import educaMundo from '../../../assets/educaMundo.png';
+import './Suggestions.css';
 
 function Suggestions() {
     const [suggestions, setSuggestions] = useState("");
@@ -31,20 +33,23 @@ function Suggestions() {
     };
 
     return (
-        <div className="container-suggestions">
-            <h1>Olá, bem-vindo(a) ao nosso suporte de contato.</h1>
-            <img src={educaMundo} alt="" />
-            <h2>
-                Bem-vindo ao nosso espaço de colaboração! Aqui é onde sua ajuda é fundamental para aprimorarmos nosso trabalho. 
-                Fique à vontade para nos questionar sobre qualquer dúvida que possa surgir e compartilhar suas valiosas sugestões. 
-                Estamos aqui para ouvir você e aprimorar sua experiência.
-            </h2>
-            <h3>
-                Basta deixar sua mensagem no local sugerido abaixo, que iremos ler e responder o mais rápido possível.
-                Agradecemos pela sua colaboração.
-            </h3>
-            <div className="form">
-                <form onSubmit={handleSubmit}>
+        <>
+            <Header />
+            <div className="container-suggestions">
+
+                <div className="container-header">
+                    <h1>Suporte de contato</h1>
+                    <img src={educaMundo} alt="" />
+                </div>
+
+                <h2>
+                    Bem-vindo ao nosso espaço de colaboração! Aqui é onde sua ajuda é fundamental para aprimorarmos nosso trabalho.
+                    Fique à vontade para nos questionar sobre qualquer dúvida que possa surgir e compartilhar suas valiosas sugestões.
+                    Estamos aqui para ouvir você e aprimorar sua experiência.
+                </h2>
+
+                {/* Apply the .form class DIRECTLY to the <form> element */}
+                <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="suggestion">Deixe sua dúvida ou sugestão logo abaixo:</label>
                     <input
                         id="suggestion"
@@ -56,8 +61,11 @@ function Suggestions() {
                     <button type="submit">Enviar</button>
                 </form>
                 {message && <p>{message}</p>}
+
             </div>
-        </div>
+
+            <Footer />
+        </>
     );
 }
 

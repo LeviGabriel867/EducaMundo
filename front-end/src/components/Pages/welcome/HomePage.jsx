@@ -57,7 +57,7 @@ function HomePage() {
 
                                 <div className="left-side">
                                     <h1>EducaMundo</h1>
-                                    <h2>
+                                    <h2 id="teste">
                                         Atividades e vídeos educativos para crianças autistas.<br />
                                         Simples de usar, para casa e escola!
                                     </h2>
