@@ -3,6 +3,7 @@ import HomePageComponent from "../welcome/HomePage";
 import CustomDropdown from "./CustomDropdown";
 import UploadVideo from "./UploadVideo";
 import SuggestionsUsers from "./SuggetionsUsers";
+import laptop from '../../../assets/laptop.png'
 import "./Login.css";
 
 function Login() {
@@ -154,6 +155,10 @@ function Login() {
                 <>
                     {typeUser ? (
                         <div className="container-login">
+                            <div className="left-side">
+                                <img src={laptop} alt="laptop" />
+                            </div>
+                            
                             <h1>SEÇÃO DE ADMINISTRADOR</h1>
                             <h1>Insira suas credenciais</h1>
                             <form onSubmit={handleSubmit}>
