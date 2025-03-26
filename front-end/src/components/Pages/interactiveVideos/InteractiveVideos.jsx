@@ -6,78 +6,98 @@ import Footer from "../../footer/Footer.jsx";
 import PictureImg from "../../../assets/activitiesImage.png";
 import MathImg from "../../../assets/activitiesMath.png";
 import PortugueseImg from "../../../assets/activitiesPortuguese.png";
-
+import { useSearch } from "../../../context/SearchContext.jsx";
 import "./InteractiveVideos.css";
 
 function InteractiveVideos() {
     const [activeCategory, setActiveCategory] = useState(null);
-    const [videos, setVideos] = useState([]);
-    const [titles, setTitles] = useState([]);
+    // ✨ Estado único para armazenar os dados dos vídeos (incluindo títulos vindos do backend)
+    const [videoData, setVideoData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const { searchQuery } = useSearch();
 
     useEffect(() => {
-        if (!activeCategory) return;
+        // Função para buscar vídeos já com os títulos do backend
+        const fetchVideosWithTitles = async () => {
+            if (!activeCategory) {
+                setVideoData([]); // Limpa os dados se nenhuma categoria estiver ativa
+                return;
+            }
 
-        const fetchVideos = async () => {
+            setLoading(true);
+            setError(null); // Limpa erros anteriores
+
             try {
-                const response = await fetch(`http://localhost:8080/uploadVideos?category=${encodeURIComponent(activeCategory)}`);
+                // ✨ Chama a nova rota do backend que retorna vídeos com títulos
+                const response = await fetch(`http://localhost:8080/videosWithTitles?category=${encodeURIComponent(activeCategory)}`);
+
                 if (!response.ok) {
-                    throw new Error("Erro ao buscar vídeos");
+                    // Tenta ler a mensagem de erro do backend se disponível
+                    let errorMsg = `Erro ao buscar vídeos: ${response.status} ${response.statusText}`;
+                    try {
+                        const errorData = await response.json();
+                        errorMsg = errorData.msg || errorMsg; // Usa a msg do backend se existir
+                    } catch (jsonError) {
+                        // Ignora se não conseguir parsear o JSON do erro
+                    }
+                    throw new Error(errorMsg);
                 }
+
                 const data = await response.json();
-                console.log("Vídeos recebidos:", data);
-                setVideos(data);
-            } catch (error) {
-                console.error("Erro ao buscar vídeos:", error);
+                console.log("Dados recebidos (vídeos com títulos):", data);
+                setVideoData(data); // Armazena os dados completos (URL, categoria, título)
+
+            } catch (err) {
+                console.error("Erro ao buscar vídeos com títulos:", err);
+                setError(err.message);
+                setVideoData([]); // Limpa os dados em caso de erro
+            } finally {
+                setLoading(false);
             }
         };
 
-        fetchVideos();
-    }, [activeCategory]);
+        fetchVideosWithTitles(); // Chama a função de busca
 
+    }, [activeCategory]); // Executa sempre que activeCategory mudar
 
+    // ✨ Filtra os vídeos com base no título (que agora vem no videoData)
+    const filteredVideos = videoData.filter(video => {
+        // Garante que video.title existe e é uma string antes de chamar toLowerCase
+        const title = video.title || "";
+        return title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
 
-    useEffect(() => {
-        if (videos.length === 0) return;
-
-        const fetchTitles = async () => {
-            try {
-                const videoIds = videos.map((video) => video.URLs.split("v=")[1]?.split("&")[0]);
-                const validIds = videoIds.filter((id) => id);
-
-                if (validIds.length === 0) return;
-
-                const response = await fetch(
-                    `https://www.googleapis.com/youtube/v3/videos?id=${validIds.join(",")}&key=AIzaSyCDzcDJSzM1oJSi9NUNuoYGv83MisSX2yc&part=snippet` //REPLACE WITH YOUR API KEY
-                );
-                const data = await response.json();
-                setTitles(data.items.map((item) => item.snippet.title));
-            } catch (error) {
-                console.log("Erro ao buscar títulos dos vídeos", error);
-            }
-        };
-
-        fetchTitles();
-    }, [videos]);
 
     return (
         <div>
             <Header />
             <div className="father">
                 <div className="son">
-
                     <h1 className="paragraph">Vídeos Interativos</h1>
 
                     {activeCategory ? (
                         <div>
                             <h2 className="selected-category">Categoria: {activeCategory}</h2>
-                            {videos.length === 0 ? (
-                                <p>Nenhum vídeo encontrado</p>
+
+                            {/* Exibe mensagens de carregamento e erro */}
+                            {loading && <p>Carregando vídeos...</p>}
+                            {error && <p className="error-message">Erro: {error}</p>}
+
+                            {/* Renderiza os vídeos filtrados */}
+                            {!loading && !error && filteredVideos.length === 0 ? (
+                                <p>Nenhum vídeo encontrado para "{searchQuery}" nesta categoria.</p>
                             ) : (
-                                videos.map((video, index) => (
-                                    <div key={index} className="video-container">
-                                        <h1>{titles[index] || "Carregando..."}</h1>
-                                        {/*  Remove width and height from ReactPlayer */}
-                                        <ReactPlayer url={video.URLs} controls />
+                                filteredVideos.map((video, index) => (
+                                    <div key={video._id || index} className="video-container"> {/* Usa _id se disponível */}
+                                        {/* ✨ Exibe o título diretamente do objeto video */}
+                                        <h1>{video.title || "Título não disponível"}</h1>
+                                        <ReactPlayer
+                                            url={video.URLs}
+                                            controls
+                                            width="100%" // Ajusta a largura para responsividade
+                                            // height='auto' // Pode ser necessário ajustar a altura
+                                        />
                                     </div>
                                 ))
                             )}
@@ -86,6 +106,7 @@ function InteractiveVideos() {
                             </button>
                         </div>
                     ) : (
+                        // Renderiza os botões de categoria
                         <div className="containerActivities">
                             <ButtonActivities
                                 img={PictureImg}
@@ -116,7 +137,6 @@ function InteractiveVideos() {
             </div>
             <Footer />
         </div>
-
     );
 }
 
