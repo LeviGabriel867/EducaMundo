@@ -1,132 +1,84 @@
-.father {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-/* UploadActivities.css */
+/* No seu arquivo Activities.css */
 
 .containerActivities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem; /* Aumente o GAP se quiser mais espaço ENTRE os cards */
+    justify-content: center;
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
     box-sizing: border-box;
-    text-align: center; /* Centraliza o título */
 }
 
-.containerActivities h1 {
-    font-size: 2.2rem; /* Reduz o tamanho da fonte do título */
-    margin-bottom: 20px;
+.button-activities {
+    background-color: white; /* Garante o fundo branco do card */
+    border-radius: 12px;     /* Cantos mais arredondados (opcional) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada (opcional) */
+
+    /* --- Chave para aumentar o tamanho --- */
+    flex-basis: 350px;   /* Define uma largura base MAIOR (ajuste o valor) */
+    flex-grow: 1;        /* Permite crescer se houver espaço */
+    max-width: 450px;    /* Define uma largura máxima (ajuste o valor) */
+    padding: 1.5rem;     /* Aumenta o espaçamento INTERNO (ajuste o valor) */
+    min-height: 200px;   /* Define uma altura mínima (opcional, ajuste) */
+    /* --- Fim da chave --- */
+
+    /* Garante que o conteúdo interno se organize bem (se necessário) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza conteúdo horizontalmente */
+    text-align: center;  /* Centraliza texto */
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efeito suave (opcional) */
 }
 
-.containerActivities ul {
-    list-style: none; /* Remove os marcadores da lista */
-    padding: 0;
+/* Opcional: Efeito hover */
+.button-activities:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.containerActivities li {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: left; /* Alinha o conteúdo do item à esquerda */
+
+/* Ajustes nos elementos internos para aproveitar o espaço extra */
+/* (Você PRECISA saber as classes ou tags corretas DENTRO do componente ButtonActivities) */
+/* Exemplo - adapte às suas classes reais */
+.button-activities img { /* Se a imagem estiver diretamente dentro */
+    width: 70px;  /* Aumenta tamanho da imagem (ajuste) */
+    height: 70px;
+    margin-bottom: 1rem; /* Mais espaço abaixo da imagem */
+    object-fit: contain;
 }
 
-.containerActivities h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.button-activities h1 { /* Se o H1 estiver diretamente dentro */
+    font-size: 1.3rem; /* Aumenta fonte do título (ajuste) */
+    margin-bottom: 0.75rem; /* Espaço abaixo do título */
 }
 
-.containerActivities h3 {
-    font-size: 1.1rem;
+.button-activities p { /* Se o parágrafo estiver diretamente dentro */
+    font-size: 1rem; /* Aumenta fonte do parágrafo (ajuste) */
     color: #555;
+    line-height: 1.5;
 }
 
-.containerActivities img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.paragraph {
-    display: flex;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
-    background-color: rgb(172, 235, 243);
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 2%;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    justify-content: center;
-    width: 40%;
-}
-
-.father p {
-    width: auto;
-    text-align: center;
-    margin: auto;
-    font-size: 20px;
-    align-items: center;
-    flex-direction: column;
-}
-
-.containerActivities {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%; /* Largura total do contêiner */
-    box-sizing: border-box; /* Inclui padding e borda na largura */
-}
-
-/* Media Query para telas menores que 400px */
-@media (max-width: 400px) {
-    .father {
-        width: 90%; /* Aumenta a largura para preencher a tela */
-        margin: 0 auto; /* Centraliza horizontalmente */
-        padding: 10px; /* Adiciona um pequeno padding */
+/* Adapte as Media Queries se necessário para ajustar os tamanhos em telas menores */
+@media (max-width: 480px) {
+    .button-activities {
+        flex-basis: calc(100% - 2rem); /* Ocupa quase toda a largura, com margem */
+        max-width: none; /* Remove limite máximo */
+        padding: 1.2rem;
+        min-height: auto; /* Deixa altura ser automática */
     }
-
-    .paragraph {
-        padding: 6px; /* Reduz o padding */
-        font-size: 14px; /* Reduz o tamanho da fonte */
-        width: 70%; /* Aumenta a largura */
-        margin-top: 3%; /* Ajusta as margens */
-        margin-bottom: 3%;
+    .button-activities img {
+        width: 60px;
+        height: 60px;
     }
-
-    .father p {
-        font-size: 16px; /* Reduz o tamanho da fonte */
+     .button-activities h1 {
+        font-size: 1.2rem;
     }
-
-    .footer p {
-        font-size: 0.75rem; /* Reduz ainda mais para telas menores */
-        width: 95%; /* Aumenta a largura */
-        font-weight: bold;
-        text-align: center; /* Garante que o texto esteja centralizado */
+     .button-activities p {
+        font-size: 0.9rem;
     }
-
     .containerActivities {
-        margin-top: 0;
-        margin-bottom: 0;
-        gap: 1px; /* Reduz o espaçamento entre os botões */
-    }
-
-    .containerActivities p {
-        font-size: 16px; /* Mantém um tamanho legível */
-    }
-}
-
-/* Media Query para telas menores que 320px */
-@media (max-width: 320px) {
-    .paragraph {
-        font-size: 12px; /* Reduz ainda mais o tamanho da fonte */
-        width: 80%; /* Aumenta a largura */
-    }
-
-    .footer p {
-        font-size: 0.7rem; /* Ajusta ainda mais para telas pequenas */
+        gap: 1rem; /* Menor gap em telas pequenas */
     }
 }

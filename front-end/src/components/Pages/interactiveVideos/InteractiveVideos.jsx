@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+ import { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import ButtonActivities from "../../button/buttonActivities/ButtonActivities.jsx";
 import Header from "../../header/Header.jsx";

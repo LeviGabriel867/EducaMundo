@@ -5,12 +5,12 @@
         #9854f7 43%,
         #9961e7 100%
     );
-    padding: 11vh;
+    padding: 6vh;
     align-items: center;
     flex-direction: column;
     width: 100%;
     margin-top: 5vh;
-    margin-bottom: 0;
+    margin-bottom: 3vh;
 }
 #paragraphOne{
     font-size: 1.55rem;
@@ -22,8 +22,11 @@
 
 @media(max-width:400px){
     .paragraph{
-        padding: 4vh;
-        font-size: 35px;
+        padding: 1.2vh;
+        font-size: 1.3rem;
+        width: 100%;
+        margin: 0%;
+        margin-top: 1vh;
         
     }
     #paragraphOne{

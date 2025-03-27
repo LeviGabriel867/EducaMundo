@@ -293,3 +293,23 @@ body {
     margin: 2rem auto;
     padding: 10px 25px;
 }
+@media(max-width: 400px){
+    .services-system__main-image{
+        height: 25%;
+        width: 20%;	
+        margin: 0%;
+    }
+    .services-system__main-content{
+        height: auto;
+             
+        padding: 0%;
+        padding-top: 15px;
+        margin-bottom: 5%;
+    }
+    .services-system__text-section h2{
+        font-size: 1.1rem;
+    }
+    .services-system__options-container{
+        width: 100%;
+    }
+}

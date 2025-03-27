@@ -24,6 +24,13 @@
     text-align: center;
     width: 100%; /*  Good for responsiveness */
 }
+.video-container{
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .containerActivities {
     width: 100%;

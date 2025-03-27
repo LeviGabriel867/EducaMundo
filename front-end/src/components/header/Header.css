@@ -1,23 +1,170 @@
+
 .services-system__header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    align-items: center;          
+    padding: 1rem 2rem;
+    background-color: #7C58FF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 1rem; 
+}
+
+
+.services-system__logo {
+    height: 40px; 
+    display: block; 
+}
+
+
+.services-system__search-bar {
+    display: flex;           
+    align-items: center;     
+    flex-grow: 1;            
+    max-width: 600px;        
+}
+
+.services-system__search-bar input[type="text"] {
+    flex: 1;                
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; 
+    font-size: 16px;
+    min-width: 0;           
+    border: none;     
+    box-sizing: border-box;
+    height: 42px; 
+}
+
+/* Foco no input */
+.services-system__search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: #7C58FF; 
+    z-index: 1; 
+    position: relative; 
+}
+.services-system__search-bar label {
+    display: flex;
     align-items: center;
-    padding: 1rem 2rem; /* Usa rem para padding */
-    background-color:#7C58FF ; /* Cor de fundo do cabeçalho */
-    box-shadow: 0 2px 4px rgba(255, 2, 2, 0.1); /* Sombra sutil */
+    cursor: pointer;
+    color: #ffffff;
+    white-space: nowrap;
+    border-radius: 5px;
 }
 
-@media (max-width: 600px) {
+/* Label estilizado como Botão */
+.header-button { 
+    display: flex;           
+    align-items: center;
+    gap: 5px;              
+
+    background-color: #6A40E5; 
+    color: white;
+    border: 1px solid #6A40E5;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; 
+    white-space: nowrap;     
+    flex-shrink: 0;          
+    box-sizing: border-box;
+    height: 42px; 
+    transition: background-color 0.2s ease; 
+}
+
+/* Hover/Focus no Label/Botão */
+.header-button:hover,
+.header-button:focus {
+    background-color: #5830C0; 
+    border-color: #5830C0;
+    outline: none;
+}
+
+/* Ícone dentro do Label/Botão */
+.header-icon { 
+    font-size: 1.1em; 
+    display: block; 
+}
+
+
+
+.services-system__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem; 
+    flex-shrink: 0; 
+}
+
+.services-system__nav li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.services-system__nav li a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) { 
     .services-system__header {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: column; 
+        align-items: stretch;   
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .services-system__header > a:first-child {
+       display: flex;
+       justify-content: center;
+       margin-bottom: 0.5rem; 
+    }
+
+
+    .services-system__search-bar {
+        max-width: none;     
+        order: 2;
+    }
+
+    .services-system__nav {
+        flex-direction: row; /* Mantem nav em linha, mas centralizado */
+        justify-content: center;
+        flex-wrap: wrap; /* Permite quebrar linha se não couber */
+        gap: 1rem; /* Ajusta espaçamento */
+        order: 3; /* Coloca a navegação por último */
+        margin-top: 0.5rem; /* Espaço acima da nav */
     }
 }
 
-@media (max-width: 600px) {
-    /* ... (seus estilos para mobile - já estão bons) ... */
-    .services-system__header {
-        flex-direction: column;
-        align-items: stretch;
+@media (max-width: 480px) {
+     .services-system__nav {
+        gap: 0.8rem; /* Menor espaço entre links em telas muito pequenas */
+        font-size: 0.9em; /* Reduz um pouco a fonte */
     }
+    .services-system__logo{
+        width: 40%;
+        height: 30%;
+    }
+
+     .header-button {
+        padding: 10px 15px; /* Menos padding lateral no botão */
+     }
+     .services-system__search-bar{
+        height: 43px;
+     }
+     .services-system__search-bar input::placeholder{
+        font-size: 13px;
+        
+     }
+     .header-button{
+        width: 30%;
+        height: auto;
+        font-size: 13px;
+        padding: 3px;
+     }
+     .services-system__nav{
+        gap: 40px;
+        font-size: 0.8rem;
+     }
 }
