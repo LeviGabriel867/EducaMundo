@@ -61,7 +61,7 @@ function findBestMove(squares) {
 }
 
 // --- Componente Principal Game ---
-function Game() {
+function Game({onBack}) {
   const initialBoard = Array(9).fill(null);
   const [board, setBoard] = useState(initialBoard);
   const [xIsNext, setXIsNext] = useState(true);
@@ -181,8 +181,27 @@ function Game() {
 
   // useEffect do Status Message (permanece igual)
   useEffect(() => {
-     // ... lógica do status
-  }, [winnerInfo, xIsNext, gameMode]);
+    if (winner) { // Verifica se winner não é null (ou seja, 'X', 'O', ou 'Tie')
+      if (winner === 'Tie') {
+        setStatusMessage("Deu velha! (Empate)"); // Mensagem clara para empate
+        setWinningLine(null); // Não há linha vencedora em empate
+      } else {
+        // Temos um vencedor ('X' ou 'O')
+        setStatusMessage(`Jogador ${winner} venceu! Parabéns!`); // Mensagem indicando o vencedor
+        // A linha vencedora já deve ser definida corretamente via winnerInfo
+        setWinningLine(winnerInfo?.line);
+      }
+    } else if (gameMode === 'none' || !gameMode) { // Estado inicial ou inválido
+      setStatusMessage("Escolha o modo de jogo");
+      setWinningLine(null); // Garante que não há linha no início
+    } else { // Jogo em andamento
+      const player = xIsNext ? 'X' : 'O';
+      const computerText = gameMode === 'PvE' && !xIsNext ? ' (Computador)' : '';
+      setStatusMessage(`Próximo jogador: ${player}${computerText}`);
+      setWinningLine(null); // Garante que não há linha durante o jogo normal
+    }
+    // As dependências estão corretas. winnerInfo contém o 'winner' que aciona a lógica.
+  }, [winnerInfo, xIsNext, gameMode]); // winnerInfo inclui winner e line
   // --- Renderização ---
   return (
     <div className="game">
@@ -192,7 +211,7 @@ function Game() {
           Jogador vs Jogador
         </button>
         <button onClick={() => selectMode('PvE')} disabled={gameMode === 'PvE'} className={gameMode === 'PvE' ? 'active-mode' : ''}>
-          Jogador vs Computador
+          Jogador vs Inteligência Artificial
         </button>
       </div>
 
@@ -211,7 +230,9 @@ function Game() {
         <div>{statusMessage}</div>
         {(gameMode === 'PvP' || gameMode === 'PvE') && (
           <button onClick={handleReset} className="reset-button">Reiniciar Jogo</button>
+          
         )}
+        <button className='backPage-Game' onClick={onBack}>Voltar</button>
       </div>
     </div>
   );

@@ -10,13 +10,12 @@ import img6 from './img/img6.png';
 import img7 from './img/img7.png'; // Importe todas as imagens
 import './hangmanGame.css';
 
-function HangmanGame() {
-    const [wordData, setWordData] = useState(null); // Estado para a palavra e a dica
-    const [guessedLetters, setGuessedLetters] = useState([]); // Estado para as letras adivinhadas
-    const [wrongGuesses, setWrongGuesses] = useState(0); // Estado para as tentativas erradas
-    const maxWrongGuesses = 6; // Número máximo de erros
+function HangmanGame({ onBack }) {
+    const [wordData, setWordData] = useState(null);
+    const [guessedLetters, setGuessedLetters] = useState([]);
+    const [wrongGuesses, setWrongGuesses] = useState(0);
+    const maxWrongGuesses = 6;
 
-    // useEffect para buscar uma nova palavra quando o componente é montado ou quando se clica em "Novo Jogo"
     useEffect(() => {
         resetGame();
     }, []);
@@ -26,7 +25,6 @@ function HangmanGame() {
         setGuessedLetters([]);
         setWrongGuesses(0);
     };
-
 
     const handleGuess = (letter) => {
         if (wordData && !guessedLetters.includes(letter)) {
@@ -38,35 +36,23 @@ function HangmanGame() {
         }
     };
 
-    //Função para determinar se ganhou ou perdeu:
-    const gameStatus = () => {
-        if (!wordData) return 'loading'; //ainda carregando a palavra
-        if (wrongGuesses >= maxWrongGuesses) return 'lost';
-        if (wordData.word.toUpperCase().split('').every(letter => guessedLetters.includes(letter))) return 'won';
-        return 'playing';
-    };
-
-    const status = gameStatus();
-
     const renderButtons = () => {
-        const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)); // Cria um array de A a Z
+        const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 
         return alphabet.map((letter) => (
             <button
                 key={letter}
                 onClick={() => handleGuess(letter)}
-                disabled={guessedLetters.includes(letter) || status !== 'playing'} // Desabilita se já foi clicado ou o jogo acabou
+                disabled={guessedLetters.includes(letter)}
                 className={guessedLetters.includes(letter) ? (wordData.word.toUpperCase().includes(letter) ? 'correct' : 'incorrect') : ''}
-
             >
                 {letter}
             </button>
         ));
     };
 
-
     const renderWord = () => {
-       if (!wordData) return null; // Não renderiza nada se wordData for null
+        if (!wordData) return null;
         return wordData.word.toUpperCase().split('').map((letter, index) => (
             <span key={index} className="letter">
                 {guessedLetters.includes(letter) ? letter : '_'}
@@ -76,14 +62,12 @@ function HangmanGame() {
 
     const getHangmanImage = () => {
         const images = [img1, img2, img3, img4, img5, img6, img7];
-        return images[wrongGuesses] || img7; // Retorna img7 se wrongGuesses for maior que o índice máximo
+        return images[wrongGuesses] || img7;
     };
-
 
     return (
         <div className='hangman-container'>
             <h1>Jogo da forca</h1>
-            <button className='new' onClick={resetGame}>Novo Jogo</button>
 
             <article className='content-img'>
                 <img src={getHangmanImage()} alt="Jogo da forca" width={250} />
@@ -92,9 +76,10 @@ function HangmanGame() {
                 <div className='guess-word'>{renderWord()}</div>
                 <div className='clue'>{wordData ? `Dica: ${wordData.clue}` : ''}</div>
                 <div className='btns'>{renderButtons()}</div>
-                {status === 'lost' && <div className="game-over-message">Você perdeu! A palavra era: {wordData?.word}</div>}
-                {status === 'won' && <div className="game-over-message">Você ganhou!</div>}
             </article>
+
+            <button className='new' onClick={resetGame}>Novo Jogo</button>
+            <button className='backPage' onClick={onBack}>Voltar</button>
         </div>
     );
 }

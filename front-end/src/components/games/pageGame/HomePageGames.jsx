@@ -15,6 +15,11 @@ function HomePageGames() {
         setRenderParagraph(false); // Esconde o parágrafo ao selecionar um jogo
     };
 
+    const handleBackToGames = () => {
+        setViewGame(null);
+        setRenderParagraph(true); // Mostra o parágrafo novamente ao voltar
+    }
+
     return (
         <div className="homePageGames">
             <Header />
@@ -28,9 +33,9 @@ function HomePageGames() {
 
             <div className='container-all-games'>
                 {viewGame === "forca" ? (
-                    <HangmanGame />
+                    <HangmanGame onBack={handleBackToGames}/>
                 ) : viewGame === "velha" ? (
-                    <Game /> // Troque por um componente Jogo da Velha, se existir
+                    <Game onBack={handleBackToGames}/> // Troque por um componente Jogo da Velha, se existir
                 ) : (
                     renderParagraph && <ContainerGames onViewGame={handleViewGame} /> // Mostra ContainerGames apenas se o parágrafo estiver visível
                 )}

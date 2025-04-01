@@ -8,7 +8,18 @@
   background-color: #f0f8ff;
   min-height: 100vh;
 }
+.backPage-Game{
+    margin-right: 1vh;
 
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid #000000;
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
 .game h1 {
     color: #333;
     margin-bottom: 20px;
@@ -37,10 +48,10 @@
 
 .game-mode-selector button:disabled,
 .game-mode-selector button.active-mode {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffee00;
+    color: rgb(0, 0, 0);
     cursor: default;
-    border-color: #3a8b3d;
+    border-color: #686868;
 }
 
 .game-board {
@@ -137,7 +148,8 @@
     font-size: 1em;
     cursor: pointer;
     border: none;
-    background-color: #f44336; /* Vermelho */
+    background-color: #4CAF50; /* Vermelho */
+    margin-right: 1vh;
     color: white;
     border-radius: 5px;
     transition: background-color 0.3s;
