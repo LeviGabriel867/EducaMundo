@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Board from './Board'; // Importe o componente Board
-import './TicTacToe.css'; // Arquivo para estilos
+import React, { useState, useEffect, useCallback } from 'react'; // Importar useCallback
+import Board from './Board';
+import './TicTacToe.css';
 
-// Função auxiliar para verificar o vencedor
+// --- Funções Auxiliares (calculateWinner, findBestMove) ---
+// (Coloque as funções calculateWinner e findBestMove aqui - sem alterações nelas)
+// Função para calcular o vencedor
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
@@ -12,179 +14,203 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return { winner: squares[a], line: lines[i] }; // Retorna o vencedor e a linha
+      return { winner: squares[a], line: lines[i] }; // Retorna vencedor e linha
     }
   }
-  // Verificar empate (nenhum quadrado vazio)
   if (squares.every(square => square !== null)) {
-    return { winner: 'Tie', line: null };
+    return { winner: 'Tie', line: null }; // Empate
   }
   return null; // Jogo em andamento
 }
 
-// Função para a lógica da IA (exemplo muito simples)
+// Função para a lógica da IA (simples)
 function findBestMove(squares) {
-  // 1. Tentar ganhar
+  console.log("[findBestMove] Calculando melhor jogada para o tabuleiro:", squares);
+
+  // 1. Ganhar
   for (let i = 0; i < 9; i++) {
     if (squares[i] === null) {
-      const testSquares = squares.slice();
-      testSquares[i] = 'O'; // Tenta jogar como 'O' (IA)
-      if (calculateWinner(testSquares)?.winner === 'O') {
-        return i; // Encontrou jogada vencedora
-      }
+      const t = squares.slice();
+      t[i] = 'O';
+      if (calculateWinner(t)?.winner === 'O') return i;
     }
   }
 
-  // 2. Tentar bloquear o jogador 'X'
+  // 2. Bloquear
   for (let i = 0; i < 9; i++) {
     if (squares[i] === null) {
-      const testSquares = squares.slice();
-      testSquares[i] = 'X'; // Tenta simular a jogada do 'X'
-      if (calculateWinner(testSquares)?.winner === 'X') {
-        return i; // Encontrou jogada de bloqueio
-      }
+      const t = squares.slice();
+      t[i] = 'X';
+      if (calculateWinner(t)?.winner === 'X') return i;
     }
   }
 
-   // 3. Tentar pegar o centro se estiver livre
-   if (squares[4] === null) {
-    return 4;
-   }
+  // 3. Centro
+  if (squares[4] === null) return 4;
 
-  // 4. Tentar pegar um canto aleatório se estiver livre
-  const corners = [0, 2, 6, 8];
-  const availableCorners = corners.filter(i => squares[i] === null);
-  if (availableCorners.length > 0) {
-    return availableCorners[Math.floor(Math.random() * availableCorners.length)];
-  }
+  // 4. Canto aleatório
+  const corners = [0, 2, 6, 8].filter(i => squares[i] === null);
+  if (corners.length > 0) return corners[Math.floor(Math.random() * corners.length)];
 
-  // 5. Jogar em qualquer quadrado vazio aleatório (fallback)
-  const emptySquares = squares
-    .map((sq, index) => (sq === null ? index : null))
-    .filter(index => index !== null);
+  // 5. Qualquer vazio aleatório
+  const empty = squares.map((sq, i) => (sq === null ? i : null)).filter(i => i !== null);
+  if (empty.length > 0) return empty[Math.floor(Math.random() * empty.length)];
 
-  if (emptySquares.length > 0) {
-    return emptySquares[Math.floor(Math.random() * emptySquares.length)];
-  }
-
-  return null; // Não deveria acontecer em um jogo normal
+  console.warn("[findBestMove] Nenhuma jogada válida encontrada.");
+  return null;
 }
 
-
+// --- Componente Principal Game ---
 function Game() {
   const initialBoard = Array(9).fill(null);
   const [board, setBoard] = useState(initialBoard);
-  const [xIsNext, setXIsNext] = useState(true); // 'X' sempre começa
-  const [gameMode, setGameMode] = useState('PvP'); // 'PvP' ou 'PvE'
+  const [xIsNext, setXIsNext] = useState(true);
+  const [gameMode, setGameMode] = useState('PvP');
   const [isAiTurn, setIsAiTurn] = useState(false);
   const [statusMessage, setStatusMessage] = useState("Escolha o modo de jogo");
-  const [winningLine, setWinningLine] = useState(null); // Para destacar a linha vencedora
 
-  const winnerInfo = calculateWinner(board);
+  const [winningLine, setWinningLine] = useState(null);
+
+  const winnerInfo = calculateWinner(board); // Recalcula a cada render
   const winner = winnerInfo?.winner;
 
-  // Efeito para a jogada da IA
-  useEffect(() => {
-    // Só roda se: modo PvE, é a vez do 'O' (IA), e o jogo não acabou
-    if (gameMode === 'PvE' && !xIsNext && !winner && !isAiTurn) {
-       setIsAiTurn(true); // Marca que a IA está pensando
-       // Adiciona um pequeno delay para parecer que a IA está "pensando"
-       const timer = setTimeout(() => {
-        const aiMoveIndex = findBestMove(board);
-        if (aiMoveIndex !== null) {
-          handleClick(aiMoveIndex); // Simula o clique da IA
-        }
-        setIsAiTurn(false); // Marca que a IA terminou
-       }, 500); // Delay de 0.5 segundos
-
-       return () => clearTimeout(timer); // Limpa o timeout se o componente desmontar
-    }
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [xIsNext, gameMode, winner, board]); // Dependências do efeito
-
-
-  // Atualiza a mensagem de status
-  useEffect(() => {
-    if (winner) {
-      if (winner === 'Tie') {
-        setStatusMessage("Empate!");
-      } else {
-        setStatusMessage(`Vencedor: ${winner}`);
-      }
-      setWinningLine(winnerInfo?.line); // Define a linha vencedora
-    } else if (gameMode === 'none') {
-       setStatusMessage("Escolha o modo de jogo");
-    }
-     else {
-      setStatusMessage(`Próximo jogador: ${xIsNext ? 'X' : 'O'}${gameMode === 'PvE' && !xIsNext ? ' (Computador)' : ''}`);
-       setWinningLine(null); // Limpa a linha vencedora se o jogo recomeçar
-    }
-  }, [winner, xIsNext, gameMode, winnerInfo]);
-
-
-  const handleClick = (index) => {
-    // Ignora clique se já houver vencedor, o quadrado estiver preenchido,
-    // ou se for a vez da IA no modo PvE e o clique for humano
-    if (winner || board[index] || (gameMode === 'PvE' && !xIsNext && !isAiTurn)) {
-       // Se for a vez da IA, mas o clique veio do useEffect da IA, permite
-       if (isAiTurn && gameMode === 'PvE' && !xIsNext){
-           // Continua para a lógica de atualização abaixo
-       } else {
-            return; // Ignora o clique em outras condições
-       }
-    }
-
-
-    const newBoard = board.slice(); // Cria uma cópia do tabuleiro
-    newBoard[index] = xIsNext ? 'X' : 'O';
-    setBoard(newBoard);
-    setXIsNext(!xIsNext); // Alterna o jogador
-  };
-
-  const handleReset = () => {
+  // --- DEFINIÇÃO DOS HANDLERS ---
+  const handleReset = useCallback(() => {
     setBoard(initialBoard);
     setXIsNext(true);
     setWinningLine(null);
     setIsAiTurn(false);
-    // Não reseta o gameMode, mantém a escolha do usuário
-    setStatusMessage(`Próximo jogador: X`); // Reinicia status
-     if (gameMode === 'none') {
+    setGameMode(currentMode => {
+      if (currentMode === 'none') {
         setStatusMessage("Escolha o modo de jogo");
-     } else {
-        setStatusMessage(`Jogo reiniciado (${gameMode}). Próximo jogador: X`);
-     }
-  };
+      } else {
+        setStatusMessage(`Jogo reiniciado (${currentMode}). Próximo jogador: X`);
+      }
+      return currentMode; // Não mudar o modo ao resetar
+    });
+  }, [initialBoard]);
 
-  const selectMode = (mode) => {
+  const selectMode = useCallback((mode) => {
     setGameMode(mode);
-    handleReset(); // Reseta o tabuleiro ao trocar de modo
-     setStatusMessage(`Modo ${mode} selecionado. Próximo jogador: X`);
-  }
+    setBoard(initialBoard);
+    setXIsNext(true);
+    setWinningLine(null);
+    setIsAiTurn(false);
+    setStatusMessage(`Modo ${mode} selecionado. Próximo jogador: X`);
+  }, [initialBoard]);
 
+  const handleClick = useCallback((index) => {
+    console.log(`[handleClick] Tentando jogar no índice: ${index}`);
+    const currentWinnerInfo = calculateWinner(board);
+    const currentWinner = currentWinnerInfo?.winner;
+
+    if (currentWinner) {
+        console.warn("[handleClick] Jogo já tem um vencedor:", currentWinner);
+        return;
+    }
+
+    if (board[index]) {
+        console.warn("[handleClick] Célula já ocupada no índice:", index);
+        return;
+    }
+
+    const newBoard = board.slice();
+    newBoard[index] = xIsNext ? 'X' : 'O';
+    setBoard(newBoard);
+    setXIsNext(!xIsNext);
+    console.log("[handleClick] Tabuleiro atualizado:", newBoard);
+  }, [board, xIsNext]);
+
+  // --- UseEffects ---
+  // --- UseEffects ---
+  useEffect(() => {
+    // Log inicial removido ou simplificado para menos ruído se desejar
+    // console.log(`[IA] Effect Check: Mode=${gameMode}, Next=${xIsNext}, Winner=${winner}, isAiTurn=${isAiTurn}`);
+
+    // A condição principal para INICIAR a jogada da IA
+    if (gameMode === 'PvE' && !xIsNext && !winner) {
+        // Verificação adicional: Só inicia se a IA *não* estiver já pensando
+        // Isso evita agendar múltiplos timers se houver algum re-render rápido
+        if (!isAiTurn) {
+            console.log("[IA] Condições ATENDIDAS (vez da IA e ela não está pensando). Agendando timer...");
+            setIsAiTurn(true); // Bloqueia interface
+
+            const timer = setTimeout(() => {
+                console.log("[IA Timer] Callback executado.");
+                // *** IMPORTANTE: Obter o board MAIS RECENTE aqui dentro ***
+                // Usamos a forma funcional de setBoard ou precisamos garantir que 'board' na dep está atualizado
+                // Como 'board' ESTÁ na dependencia, ele deve estar ok aqui.
+                 const currentBoardSnapshot = board; // Pega o valor atual do closure
+
+                 const aiMoveIndex = findBestMove(currentBoardSnapshot.slice());
+                console.log(`[IA Timer] findBestMove retornou: ${aiMoveIndex}`);
+
+                if (aiMoveIndex !== null && currentBoardSnapshot[aiMoveIndex] === null) {
+                    console.log(`[IA Timer] Chamando handleClick(${aiMoveIndex})`);
+                    handleClick(aiMoveIndex); // Chama o handleClick (que é memoizado e depende de board/xIsNext)
+                } else {
+                    if(aiMoveIndex !== null) console.warn(`[IA Timer] Célula ${aiMoveIndex} já ocupada? Valor: ${currentBoardSnapshot[aiMoveIndex]}`);
+                    else console.warn("[IA Timer] findBestMove não retornou índice.");
+                }
+
+                console.log("[IA Timer] Setando isAiTurn = false.");
+                setIsAiTurn(false); // Libera interface
+
+            }, 700);
+
+            // Função de limpeza do effect
+            return () => {
+                console.log("[IA Cleanup] Limpando timer agendado.");
+                clearTimeout(timer);
+            };
+        } else {
+            console.log("[IA] Condições atendidas, mas IA já está pensando (isAiTurn=true). Não faz nada.");
+        }
+    }
+     // else { // Opcional: Log para quando as condições principais não são atendidas
+         //console.log("[IA] Condições principais NÃO atendidas para iniciar a IA.");
+    //}
+
+  // Dependências CRÍTICAS: Quando estas mudam, a *lógica* de decidir se a IA JOGA precisa ser reavaliada.
+  // Board: necessário para pegar o snapshot no timer
+  // handleClick: necessário para ser chamado no timer (é estável com useCallback)
+  // winner: para parar a IA se alguém ganhar
+  // gameMode, xIsNext: as condições primárias
+  // REMOVIDO 'isAiTurn' para evitar o loop/cancelamento imediato.
+  }, [gameMode, xIsNext, winner, board, handleClick]); // Sem isAiTurn
+
+  // useEffect do Status Message (permanece igual)
+  useEffect(() => {
+     // ... lógica do status
+  }, [winnerInfo, xIsNext, gameMode]);
+  // --- Renderização ---
   return (
     <div className="game">
-        <h1>Jogo da Velha Adaptado</h1>
-        <div className="game-mode-selector">
-            <button onClick={() => selectMode('PvP')} disabled={gameMode === 'PvP'} className={gameMode === 'PvP' ? 'active-mode' : ''}>
-                Jogador vs Jogador
-            </button>
-            <button onClick={() => selectMode('PvE')} disabled={gameMode === 'PvE'} className={gameMode === 'PvE' ? 'active-mode' : ''}>
-                Jogador vs Computador
-            </button>
-        </div>
+      <h1>Jogo da Velha Adaptado</h1>
+      <div className="game-mode-selector">
+        <button onClick={() => selectMode('PvP')} disabled={gameMode === 'PvP'} className={gameMode === 'PvP' ? 'active-mode' : ''}>
+          Jogador vs Jogador
+        </button>
+        <button onClick={() => selectMode('PvE')} disabled={gameMode === 'PvE'} className={gameMode === 'PvE' ? 'active-mode' : ''}>
+          Jogador vs Computador
+        </button>
+      </div>
 
-      {gameMode !== 'none' && ( // Só mostra o jogo se um modo foi selecionado
+      {(gameMode === 'PvP' || gameMode === 'PvE') && (
         <div className="game-board">
-           {/* Passa a linha vencedora para o Board */}
-          <Board squares={board} onClick={handleClick} winningLine={winningLine} />
+          <Board
+            squares={board}
+            onClick={handleClick}
+            winningLine={winningLine}
+            isAiTurn={isAiTurn}
+          />
         </div>
       )}
 
       <div className="game-info">
         <div>{statusMessage}</div>
-         {/* Mostra botão de reset apenas se um modo foi selecionado */}
-        {gameMode !== 'none' && (
-             <button onClick={handleReset} className="reset-button">Reiniciar Jogo</button>
+        {(gameMode === 'PvP' || gameMode === 'PvE') && (
+          <button onClick={handleReset} className="reset-button">Reiniciar Jogo</button>
         )}
       </div>
     </div>

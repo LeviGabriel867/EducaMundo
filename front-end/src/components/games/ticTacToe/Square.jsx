@@ -1,12 +1,16 @@
 import React from 'react';
 
-// Recebe a prop isWinning
-function Square({ value, onClick, isWinning }) {
-  // Adiciona a classe 'winning' se for parte da linha vencedora
+// Recebe isAiTurn e usa para desabilitar o botão
+function Square({ value, onClick, isWinning, isAiTurn }) {
   const className = `square ${isWinning ? 'winning' : ''} ${value ? 'filled' : ''}`;
+
   return (
-    <button className={className} onClick={onClick}>
-      {/* Adiciona classes específicas para X e O para estilização */}
+    <button
+      className={className}
+      onClick={onClick}
+      disabled={isAiTurn} // <--- Desabilita o botão se for a vez da IA
+    >
+      {/* Span para estilizar X e O separadamente se necessário */}
       <span className={value === 'X' ? 'symbol-x' : value === 'O' ? 'symbol-o' : ''}>
          {value}
       </span>

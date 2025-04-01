@@ -1,141 +1,161 @@
 /* Estilos gerais */
 .game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: sans-serif;
-    padding: 20px;
-    background-color: #f0f8ff; /* Azul bem claro, pode ajustar */
-    min-height: 100vh;
-  }
-  
-  .game h1 {
-      color: #333;
-      margin-bottom: 20px;
-  }
-  
-  .game-mode-selector {
-      margin-bottom: 20px;
-      display: flex;
-      gap: 15px; /* Espaço entre botões */
-  }
-  
-  .game-mode-selector button {
-      padding: 10px 20px;
-      font-size: 1em;
-      cursor: pointer;
-      border: 2px solid #4CAF50; /* Verde */
-      background-color: white;
-      color: #4CAF50;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .game-mode-selector button:hover:not(:disabled) {
-      background-color: #e7f4e8;
-  }
-  
-  .game-mode-selector button:disabled,
-  .game-mode-selector button.active-mode {
-      background-color: #4CAF50;
-      color: white;
-      cursor: default;
-      border-color: #3a8b3d;
-  }
-  
-  
-  .game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  padding: 20px;
+  background-color: #f0f8ff;
+  min-height: 100vh;
+}
+
+.game h1 {
+    color: #333;
     margin-bottom: 20px;
-     border: 3px solid #666; /* Borda mais grossa pro tabuleiro */
-     background-color: #fff;
-     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: '';
-    display: table;
-  }
-  
-  .square {
-    background: #fff;
-    border: 2px solid #999; /* Bordas dos quadrados mais visíveis */
-    float: left;
-    font-size: 48px; /* Tamanho maior para X e O */
-    font-weight: bold;
-    line-height: 80px; /* Alinhar verticalmente */
-    height: 80px;
-    margin-right: -2px; /* Ajuste para sobrepor bordas */
-    margin-top: -2px;  /* Ajuste para sobrepor bordas */
-    padding: 0;
-    text-align: center;
-    width: 80px;
+}
+
+.game-mode-selector {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.game-mode-selector button {
+    padding: 10px 20px;
+    font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    color: #333; /* Cor padrão do texto */
-     display: flex; /* Para centralizar o span */
-    justify-content: center;
-    align-items: center;
+    border: 2px solid #4CAF50;
+    background-color: white;
+    color: #4CAF50;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.game-mode-selector button:hover:not(:disabled) {
+    background-color: #e7f4e8;
+}
+
+.game-mode-selector button:disabled,
+.game-mode-selector button.active-mode {
+    background-color: #4CAF50;
+    color: white;
+    cursor: default;
+    border-color: #3a8b3d;
+}
+
+.game-board {
+  margin-bottom: 20px;
+   border: 3px solid #666;
+   background-color: #fff;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+/* Estilos do Quadrado (Square) */
+.square {
+  background: #fff;
+  border: 2px solid #999;
+  float: left;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 80px; /* Tentar igualar à altura */
+  height: 80px;
+  margin-right: -2px;
+  margin-top: -2px;
+  padding: 0;
+  text-align: center;
+  width: 80px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Garante que nada vaze */
+  position: relative; /* Necessário para alguns alinhamentos se usar ::before/::after */
+}
+
+.square:hover:not(.filled):not(:disabled) { /* Adicionado :not(:disabled) */
+    background-color: #f4f4f4;
+}
+
+.symbol-x {
+    color: #ff6347; /* Tomate */
+    line-height: 1; /* Resetar line-height para o span */
+}
+
+.symbol-o {
+    color: #1e90ff; /* Azul Dodger */
+     line-height: 1; /* Resetar line-height para o span */
+}
+
+
+.square.winning {
+  background-color: #b9fbc0; /* Verde claro */
+}
+
+.square.winning .symbol-x,
+.square.winning .symbol-o {
+   /* Poderia adicionar um efeito extra para o símbolo vencedor */
+   /* Ex: font-weight: bolder; */
+}
+
+/* ---- NOVOS ESTILOS PARA DESABILITADO ---- */
+.square:disabled {
+  cursor: not-allowed;
+  background-color: #eee; /* Cinza claro como fundo */
+  /* opacity: 0.7;  Pode usar opacidade geral se preferir */
+}
+
+.square:disabled:hover {
+    background-color: #eee; /* Garante que não mude no hover */
+}
+
+.square:disabled .symbol-x,
+.square:disabled .symbol-o {
+    opacity: 0.4; /* Torna o símbolo X ou O mais apagado */
+    color: #999; /* Pode também mudar a cor para cinza */
+}
+/* ---- FIM DOS NOVOS ESTILOS ---- */
+
+
+.game-info {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #555;
+  text-align: center;
+}
+
+.reset-button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    background-color: #f44336; /* Vermelho */
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.reset-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+  .square {
+    font-size: 36px;
+    height: 60px;
+    width: 60px;
+    line-height: 60px; /* Ajustar line-height com altura */
   }
-  
-  .square:hover:not(.filled) {
-      background-color: #f4f4f4; /* Leve destaque no hover */
-  }
-  
-  /* Cores específicas para X e O podem ajudar na distinção */
-  .symbol-x {
-      color: #ff6347; /* Vermelho Tomate */
-  }
-  
-  .symbol-o {
-      color: #1e90ff; /* Azul Dodger */
-  }
-  
-  
-  .square.winning {
-    background-color: #b9fbc0; /* Verde claro para destacar vitória */
-    color: #007000; /* Cor do texto mais escura na vitória */
-  }
-  
-  .square.winning .symbol-x {
-     color: #c44d3a; /* Escurecer um pouco o X na vitória */
-  }
-  .square.winning .symbol-o {
-     color: #1872cc; /* Escurecer um pouco o O na vitória */
-  }
-  
-  .game-info {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #555;
-    text-align: center;
-  }
-  
-  .reset-button {
-      margin-top: 15px;
-      padding: 12px 25px;
-      font-size: 1em;
-      cursor: pointer;
-      border: none;
-      background-color: #f44336; /* Vermelho */
-      color: white;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-  }
-  .reset-button:hover {
-      background-color: #d32f2f;
-  }
-  
-  /* Responsividade básica */
-  @media (max-width: 400px) {
-    .square {
-      font-size: 36px;
-      height: 60px;
-      width: 60px;
-      line-height: 60px;
+   .game-mode-selector {
+        flex-direction: column;
+        gap: 10px;
     }
-     .game-mode-selector {
-          flex-direction: column;
-          gap: 10px;
-      }
-  }
+}
