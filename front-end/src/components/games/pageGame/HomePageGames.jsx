@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import HangmanGame from '../hangmanGame/HangmanGame';
+import Game from '../ticTacToe/Game.jsx';
 import ContainerGames from './ContainerGames';
 import Header from '../../header/Header.jsx';
 import Footer from '../../footer/Footer.jsx';
@@ -29,7 +30,7 @@ function HomePageGames() {
                 {viewGame === "forca" ? (
                     <HangmanGame />
                 ) : viewGame === "velha" ? (
-                    <HangmanGame /> // Troque por um componente Jogo da Velha, se existir
+                    <Game /> // Troque por um componente Jogo da Velha, se existir
                 ) : (
                     renderParagraph && <ContainerGames onViewGame={handleViewGame} /> // Mostra ContainerGames apenas se o parágrafo estiver visível
                 )}
