@@ -1,9 +1,12 @@
-import { useState } from "react";
+   import { useState } from "react";
 import HomePageComponent from "../welcome/HomePage";
 import CustomDropdown from "./CustomDropdown";
 import UploadVideo from "./UploadVideo";
 import SuggestionsUsers from "./SuggetionsUsers";
 import laptop from '../../../assets/laptop.png'
+import Lapis from '../../../assets/lapis.png';
+import LapisInverter from '../../../assets/lapisInverter.png';
+import abc from '../../../assets/criançasABC.png';
 import "./Login.css";
 
 function Login() {
@@ -155,13 +158,30 @@ function Login() {
                 <>
                     {typeUser ? (
                         <div className="container-login">
+
                             <div className="left-side">
+                                <div className="header-left-side">
+                                    <h1>EducaMundo</h1>
+                                    <h2>Educação feita para todos.</h2>
+                                </div>
+                                
+                                <h1>Bem-vindo(a) administrador(a)</h1>
+                                <h2>Para oferecer os melhores conteúdos ao seus alunos, acesse sua conta!</h2>
                                 <img src={laptop} alt="laptop" />
                             </div>
                             
-                            <h1>SEÇÃO DE ADMINISTRADOR</h1>
-                            <h1>Insira suas credenciais</h1>
-                            <form onSubmit={handleSubmit}>
+                            <div className="container-right">
+                                <div className="content">
+                                    <div className="lapis-top-area">
+                                        <div className="lapis-container-top"></div>
+                                        <img src={Lapis} alt="lapis" />
+                                    </div>
+                                </div>
+                                <div className="content-area-login">
+                                    <div className="content">
+                                        <img src={abc} alt="image-abc" className="abc-login"/>
+                                        <div className="form-login">
+                                        <form onSubmit={handleSubmit}>
                                 <div className="input-container">
                                     <label htmlFor="email">E-mail:</label>
                                     <input
@@ -212,6 +232,17 @@ function Login() {
                                     <button id="submit" type="button" onClick={() => setHomePage(false)}>Página inicial</button>
                                 </div>
                             </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="lapis-bottom">
+                                    <div className="lapis-container-bottom">
+                                        <img src={LapisInverter} alt="lapisInverter" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
                     ) : (
                         <div className="container-activities">

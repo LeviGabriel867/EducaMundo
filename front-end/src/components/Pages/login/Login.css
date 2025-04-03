@@ -1,334 +1,241 @@
-/* Estilo geral */
-* {
+/* General Reset and Body Styles */
+body, html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbars on the body itself */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
+/* Main container for the two-column layout */
+.container-login {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Container de login e atividades */
-.container-login,
-.container-activities {
+/* Left Column Styles - Keep as is */
+.left-side {
+  background-color: #3616AC;
+  color: white;
+  flex: 1;
+  padding: 30px 40px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2%;
-  font-size: 1.1vw;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.left-side .header-left-side {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  gap: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  top: 30px;
+  left: 40px;
+  text-align: left;
 }
 
-/*Messages*/
-.message {
-  background-color: rgba(253, 253, 253, 0.752);
-  color: #007bff;
+.left-side .header-left-side h1 {
+  font-size: 1.7em;
+  margin: 0 0 4px 0;
   font-weight: bold;
-  opacity: 1;
-  transition: opacity 1s ease-in-out;
-  font-size: 1.1em;
-  text-align: center;
-  margin-top: 10px;
-  padding: 4px;
-  border-radius: 15px;
 }
 
-.message.hidden {
-  opacity: 0;
+.left-side .header-left-side h2 {
+  font-size: 0.85em;
+  display: flex;
+  margin: 0;
+  font-weight: normal;
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  align-items: center;
+  justify-content: center;
+  color:#6CDFFF;
+  font-weight: bold;
 }
 
-/* Títulos */
-h1 {
-  text-align: center;
-  font-size: 1.5em;
-  color: #333;
+.left-side > h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 60px;
+  margin-bottom: 12px;
 }
 
-/* Formulário */
-form {
-  width: 100%;
+.left-side > h2 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  max-width: 450px;
+  line-height: 1.3;
+  color:#6CDFFF;
+}
+
+.left-side > img {
+  max-width: 70%;
+  max-height: 40vh;
+  height: auto;
+  margin-top: 15px;
+  display: block;
+}
+
+/* Right Column Styles - MODIFIED */
+.container-right {
+  background-color: #E6E6FA;
+  flex: 1;
+  /* display: flex; REMOVED - Not needed if children are absolute/relative */
+  /* flex-direction: column; REMOVED */
+  /* justify-content: space-between; REMOVED */
+  position: relative; /* *** ADDED: Essential for absolute positioning context *** */
+  overflow: hidden;
+  /* REMOVED padding - Padding goes on content-area now */
+}
+
+/* Pencil Border Areas - MODIFIED */
+.lapis-top-area, .lapis-bottom {
+  position: absolute;   /* *** ADDED: Key change *** */
+  left: 0;              /* *** ADDED: Position horizontally *** */
+  width: 100%;          /* *** ADDED: Span full width *** */
+  z-index: 1;           /* *** ADDED: Place behind content *** */
+  line-height: 0;       /* Keep: Prevent extra space */
+  /* flex-shrink: 0; REMOVED - Not applicable to absolute */
+}
+
+.lapis-top-area {
+  top: 0;               /* *** ADDED: Pin to top *** */
+}
+
+.lapis-bottom {
+  bottom: 0;            /* *** ADDED: Pin to bottom *** */
+}
+
+.lapis-top-area img, .lapis-bottom img {
+  width: 100%;          /* *** MODIFIED: Make image fill its absolute container *** */
+  height: auto;
+  display: block;
+  max-height: 20vh;     /* Keep or adjust: Limit pencil height */
+}
+
+/* Central Content Area on Right Side - MODIFIED */
+.content-area-login {
+  position: relative;   /* *** ADDED: Needs position for z-index *** */
+  z-index: 2;           /* *** ADDED: Place above pencils *** */
+  height: 100%;         /* *** ADDED: Occupy full container height *** */
+  box-sizing: border-box; /* *** ADDED: Include padding in height calculation *** */
+  padding: 15px 40px;   /* *** MOVED Padding HERE *** */
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;      /* *** ADDED: Allow vertical scroll ONLY if content overflows this area *** */
+  /* min-height: 0; REMOVED - Use height: 100% instead */
+  /* flex-grow: 1; REMOVED - Use height: 100% instead */
 }
 
-/* Containers dos inputs */
+/* ABC Image */
+.abc-login {
+  display: block;
+  max-width: 250px;
+  max-height: 25vh;
+  height: auto;
+  margin: 0 auto 20px auto;
+  flex-shrink: 0; /* ADDED: Prevent image shrinking too much if space is tight */
+}
+
+/* Login Form Container */
+.form-login {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  flex-shrink: 0; /* ADDED: Prevent form shrinking too much */
+}
+
+/* Input Field Container */
 .input-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  margin-bottom: 15px;
+  text-align: left;
 }
 
 .input-container label {
-  font-size: 1.1em;
+  display: block;
+  margin-bottom: 6px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 5px;
-}
-
-.input-container input {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1em;
-  width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.input-container input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-/* Estilo do dropdown */
-.dropdown {
-  position: relative;
-  width: 100%;
-}
-
-.dropdown-header {
-  background: #ffffff;
-  color: black;
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1.1em;
-  border: 1px solid #ccc;
-}
-
-.dropdown-list {
-  position: absolute;
-  width: 100%;
-  background: white;
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 10;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-item {
-  padding: 12px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-.dropdown-item:hover {
-  background: #007bff;
-  color: white;
-}
-
-/* Estilo do campo de upload de arquivo */
-.selectedSuggestions {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 5px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.label-file-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.label-file {
-  display: block;
-  background-color: #0903c7;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 10px;
-  font-size: 1.1em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  margin-bottom: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.label-file:hover {
-  background-color: #357abd;
-}
-
-.input-file {
-  display: none;
-}
-
-.file-name {
   font-size: 0.9em;
-  color: #555;
-  margin-top: 5px;
-  text-align: center;
-  word-break: break-word; /* Impede quebras longas */
 }
 
-/* Estilo de botão */
-#submit,
-#homePage {
+/* Input Fields */
+.input-container input[type="text"],
+.input-container input[type="password"] {
   width: 100%;
-  padding: 18px 0;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  background-color: #0903c7;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  margin-top: 1px;
+  padding: 10px 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+  font-size: 0.95em;
+  color: #333;
 }
 
-#homePage {
-  background-color: #357abd;
+/* Placeholder Text Styling */
+.input-container input::placeholder {
+  color: #888;
+  font-size: 0.9em;
 }
 
-#submit:hover,
-#homePage:hover {
-  background-color: #03c70d;
-}
-
-/* Botões para alternar entre login e cadastro */
+/* Button Container */
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
-  width: 100%;
-}
-
-/* Estilos de inputs adicionais */
-.input-container-upload input,
-.input-container-activities input,
-.container-video input {
-  padding: 10px;
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-/* Estilo dos botões para voltar e cadastrar */
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  margin: auto;
   margin-top: 20px;
 }
 
-.buttons button,
-#button-uploadVideo,
-#button-suggestions {
-  padding: 12px;
-  font-size: 1.1em;
+/* Submit/Action Buttons */
+#submit {
+  background-color: #32CD32;
   color: white;
-  background-color: #0903c7;
   border: none;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%; /* Largura total */
-  box-sizing: border-box; /* Garante que o preenchimento não afete a largura */
+  white-space: nowrap;
 }
 
-.buttons button:hover,
-#button-uploadVideo:hover,
-#button-suggestions:hover {
-  background-color: #03c70d;
+#submit:hover {
+  background-color: #228B22;
 }
 
-/* Estilos para os campos de atividade */
-.input-container-upload input {
-  border-radius: 10px; /* Aumenta o arredondamento */
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+/* Feedback Message Styling */
+.message {
+text-align: center;
+margin-top: 10px;
+padding: 8px;
+border-radius: 5px;
+font-weight: bold;
+font-size: 0.85em;
+opacity: 1;
+transition: opacity 0.5s ease-out, margin-top 0.3s ease, padding 0.3s ease, height 0.3s ease;
+height: auto;
+overflow: hidden;
 }
 
-#inputOne {
-  margin-bottom: 10px;
+.message:not(.hidden) {
+ color: #155724;
 }
 
-/* Estilos para os botões "Cadastrar vídeo" e "Visualizar sugestões" */
-.options {
-  display: flex;
-  flex-direction: column;  /* empilha verticalmente */
-  gap: 5px;  /* Espaçamento */
-  width: 100%; /* Ocupa a largura total */
-  margin: 0 auto 0;  /* Espaço acima, centralizado */
-}
-#button-uploadVideo,
-#button-suggestions {
-  width: 100%;  /* Largura total */
-  box-sizing: border-box;  /* Garante que padding não afete largura */
+.message.hidden {
+opacity: 0;
+height: 0;
+margin-top: 0;
+padding-top: 0;
+padding-bottom: 0;
+border: none;
 }
 
-#button-uploadVideo {
-  width: 100%;  /* Largura total */
-  box-sizing: border-box;  /* Garante que padding não afete largura */
-}
-
-/* Media Query para telas menores que 400px */
-@media (max-width: 400px) {
-  body {
-      font-size: 14px;
-  }
-
-  .container-login,
-  .container-activities {
-      width: 95%;
-      padding: 3%;
-      font-size: 3.5vw;
-  }
-
-  h1 {
-      font-size: 1.2em;
-  }
-
-  .input-container input,
-  .input-container label,
-  .input-container-upload input {
-      font-size: 0.9em;
-  }
-
-  .buttons button,
-  #button-uploadVideo,
-  #button-suggestions {
-      font-size: 0.9em;
-      padding: 10px;
-  }
-
-  .message {
-      font-size: 0.9em;
-  }
-
-  .options {
-      flex-direction: column;
-      align-items: stretch; /* Estende os itens para preencher a largura */
-  }
-
-   .label-file {
-      font-size: 0.8em;
-      padding: 8px 15px; /* Reduz o preenchimento para telas menores */
-  }
-}
+/* Styles for the second view (Upload/Suggestions) - Add/Adjust if needed */
+/* ... */

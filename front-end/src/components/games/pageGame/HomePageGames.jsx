@@ -21,9 +21,9 @@ function HomePageGames() {
     }
 
     return (
+        <>
+        <Header />
         <div className="homePageGames">
-            <Header />
-
             {renderParagraph && (
                 <div className='paragraph'>
                     <h1 id='paragraphOne'>Diversão e aprendizado esperam por você!</h1>
@@ -39,10 +39,11 @@ function HomePageGames() {
                 ) : (
                     renderParagraph && <ContainerGames onViewGame={handleViewGame} /> // Mostra ContainerGames apenas se o parágrafo estiver visível
                 )}
-            </div>
-
-            <Footer />
+            </div> 
         </div>
+        <Footer />
+        </>
+        
     );
 }
 

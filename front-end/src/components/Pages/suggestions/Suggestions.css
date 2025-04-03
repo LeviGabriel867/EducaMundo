@@ -4,7 +4,8 @@
     justify-content: center;
     width: 100%;
     height: auto;
-    flex-direction: column;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    min-height: 85vh; /* Garante que o container ocupe toda a altura da janela */
     margin: auto;
     line-height: 1.6; /* Espaçamento entre linhas */
     text-align: center;
@@ -44,6 +45,7 @@
     margin: 15px auto;   /* Center the form horizontally (auto margins) */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box; /* Include padding/border in width/height */
+    flex: 1; /* Faz o conteúdo principal ocupar o espaço restante */
 }
 
 .form input {
@@ -62,6 +64,8 @@
 
 .form label{
     font-weight: 450;
+    font-size: 20px;
+    
 }
 
 .form button{

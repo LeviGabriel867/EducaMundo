@@ -1,13 +1,4 @@
-body {
-    display: grid;
-    grid-template-columns: 1fr; /* Mantém o centro ajustável */
-    grid-template-rows: 1fr ;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: auto;
-    width: auto;
-}
+
 
 
 

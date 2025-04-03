@@ -7,7 +7,7 @@ import InteractiveVideos from './components/Pages/interactiveVideos/InteractiveV
 import Suggestions from './components/Pages/suggestions/Suggestions.jsx'
 import SuggestionsPage from './components/Pages/suggestions/SuggestionsPage.jsx';
 import { SearchProvider } from "./context/SearchContext"; // Importa o contexto
-import HomePageGames from './components/games/pageGame/homePageGames.jsx';
+import HomePageGames from './components/games/pageGame/HomePageGames.jsx';
 import SearchResults from './components/header/SearchResults.jsx';
 import './App.css';
 

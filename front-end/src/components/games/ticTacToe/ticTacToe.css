@@ -171,3 +171,13 @@
         gap: 10px;
     }
 }
+
+.homePageGames {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    min-height: 100vh; /* Garante que o container ocupe toda a altura da janela */
+}
+
+.container-all-games {
+    flex: 1; /* Faz o conteúdo principal ocupar o espaço restante */
+}
