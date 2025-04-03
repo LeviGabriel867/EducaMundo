@@ -5,7 +5,7 @@ body, html {
   box-sizing: border-box;
   font-family: sans-serif;
   height: 100%;
-  overflow: hidden; /* Prevent scrollbars on the body itself */
+  overflow: hidden; /* Prevent scrollbars on the body itself initially */
 }
 
 /* Main container for the two-column layout */
@@ -80,75 +80,87 @@ body, html {
   display: block;
 }
 
-/* Right Column Styles - MODIFIED */
+/* Right Column Styles */
 .container-right {
   background-color: #E6E6FA;
   flex: 1;
-  /* display: flex; REMOVED - Not needed if children are absolute/relative */
-  /* flex-direction: column; REMOVED */
-  /* justify-content: space-between; REMOVED */
-  position: relative; /* *** ADDED: Essential for absolute positioning context *** */
+  position: relative;
   overflow: hidden;
-  /* REMOVED padding - Padding goes on content-area now */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Pencil Border Areas - MODIFIED */
+/* Pencil Border Areas */
 .lapis-top-area, .lapis-bottom {
-  position: absolute;   /* *** ADDED: Key change *** */
-  left: 0;              /* *** ADDED: Position horizontally *** */
-  width: 100%;          /* *** ADDED: Span full width *** */
-  z-index: 1;           /* *** ADDED: Place behind content *** */
-  line-height: 0;       /* Keep: Prevent extra space */
-  /* flex-shrink: 0; REMOVED - Not applicable to absolute */
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  line-height: 0;
 }
 
 .lapis-top-area {
-  top: 0;               /* *** ADDED: Pin to top *** */
+  top: 0;
 }
 
 .lapis-bottom {
-  bottom: 0;            /* *** ADDED: Pin to bottom *** */
+  bottom: 0;
 }
 
 .lapis-top-area img, .lapis-bottom img {
-  width: 100%;          /* *** MODIFIED: Make image fill its absolute container *** */
+  width: 100%;
   height: auto;
   display: block;
-  max-height: 20vh;     /* Keep or adjust: Limit pencil height */
+  max-height: 20vh; /* Default max height */
 }
 
-/* Central Content Area on Right Side - MODIFIED */
+/* Central Content Area on Right Side */
 .content-area-login {
-  position: relative;   /* *** ADDED: Needs position for z-index *** */
-  z-index: 2;           /* *** ADDED: Place above pencils *** */
-  height: 100%;         /* *** ADDED: Occupy full container height *** */
-  box-sizing: border-box; /* *** ADDED: Include padding in height calculation *** */
-  padding: 15px 40px;   /* *** MOVED Padding HERE *** */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 15px 40px;   /* Default padding */
+  display: flex;
+  /* Changed to flex-grow instead of height/min-height for better flex behavior */
+  flex-grow: 1;
+  flex-direction: column; /* Content inside stacks vertically */
+  align-items: center;
+  justify-content: center; /* Center content vertically and horizontally */
+  overflow-y: auto;      /* Allow vertical scroll ONLY if content overflows this area */
+  /* Add some default vertical space that can be overridden by media queries */
+  margin-top: 0; /* Default no margin */
+  margin-bottom: 0; /* Default no margin */
+}
+
+/* Inner Content Wrapper (holds image and form) */
+/* Added this selector for clarity based on 400px rule */
+.content-area-login .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overflow-y: auto;      /* *** ADDED: Allow vertical scroll ONLY if content overflows this area *** */
-  /* min-height: 0; REMOVED - Use height: 100% instead */
-  /* flex-grow: 1; REMOVED - Use height: 100% instead */
+  width: 100%; /* Takes width from parent (.content-area-login) */
+  max-width: 380px; /* Limit content width like the form */
 }
+
 
 /* ABC Image */
 .abc-login {
   display: block;
-  max-width: 250px;
-  max-height: 25vh;
+  max-width: 250px; /* Default max-width */
+  max-height: 25vh; /* Default max-height */
   height: auto;
   margin: 0 auto 20px auto;
-  flex-shrink: 0; /* ADDED: Prevent image shrinking too much if space is tight */
+  flex-shrink: 0;
 }
 
 /* Login Form Container */
 .form-login {
   width: 100%;
-  max-width: 380px;
+  /* max-width is now handled by the .content wrapper */
+  /* max-width: 380px; */
   margin: 0 auto;
-  flex-shrink: 0; /* ADDED: Prevent form shrinking too much */
+  flex-shrink: 0;
+  margin-bottom: 0; /* Default no margin */
 }
 
 /* Input Field Container */
@@ -170,7 +182,7 @@ body, html {
 .input-container input[type="password"] {
   width: 100%;
   padding: 10px 15px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #c5c3c3;
   border-radius: 8px;
   background-color: #f0f0f0;
   box-sizing: border-box;
@@ -190,9 +202,11 @@ body, html {
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 /* Submit/Action Buttons */
+/* !!! RECOMMENDATION: Use classes instead of duplicate IDs !!! */
 #submit {
   background-color: #32CD32;
   color: white;
@@ -204,6 +218,8 @@ body, html {
   cursor: pointer;
   transition: background-color 0.3s ease;
   white-space: nowrap;
+  flex-grow: 1;
+  flex-basis: 120px;
 }
 
 #submit:hover {
@@ -212,18 +228,20 @@ body, html {
 
 /* Feedback Message Styling */
 .message {
-text-align: center;
-margin-top: 10px;
-padding: 8px;
-border-radius: 5px;
-font-weight: bold;
-font-size: 0.85em;
-opacity: 1;
-transition: opacity 0.5s ease-out, margin-top 0.3s ease, padding 0.3s ease, height 0.3s ease;
-height: auto;
-overflow: hidden;
+  text-align: center;
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.85em;
+  opacity: 1;
+  transition: opacity 0.5s ease-out, margin-top 0.3s ease, padding 0.3s ease, height 0.3s ease;
+  height: auto;
+  overflow: hidden;
+  width: 100%; /* Ensure message takes full width of its container */
+  box-sizing: border-box;
 }
-
+/* ... (rest of message styles remain the same) ... */
 .message:not(.hidden) {
  color: #155724;
 }
@@ -237,5 +255,124 @@ padding-bottom: 0;
 border: none;
 }
 
-/* Styles for the second view (Upload/Suggestions) - Add/Adjust if needed */
-/* ... */
+
+/* ============================================ */
+/* ========== RESPONSIVE STYLES =============== */
+/* ============================================ */
+
+@media (max-width: 768px) {
+  /* Allow body scrolling on smaller screens */
+  body, html {
+    overflow: auto;
+  }
+
+  /* Ensure right container takes full width */
+  .container-right {
+    width: 100%;
+  }
+
+  /* Apply vertical margins to push content area from edges */
+  .content-area-login {
+    padding: 15px 25px; /* Adjust padding slightly */
+    margin-top: 8vh;    /* Add margin similar to 400px rule */
+    margin-bottom: 10vh;/* Add margin similar to 400px rule */
+    /* Ensure it can still scroll if margins make content overflow */
+    overflow-y: auto;
+  }
+
+  /* Adjust inner content wrapper width */
+  .content-area-login .content {
+      max-width: 90%; /* Allow content to take more width */
+  }
+
+  /* Reduce pencil height */
+  .lapis-top-area img, .lapis-bottom img {
+    max-height: 16vh; /* Reduce height, value between default and 400px */
+  }
+
+  /* Reduce image size */
+  .abc-login {
+    max-width: 180px;
+    max-height: 18vh; /* Use max-height */
+  }
+
+  /* Add bottom margin to form */
+  .form-login {
+    margin-bottom: 4vh; /* Add margin similar to 400px rule */
+  }
+
+  /* Stack buttons vertically */
+  .button-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  #submit { /* Affects all buttons using this ID */
+    width: 100%;
+    flex-basis: auto;
+    flex-grow: 0;
+    font-size: 0.9em;
+    padding: 12px 15px;
+  }
+
+   /* Adjust input field style */
+  .input-container input[type="text"],
+  .input-container input[type="password"] {
+    font-size: 0.9em;
+    padding: 9px 12px;
+  }
+}
+
+
+/* Further refinement for very small screens */
+@media (max-width: 400px) {
+
+  /* Refine margins/padding for very small screens */
+  .content-area-login {
+    padding: 10px 15px; /* Further reduce padding */
+    margin-top: 10vh;   /* Keep original margin */
+    margin-bottom: 14vh;/* Keep original margin */
+  }
+
+   /* Adjust inner content wrapper width */
+  .content-area-login .content {
+      max-width: 95%; /* Allow content to take more width */
+      /* Apply font-size/color from original rule if needed */
+       font-size: 0.8rem;
+       color: #3616AC; /* Assuming this color was intended */
+  }
+
+   /* Further reduce pencil height */
+  .lapis-top-area img, .lapis-bottom img {
+    max-height: 15vh; /* Further reduced height */
+  }
+  .content{
+    margin-top: 2vh;
+    margin-bottom: 2vh
+  }
+
+  .lapis-container-bottom{
+    margin-bottom: 7vh;
+  }
+  .lapis-container-bottom img{
+    height: 15vh;
+  }
+   /* Further reduce image size */
+  .abc-login {
+    max-width: 150px;
+    max-height: 12vh; /* Match pencil height reduction */
+    /* height: 15vh; <-- Replace fixed height with max-height */
+  }
+
+  /* Keep form bottom margin */
+  .form-login {
+    margin-bottom: 5vh;
+  }
+
+  /* Button styles are likely inherited correctly from 768px,
+     but you can add specific tweaks here if needed */
+  #submit {
+     font-size: 0.85em; /* Slightly smaller font */
+  }
+}

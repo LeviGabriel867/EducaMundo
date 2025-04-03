@@ -23,17 +23,17 @@ function HomePage() {
                 <>
                 {isMobile ? (
                     // Mobile Layout
-                    <div className="welcome-mobile">
+                    <div className="welcome">
                         <div className="grid-container-mobile">
-                            <div className="lapis-top-area">
+                            <div className="lapis-top-homePage">
                                 <div className="lapis-container lapis-top">
                                     <img src={Lapis} alt="lapis" />
                                 </div>
                             </div>
-                            <div className="content-area">
-                                <div className="content">
-                                    <img src={logoEducaMundo} alt="Ilustração de criança" className="logoEduca" />
-                                    <div className="login-container">
+                            <div className="content-area-homePage">
+                                <div className="content-homePage">
+                                    <img src={logoEducaMundo} alt="Ilustração de criança" className="logoEduca-homePage" />
+                                    <div className="login-container-homePage">
                                         <Link to="/Services">Clique aqui para entrar</Link>
                                         <p>Grátis e sem cadastro. É só entrar e usar.</p>
                                         <button onClick={() => setLogin(true)} className="login">
@@ -64,15 +64,15 @@ function HomePage() {
                                 </div>
                                 <div className="content-wrapper">
                                     <div className="grid-container">
-                                        <div className="lapis-top-area">
+                                        <div className="lapis-top-area-homePage">
                                             <div className="lapis-container lapis-top">
                                                 <img src={Lapis} alt="lapis" />
                                             </div>
                                         </div>
-                                        <div className="content-area">
-                                            <div className="content">
+                                        <div className="content-area-homePage">
+                                            <div className="content-homePage">
                                                 <img src={logoEducaMundo} alt="Ilustração de criança" className="logoEduca" />
-                                                <div className="login-container">
+                                                <div className="login-container-homePage">
                                                     <Link to="/Services">Clique aqui para entrar</Link>
                                                     <p>Grátis e sem cadastro. É só entrar e usar.</p>
                                                     <button onClick={() => setLogin(true)} className="login">
@@ -81,7 +81,7 @@ function HomePage() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="lapis-bottom-area">
+                                        <div className="lapis-bottom-homePage">
                                             <div className="lapis-container lapis-bottom">
                                                 <img src={LapisInverter} alt="lapisInverter" />
                                             </div>
