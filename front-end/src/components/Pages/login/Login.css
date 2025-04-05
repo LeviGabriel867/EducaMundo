@@ -254,7 +254,32 @@ padding-top: 0;
 padding-bottom: 0;
 border: none;
 }
-
+.container-activities h1{
+  background-color: #002266;
+  color: white;
+  padding: 10px;
+}
+.resume, .input-container-upload{
+  background-color: white;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  width: 50%;
+  padding: 45px;
+  margin: 0% auto;
+  margin-top: 5vh;
+  border-radius: 15px;
+}
+.input-container-upload label{
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0%;
+}
+.input-container-upload input{
+ width: 90%;
+ padding: 5px;
+ border-radius: 8px;
+}
 
 /* ============================================ */
 /* ========== RESPONSIVE STYLES =============== */

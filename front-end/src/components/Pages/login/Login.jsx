@@ -7,7 +7,7 @@ import laptop from "../../../assets/laptop.png";
 import Lapis from "../../../assets/lapis.png";
 import LapisInverter from "../../../assets/lapisInverter.png";
 import abc from "../../../assets/criançasABC.png";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 import "./Login.css";
 
@@ -176,9 +176,9 @@ function Login() {
                     <div className="content">
                       <img src={abc} alt="image-abc" className="abc-login" />
                       <h2>
-                      Para oferecer os melhores conteúdos ao seus alunos, acesse
-                      sua conta!
-                    </h2>
+                        Para oferecer os melhores conteúdos ao seus alunos,
+                        acesse sua conta!
+                      </h2>
                       <div className="form-login">
                         <form onSubmit={handleSubmit}>
                           <div className="input-container">
@@ -377,74 +377,92 @@ function Login() {
               {viewSuggestions ? (
                 <>
                   {uploadVideo ? (
-                    <>
-                      <h1>Escolha a atividade e sua categoria</h1>
-                      <div className="input-container-upload">
-                        <input
-                          id="inputOne"
-                          onChange={(e) => setName(e.target.value)}
-                          type="text"
-                          placeholder="Nome da atividade"
-                        />
-                        <br />
-                        <input
-                          id="inputOne"
-                          onChange={(e) => setDescription(e.target.value)}
-                          type="text"
-                          placeholder="Descrição da atividade"
-                        />
+                    <div className="container-admPortal">
+                      <h1>Portal administrativo</h1>
+                      <div className="left-side-admPortal">
+                        <nav className="menu-left">
+                                        {/* Button to SWITCH to Video Upload View */}
+              <button
+                id="button-switch-to-video"
+                onClick={() => setUploadVideo(false)} // Sets uploadVideo to false
+              >
+                Cadastrar vídeo
+              </button>
+              
+              <SuggestionsUsers
+              onViewSuggestionsClick={() => setViewSuggestions(false)}
+            />  
+              {/* Add other admin menu items here if needed */}
+                      
+                        </nav>
                       </div>
-
-                      <CustomDropdown
-                        options={categories}
-                        selected={category}
-                        setSelected={setCategory}
-                      />
-
-                      <br />
-
-                      <div className="selectedSuggestions">
-                        <div className="label-file-container">
-                          <label htmlFor="file-upload" className="label-file">
-                            Escolher arquivo
+                      <div className="resume">
+                        <h2>Resumo</h2>
+                        <p>Usuários ativos: 10</p>
+                        <p>Sugestões pedentes: 05</p>
+                      </div>
+                      <div className="input-container-upload">
+                        <>
+                          <label htmlFor="">
+                            Disponibilize suas atividades
                           </label>
+                          <br />
                           <input
-                            id="file-upload"
-                            className="input-file"
-                            type="file"
-                            onChange={handleFileChange}
+                            id="inputOne"
+                            onChange={(e) => setName(e.target.value)}
+                            type="text"
+                            placeholder="Nome da atividade"
                           />
-                          <p className="file-name">{fileName}</p>{" "}
-                          {/* Exibe o nome do arquivo */}
+                          <br />
+                          <input
+                            id="inputOne"
+                            onChange={(e) => setDescription(e.target.value)}
+                            type="text"
+                            placeholder="Descrição da atividade"
+                          />
+                          <CustomDropdown
+                            options={categories}
+                            selected={category}
+                            setSelected={setCategory}
+                          />
+                        </>
+                        <div className="selectedSuggestions">
+                          <div className="label-file-container">
+                            <label htmlFor="file-upload" className="label-file">
+                              Escolher arquivo
+                            </label>
+                            <input
+                              id="file-upload"
+                              className="input-file"
+                              type="file"
+                              onChange={handleFileChange}
+                            />
+                            <p className="file-name">{fileName}</p>{" "}
+                            {/* Exibe o nome do arquivo */}
+                          </div>
+                        </div>
+                        <div className="buttons">
+                          <button id="submit" onClick={() => setTypeUser(true)}>
+                            Retornar
+                          </button>
+                          <button id="submit" onClick={handleClick}>
+                            Cadastrar
+                          </button>
                         </div>
                       </div>
 
-                      <div className="buttons">
-                        <button id="submit" onClick={() => setTypeUser(true)}>
-                          Retornar
-                        </button>
-                        <button id="submit" onClick={handleClick}>
-                          Cadastrar
-                        </button>
-                      </div>
+                      <br />
 
                       <div className="options">
                         <br />
-                        <button id="button-uploadVideo" onClick={handleUpload}>
-                          Cadastrar vídeo
-                        </button>
-                        <SuggestionsUsers
-                          onViewSuggestionsClick={() =>
-                            setViewSuggestions(false)
-                          }
-                        />
-                      </div>
+                        
+                        </div>
                       {message && (
                         <p className={`message ${isVisible ? "" : "hidden"}`}>
                           {message}
                         </p>
                       )}
-                    </>
+                    </div>
                   ) : (
                     <>
                       <UploadVideo />
