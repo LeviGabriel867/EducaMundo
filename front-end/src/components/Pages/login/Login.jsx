@@ -8,8 +8,10 @@ import Lapis from "../../../assets/lapis.png";
 import LapisInverter from "../../../assets/lapisInverter.png";
 import abc from "../../../assets/criançasABC.png";
 import { useMediaQuery } from "react-responsive";
-
+import GatewayAdm from "../gatewayAdm/gatewayAdm.jsx";
+import SideBarGateway from "../gatewayAdm/sidebar/SideBarGateway.jsx";
 import "./Login.css";
+import HeaderGateway from "../gatewayAdm/headerGatewayAdm/HeaderGateway.jsx";
 
 function Login() {
   const [homePage, setHomePage] = useState(true);
@@ -28,7 +30,9 @@ function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [viewSuggestions, setViewSuggestions] = useState(true); // Controla a visibilidade do ViewSuggestions
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const [sideBar, setSideBar] = useState(false);
 
+  const showSidebar = () => setSideBar(!sideBar);
   const categories = [
     "Atividade de pintura",
     "Atividade de matemática básica",
@@ -374,112 +378,59 @@ function Login() {
             </>
           ) : (
             <div className="container-activities">
-              {viewSuggestions ? (
-                <>
-                  {uploadVideo ? (
-                    <div className="container-admPortal">
-                      <h1>Portal administrativo</h1>
-                      <div className="left-side-admPortal">
-                        <nav className="menu-left">
-                                        {/* Button to SWITCH to Video Upload View */}
-              <button
-                id="button-switch-to-video"
-                onClick={() => setUploadVideo(false)} // Sets uploadVideo to false
-              >
-                Cadastrar vídeo
-              </button>
-              
-              <SuggestionsUsers
-              onViewSuggestionsClick={() => setViewSuggestions(false)}
-            />  
-              {/* Add other admin menu items here if needed */}
-                      
-                        </nav>
-                      </div>
-                      <div className="resume">
-                        <h2>Resumo</h2>
-                        <p>Usuários ativos: 10</p>
-                        <p>Sugestões pedentes: 05</p>
-                      </div>
-                      <div className="input-container-upload">
-                        <>
-                          <label htmlFor="">
-                            Disponibilize suas atividades
-                          </label>
-                          <br />
-                          <input
-                            id="inputOne"
-                            onChange={(e) => setName(e.target.value)}
-                            type="text"
-                            placeholder="Nome da atividade"
-                          />
-                          <br />
-                          <input
-                            id="inputOne"
-                            onChange={(e) => setDescription(e.target.value)}
-                            type="text"
-                            placeholder="Descrição da atividade"
-                          />
-                          <CustomDropdown
-                            options={categories}
-                            selected={category}
-                            setSelected={setCategory}
-                          />
-                        </>
-                        <div className="selectedSuggestions">
-                          <div className="label-file-container">
-                            <label htmlFor="file-upload" className="label-file">
-                              Escolher arquivo
-                            </label>
-                            <input
-                              id="file-upload"
-                              className="input-file"
-                              type="file"
-                              onChange={handleFileChange}
-                            />
-                            <p className="file-name">{fileName}</p>{" "}
-                            {/* Exibe o nome do arquivo */}
-                          </div>
-                        </div>
-                        <div className="buttons">
-                          <button id="submit" onClick={() => setTypeUser(true)}>
-                            Retornar
-                          </button>
-                          <button id="submit" onClick={handleClick}>
-                            Cadastrar
-                          </button>
-                        </div>
-                      </div>
+              <nav className="menu-left">
+                <h1>Painel do Administrador</h1>
+                <HeaderGateway showSideBar={showSidebar}/>
+                {sideBar && <SideBarGateway active={setSideBar} />}
+                <GatewayAdm/>
+                <button onClick={() => setUploadVideo(true)}>Cadastrar Vídeo</button>
+                <button onClick={() => setViewSuggestions(true)}>Visualizar Sugestões</button>
+              </nav>
 
-                      <br />
-
-                      <div className="options">
-                        <br />
-                        
-                        </div>
-                      {message && (
-                        <p className={`message ${isVisible ? "" : "hidden"}`}>
-                          {message}
-                        </p>
-                      )}
+              <div className="main-content">
+                {uploadVideo && (
+                  <>
+                    <div className="resume">
+                      <h2>Resumo</h2>
+                      <p>Atividades cadastradas: 12</p>
+                      <p>Usuários ativos: 35</p>
+                      <p>Sugestões pendentes: 5</p>
                     </div>
-                  ) : (
-                    <>
-                      <UploadVideo />
-                      <button
-                        id="button-uploadVideo"
-                        onClick={() => setUploadVideo(true)}
-                      >
-                        Cadastrar atividade
-                      </button>
-                    </>
-                  )}
-                </>
-              ) : (
-                <SuggestionsUsers
-                  onViewSuggestionsClick={() => setViewSuggestions(true)}
-                />
-              )}
+
+                    <div className="input-container-upload">
+                      <h2>Nova Atividade</h2>
+                      <label htmlFor="activity-name">Nome da atividade</label>
+                      <input
+                        id="activity-name"
+                        type="text"
+                        placeholder="Nome da atividade"
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                      <label htmlFor="activity-description">Descrição</label>
+                      <textarea
+                        id="activity-description"
+                        placeholder="Descrição"
+                        rows="4"
+                        onChange={(e) => setDescription(e.target.value)}
+                      ></textarea>
+                      <button onClick={handleClick}>Cadastrar</button>
+                    </div>
+                  </>
+                )}
+
+                {!uploadVideo && (
+                  <div>
+                    <UploadVideo />
+                    <button onClick={() => setUploadVideo(true)}>Cadastrar Atividade</button>
+                  </div>
+                )}
+
+                {viewSuggestions && (
+                  <SuggestionsUsers
+                    onViewSuggestionsClick={() => setViewSuggestions(false)}
+                  />
+                )}
+              </div>
             </div>
           )}
         </>
