@@ -9,9 +9,10 @@ import LapisInverter from "../../../assets/lapisInverter.png";
 import abc from "../../../assets/criançasABC.png";
 import { useMediaQuery } from "react-responsive";
 import GatewayAdm from "../gatewayAdm/gatewayAdm.jsx";
-import SideBarGateway from "../gatewayAdm/sidebar/SideBarGateway.jsx";
-import "./Login.css";
+import SideBarGateway from "../gatewayAdm/sidebar/sideBarGateway.jsx";
 import HeaderGateway from "../gatewayAdm/headerGatewayAdm/HeaderGateway.jsx";
+import MainContent from "../gatewayAdm/mainContent/MainContent.jsx";
+import "./Login.css";
 
 function Login() {
   const [homePage, setHomePage] = useState(true);
@@ -31,8 +32,12 @@ function Login() {
   const [viewSuggestions, setViewSuggestions] = useState(true); // Controla a visibilidade do ViewSuggestions
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [sideBar, setSideBar] = useState(false);
+  const [uploadVideoVisible, setUploadVideoVisible] = useState(false);
+  const [viewActivitiesVisible, setViewActivitiesVisible] = useState(true);
+  const [viewSuggestionsVisible, setViewSuggestionsVisible] = useState(false);
 
   const showSidebar = () => setSideBar(!sideBar);
+
   const categories = [
     "Atividade de pintura",
     "Atividade de matemática básica",
@@ -378,59 +383,31 @@ function Login() {
             </>
           ) : (
             <div className="container-activities">
-              <nav className="menu-left">
-                <h1>Painel do Administrador</h1>
-                <HeaderGateway showSideBar={showSidebar}/>
-                {sideBar && <SideBarGateway active={setSideBar} />}
-                <GatewayAdm/>
-                <button onClick={() => setUploadVideo(true)}>Cadastrar Vídeo</button>
-                <button onClick={() => setViewSuggestions(true)}>Visualizar Sugestões</button>
-              </nav>
-
-              <div className="main-content">
-                {uploadVideo && (
-                  <>
-                    <div className="resume">
-                      <h2>Resumo</h2>
-                      <p>Atividades cadastradas: 12</p>
-                      <p>Usuários ativos: 35</p>
-                      <p>Sugestões pendentes: 5</p>
-                    </div>
-
-                    <div className="input-container-upload">
-                      <h2>Nova Atividade</h2>
-                      <label htmlFor="activity-name">Nome da atividade</label>
-                      <input
-                        id="activity-name"
-                        type="text"
-                        placeholder="Nome da atividade"
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                      <label htmlFor="activity-description">Descrição</label>
-                      <textarea
-                        id="activity-description"
-                        placeholder="Descrição"
-                        rows="4"
-                        onChange={(e) => setDescription(e.target.value)}
-                      ></textarea>
-                      <button onClick={handleClick}>Cadastrar</button>
-                    </div>
-                  </>
-                )}
-
-                {!uploadVideo && (
-                  <div>
-                    <UploadVideo />
-                    <button onClick={() => setUploadVideo(true)}>Cadastrar Atividade</button>
-                  </div>
-                )}
-
-                {viewSuggestions && (
-                  <SuggestionsUsers
-                    onViewSuggestionsClick={() => setViewSuggestions(false)}
+              <>
+                <HeaderGateway
+                  showSideBar={showSidebar}
+                  setUploadVideoVisible={setUploadVideoVisible}
+                  setViewSuggestionsVisible={setViewSuggestionsVisible}
+                  setViewActivitiesVisible={setViewActivitiesVisible}
+                />
+                {sideBar && (
+                  <SideBarGateway
+                    active={setSideBar}
+                    setHomePage={setHomePage}
+                    setUploadVideoVisible={setUploadVideoVisible}
+                    setViewSuggestionsVisible={setViewSuggestionsVisible}
+                    setViewActivitiesVisible={setViewActivitiesVisible}
                   />
                 )}
-              </div>
+                <MainContent
+                  uploadVideoVisible={uploadVideoVisible}
+                  viewSuggestionsVisible={viewSuggestionsVisible}
+                  viewActivitiesVisible={viewActivitiesVisible} // <-- ADICIONE ISSO
+                  setTypeUser={setTypeUser}
+                />
+
+                <GatewayAdm />
+              </>
             </div>
           )}
         </>

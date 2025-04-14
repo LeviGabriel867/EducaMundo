@@ -1,4 +1,0 @@
-- Em atividades eu precisarei de um get para buscar todas as atividades de uma determinada area e um post na seção de ADM para add atividades
-- Seção de deixar as duvidas seguirá a mesma logica
-
-                            <h1>AQui vai ter um buttao primeiramente e quando clicar no botão vai exibir todas as sugestoes. O intuito desse componente é evitar alterações no fluxo de visualização de componente no arquivo Login.jsx</h1>

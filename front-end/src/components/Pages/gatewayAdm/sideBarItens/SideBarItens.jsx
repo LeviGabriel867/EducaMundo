@@ -1,11 +1,10 @@
 import './SideBarItens.css'
 
-function SideBarItens({ Icon, text }) {
+function SideBarItens({ Icon, text, onClick }) {
     return (
-      <div className="sideBarItens">
+      <div className="sideBarItens" onClick={onClick}>
         <Icon/>
-        {text}
-        
+        <span>{text}</span>        
       </div>
     );
   }

@@ -286,6 +286,9 @@ border: none;
   flex-direction: column;
 
 }
+.container-activities{
+  background-color: #F5F5F5;
+}
 /* Barra lateral */
 .menu-left {
   width: 20%;

@@ -6,6 +6,7 @@
     left: 0;
     width: 300px;
     animation: showSidebar 0.4s;
+    z-index: 1000;
   }
   
   .sideBarActive.hidden {
