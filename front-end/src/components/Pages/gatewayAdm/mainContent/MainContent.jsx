@@ -4,7 +4,12 @@ import CustomDropdown from "../../login/CustomDropdown";
 import UploadVideo from "../../login/UploadVideo";
 import SuggestionsUsers from "../../login/SuggetionsUsers";
 
-function MainContent({ uploadVideoVisible, viewSuggestionsVisible, viewActivitiesVisible, setTypeUser }) {
+function MainContent({
+  uploadVideoVisible,
+  viewSuggestionsVisible,
+  viewActivitiesVisible,
+  setTypeUser,
+}) {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [fileName, setFileName] = useState("Nenhum arquivo escolhido");
@@ -73,68 +78,71 @@ function MainContent({ uploadVideoVisible, viewSuggestionsVisible, viewActivitie
 
   return (
     <div className="main-content">
-      <div className="top-right-box">
-        <div className="input-container-upload">
-          {viewActivitiesVisible && (
-            <>
-              <label htmlFor="">Disponibilize suas atividades</label>
-          <br />
-          <input
-            id="inputOne"
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Nome da atividade"
-          />
-          <br />
-          <input
-            id="inputOne"
-            onChange={(e) => setDescription(e.target.value)}
-            type="text"
-            placeholder="Descrição da atividade"
-          />
+  <div className="top-right-box">
+
+    {/* Bloco de atividades */}
+    {viewActivitiesVisible && (
+      <div className="input-container-upload">
+        <label htmlFor="">Disponibilize suas atividades</label>
+        <br />
+        <input
+          id="inputOne"
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Nome da atividade"
+        />
+        <br />
+        <input
+          id="inputOne"
+          onChange={(e) => setDescription(e.target.value)}
+          type="text"
+          placeholder="Descrição da atividade"
+        />
+
+        <div className="row-aligned-elements">
           <CustomDropdown
             options={categories}
             selected={category}
             setSelected={setCategory}
           />
-
-          <div className="selectedSuggestions">
-            <div className="label-file-container">
-              <label htmlFor="file-upload" className="label-file">
-                Escolher arquivo
-              </label>
-              <input
-                id="file-upload"
-                className="input-file"
-                type="file"
-                onChange={handleFileChange}
-              />
-              <p className="file-name">{fileName}</p>
-            </div>
+          <div className="label-file-container">
+            <label htmlFor="file-upload" className="label-file">
+              Escolher arquivo
+            </label>
+            <input
+              id="file-upload"
+              className="input-file"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <p className="file-name">{fileName}</p>
           </div>
-
-          <div className="buttons">
-            <button id="submit" onClick={() => setTypeUser(true)}>
-              Retornar
-            </button>
-            <button id="submit" onClick={handleClick}>
-              Cadastrar
-            </button>
-          </div>
-            </>
-          )}
-          
         </div>
 
-        {/* Renderizações Condicionais */}
-        {uploadVideoVisible && <UploadVideo />}
-        {viewSuggestionsVisible && <SuggestionsUsers />}
-
-        {message && (
-          <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
-        )}
+        <div className="buttons">
+          <button id="submit-main-content" onClick={() => setTypeUser(true)}>
+            Retornar
+          </button>
+          <button id="submit-main-content" onClick={handleClick}>
+            Cadastrar
+          </button>
+        </div>
       </div>
-    </div>
+    )}
+
+    {/* Bloco de Upload de Vídeo */}
+    {uploadVideoVisible && <UploadVideo />}
+
+    {/* Bloco de Sugestões */}
+    {viewSuggestionsVisible && <SuggestionsUsers />}
+
+    {/* Mensagem de status */}
+    {message && (
+      <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
+    )}
+  </div>
+</div>
+
   );
 }
 

@@ -11,26 +11,33 @@
 }
 
 .button-activities {
-    background-color: white; /* Garante o fundo branco do card */
-    border-radius: 12px;     /* Cantos mais arredondados (opcional) */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada (opcional) */
-
-    /* --- Chave para aumentar o tamanho --- */
-    flex-basis: 350px;   /* Define uma largura base MAIOR (ajuste o valor) */
-    flex-grow: 1;        /* Permite crescer se houver espaço */
-    max-width: 450px;    /* Define uma largura máxima (ajuste o valor) */
-    padding: 1.5rem;     /* Aumenta o espaçamento INTERNO (ajuste o valor) */
-    min-height: 200px;   /* Define uma altura mínima (opcional, ajuste) */
-    /* --- Fim da chave --- */
-
-    /* Garante que o conteúdo interno se organize bem (se necessário) */
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    flex-basis: 350px;
+    flex-grow: 1;
+    max-width: 450px;
+    padding: 1.5rem;
+    min-height: 280px; /* AUMENTA a altura mínima para uniformizar */
+    
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza conteúdo horizontalmente */
-    text-align: center;  /* Centraliza texto */
+    align-items: center;
+    justify-content: space-between; /* <- Isso distribui melhor o conteúdo */
+    text-align: center;
     box-sizing: border-box;
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efeito suave (opcional) */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.button-activities p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    max-height: 4.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /* Opcional: Efeito hover */
 .button-activities:hover {
@@ -54,11 +61,7 @@
     margin-bottom: 0.75rem; /* Espaço abaixo do título */
 }
 
-.button-activities p { /* Se o parágrafo estiver diretamente dentro */
-    font-size: 1rem; /* Aumenta fonte do parágrafo (ajuste) */
-    color: #555;
-    line-height: 1.5;
-}
+
 
 /* Adapte as Media Queries se necessário para ajustar os tamanhos em telas menores */
 @media (max-width: 480px) {

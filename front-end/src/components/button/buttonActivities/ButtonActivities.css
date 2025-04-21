@@ -1,19 +1,22 @@
 /* ButtonActivities.css */
 
 .container {
-    width: 100%; /* Make sure the container takes the full width */
-    /* Removed height: 100%; It was causing layout issues and is not necessary */
-    display: flex;          /* Use flexbox for layout within the button */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center;    /* Center children horizontally */
-    border: 1px solid #ddd; /* Optional: Add a border for visual separation */
-    border-radius: 15px;     /* Rounded corners */
-    padding: 20px;        /* Spacing inside the button */
+    min-height: 280px; /* aumente um pouco se necessário */
+    height: 100%;
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* garante que o conteúdo se espalhe melhor */
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
-  }
-  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* importante para padding não "estourar" o limite */
+}
   .container:hover {
       transform: translateY(-5px); /* Lift the button slightly on hover */
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);  /* More pronounced shadow on hover*/
@@ -36,10 +39,15 @@
       color: #333;       /* Dark gray color */
   }
   
-  /* Style for the paragraph */
   .container p {
-      font-size: 1rem;    /* Adjust font size as needed */
-      text-align: center; /* Center the paragraph text */
-      color: #555;       /* Slightly lighter gray color */
-      line-height: 1.4;    /* Improve readability */
-  }
+    font-size: 1rem;
+    text-align: center;
+    color: #555;
+    line-height: 1.4;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

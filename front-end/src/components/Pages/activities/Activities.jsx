@@ -30,7 +30,7 @@ function Activities() {
     {
         component: "pictures",
         img: PictureImg,
-        h1: "Atividade de pintura",
+        h1: "Atividade de pintura educativa",
         paragraph: "Aqui você encontra atividades de pintura de diferentes níveis e idades.",
         onClick: () => setActiveComponent("pictures")
     },
@@ -44,7 +44,7 @@ function Activities() {
     {
         component: "surpraise",
         img: SurpraiseImg,
-        h1: "Atividade surpresa",
+        h1: "Atividade mega surpresa",
         paragraph: "Aqui você pode encontrar atividades especiais e relacionadas a datas comemorativas.",
         onClick: () => setActiveComponent("surpraise")
     },

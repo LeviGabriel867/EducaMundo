@@ -5,6 +5,7 @@ import './ContainerGames.css'
 
 function ContainerGames({onViewGame}){
     return(
+        <div className="container-wrapper">
             <div className="container-games">
                 <div className="selected-game">
                     <GameGalerry
@@ -55,6 +56,8 @@ function ContainerGames({onViewGame}){
                     />
                 </div>  
             </div>
+        </div>
+            
     )
 }
 

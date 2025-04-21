@@ -10,10 +10,18 @@
 body {
     font-family: sans-serif; /* Usa uma fonte adequada */
 }
+html, body {
+    height: 100%;
+    overflow-x: hidden; /* evita scroll horizontal */
+    overflow-y: auto;   /* garante que scroll vertical apareça */
+  }
+  
 
 .services-system {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+    overflow-y: auto; /* permite scroll interno se necessário */
+
     min-height: 100vh; /* Garante que o container ocupe pelo menos a altura total da viewport */
 }
 

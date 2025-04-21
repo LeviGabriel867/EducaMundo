@@ -1,14 +1,13 @@
 .main-content {
   background-color: #f9f9f9;
   color: #333;
-  height: 100vh; /* Garante que o contêiner ocupe toda a altura da tela */
+  min-height: 100vh;
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  padding: 0; /* Remove o padding que pode desalinhar */
-  margin: 0;
-  margin-left: 10%; /* Remove margens externas */
-  box-sizing: border-box; /* Garante que o padding não afete o tamanho total */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .top-right-box {
@@ -18,8 +17,8 @@
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   width: 100%;
-  max-width: 1000px; /* Ajuste o tamanho máximo para centralizar melhor */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .input-container-upload label {
@@ -51,6 +50,7 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin-top: 27.5px;
 }
 
 .label-file:hover {
@@ -68,31 +68,44 @@
 }
 
 .buttons {
+  margin: 0% auto;
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-#submit {
+.row-aligned-elements {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+#submit-main-content {
+  color: #fff;
   padding: 10px 20px;
-  background-color: #e0e0e0;
+  font-size: 18px;
+  background-color: #7c3aed;
   border: none;
   border-radius: 6px;
-  color: #333;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-#submit:hover {
-  background-color: #ccc;
+#submit-main-content:hover {
+  background-color: #6b21a8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
 }
 
 .message {
   margin-top: 20px;
   padding: 12px;
-  background-color: #dff0d8; /* verde claro para sucesso */
+  background-color: #dff0d8;
   border: 1px solid #c3e6cb;
   color: #3c763d;
   border-radius: 6px;
@@ -102,4 +115,67 @@
 
 .hidden {
   display: none;
+}
+
+/* Responsividade */
+
+/* Telas médias: tablets */
+@media (max-width: 1024px) {
+  .top-right-box {
+    padding: 25px;
+  }
+
+  .input-container-upload label {
+    font-size: 22px;
+  }
+
+  #submit-main-content {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Telas pequenas: celulares */
+@media (max-width: 600px) {
+  .top-right-box {
+    width: 130%;
+    padding: 0px;
+  }
+
+  .input-container-upload label {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .input-container-upload input[type="text"] {
+    font-size: 13px;
+  }
+
+  .row-aligned-elements {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .label-file {
+    width: 100%;
+    text-align: center;
+  }
+
+  .file-name {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  #submit-main-content {
+    font-size: 18px;
+    padding: 8px 15px;
+
+  }
 }

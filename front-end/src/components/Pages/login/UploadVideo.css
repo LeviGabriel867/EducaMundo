@@ -1,0 +1,76 @@
+.container-video {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .container-video h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .container-video form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .container-video label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  .container-video input[type="text"] {
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background-color: #f9f9f9;
+  }
+  
+  .container-video input[type="text"]:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    background-color: #fff;
+    outline: none;
+  }
+  
+  #button-uploadVideo {
+    padding: 12px;
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #button-uploadVideo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+
+    background-color: #6b21a8;
+  }
+  
+  .container-video p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #1f2937;
+    text-align: center;
+    background-color: #e0f2fe;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #bae6fd;
+  }
+  

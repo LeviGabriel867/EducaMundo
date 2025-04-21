@@ -1,112 +1,172 @@
-/* Activities.css */
+/* InteractiveVideos.css */
 
-.father {
-    width: 100%;
+:root {
+    --primary-color: #4f46e5; /* Indigo */
+    --primary-hover: #4338ca;
+    --background-color: #f9fafb;
+    --card-background: #ffffff;
+    --text-color: #1f2937;
+    --subtext-color: #6b7280;
+    --border-radius: 1rem;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    font-family: var(--font-main);
+    color: var(--text-color);
+  }
+  
+  /* Layout */
+  .father {
+    width: 100vw; /* Corrigido para permitir que .paragraph ocupe toda a tela */
     min-height: 100vh;
+    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #d6d9ff; /*  Consider moving this to a higher-level component */
-    font-family: 'Arial', sans-serif; /* Consider moving this to a higher-level component */
-}
+    box-sizing: border-box;
+  }
+  
 
 .son {
+  width: 100%;
+  max-width: clamp(300px, 90%, 1400px);
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+
+  
+  /* Título principal */
+  .paragraph {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(90deg, #8e2de2, #4a00e0);
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  /* Categoria selecionada */
+  .selected-category {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+  }
+
+  
+  /* Vídeo */
+  .video-wrapper {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+  }
+  
+  .video-wrapper h1 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Responsividade do player */
+  .video-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    width: 100%;
+  }
+  
+  .video-container > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Botão Voltar */
+  .back-button {
+    display: flex;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    max-width: 300px;
+    margin: 1.5rem auto;
+    align-items: center;
+
+    text-align: center;
+  }
+  
+  .back-button:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.03);
+    
+  }
+  
+  /* Atividades */
+  .containerActivitiesInteractive {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1rem 0; /* Removido padding lateral */
+  }
+  
+  .containerActivitiesInteractive > * {
+    min-height: 280px;
+    height: 100%;
+    max-width: 300px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.paragraph {
-    font-size: 2rem; /* Adjust as needed */
-    margin-bottom: 20px; /* Adjust as needed */
-    color: #333; /* Adjust as needed */
-    text-align: center;
-    width: 100%; /*  Good for responsiveness */
-}
-.video-container{
-    width: 80%;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.containerActivities {
-    width: 100%;
-    display: grid;
-    /*  Start with a single column */
-    grid-template-columns: 1fr;
-    gap: 20px;
-    justify-items: center;
-    padding-bottom: 20px;
-}
-.back-button{
-  display:flex;
-  margin: 0 auto; /* Center the button */
-  margin-top: 2%;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  max-width: 300px;
-}
-
-.back-button:hover{
-    background-color: #367c39;
-}
-/* Media Query for larger screens */
-@media (min-width: 768px) {  /* Adjust breakpoint as needed */
-    .containerActivities {
-        /*  Switch to multiple columns (example: 2 columns) */
-        grid-template-columns: repeat(2, 1fr);
-        /*  For a more dynamic grid, use: */
-        /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-    }
-}
-
-
-/* --- RESPONSIVE PART FOR max-width: 400px --- */
-@media (max-width: 400px) {
-    .containerActivities {
-      /*  Ensure it remains a single column on very small screens */
-      grid-template-columns: 1fr;
-      padding-left: 10px; /* Add some padding */
-      padding-right: 10px;
-    }
-
-    .containerActivities > * {
-      /* Adjust max-width for smaller screens */
-        max-width: 95%; /* Or a specific pixel value, e.g., 300px */
-        height: auto;  /*Allow height adjust*/
-    }
-        .paragraph{
-            font-size: 1.5rem;
-    }
-}
-
-
-/* --- (Keep this outside the media query) --- */
-.containerActivities > * {
-    width: 100%; /* Fill the grid cell width */
-    max-width: 600px; /* Limit max-width for larger screens */
-    height: 280px; /* Set a default height */
-    /* margin: 0 auto;  No longer needed with justify-items: center */
-}
-
-
-.footer {
-    text-align: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 15px;
     padding: 20px;
-    margin-top: auto; /* Push to the bottom */
-    color: #666;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+  
+  
+  .containerActivitiesInteractive > *:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+    color: var(--subtext-color);
     font-size: 0.9rem;
     width: 100%;
-}
+  }

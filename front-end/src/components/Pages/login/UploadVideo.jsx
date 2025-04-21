@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CustomDropdown from "./CustomDropdown";
-
+import './UploadVideo.css';
 function UploadVideo() {
   const [URLs, setURLs] = useState(""); //Precisam ser os mesmo nomes da API
   const [category, setCategory] = useState(""); 

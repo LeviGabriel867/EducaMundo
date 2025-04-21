@@ -406,7 +406,7 @@ function Login() {
                   setTypeUser={setTypeUser}
                 />
 
-                <GatewayAdm />
+                {/*<GatewayAdm />*/}
               </>
             </div>
           )}

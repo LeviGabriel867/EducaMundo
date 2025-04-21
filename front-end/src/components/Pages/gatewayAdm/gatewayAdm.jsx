@@ -6,3 +6,4 @@ function gatewayAdm() {
     </div>
   );
 }
+export default gatewayAdm;
