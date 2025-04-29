@@ -3,12 +3,15 @@ import { useState } from "react";
 import CustomDropdown from "../../login/CustomDropdown";
 import UploadVideo from "../../login/UploadVideo";
 import SuggestionsUsers from "../../login/SuggetionsUsers";
+import SuggestionsPage from "../../suggestions/SuggestionsPage";
 
 function MainContent({
   uploadVideoVisible,
   viewSuggestionsVisible,
   viewActivitiesVisible,
   setTypeUser,
+  viewSuggestionsPageVisible,
+  setViewSuggestionsPageVisible,
 }) {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
@@ -59,7 +62,7 @@ function MainContent({
         setTimeout(() => setMessage(""), 3500);
       }
     } catch (error) {
-      console.error("Error no envio da atividade", error);
+      console.error("Erro no envio da atividade", error);
       setMessage("Erro ao conectar ao servidor");
       setIsVisible(true);
 
@@ -73,76 +76,92 @@ function MainContent({
     "Atividade de matemática básica",
     "Atividade de português",
     "Atividade de alfabetização",
-    "Atividade surpresa",
   ];
 
   return (
     <div className="main-content">
-  <div className="top-right-box">
-
-    {/* Bloco de atividades */}
-    {viewActivitiesVisible && (
-      <div className="input-container-upload">
-        <label htmlFor="">Disponibilize suas atividades</label>
-        <br />
-        <input
-          id="inputOne"
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Nome da atividade"
-        />
-        <br />
-        <input
-          id="inputOne"
-          onChange={(e) => setDescription(e.target.value)}
-          type="text"
-          placeholder="Descrição da atividade"
-        />
-
-        <div className="row-aligned-elements">
-          <CustomDropdown
-            options={categories}
-            selected={category}
-            setSelected={setCategory}
-          />
-          <div className="label-file-container">
-            <label htmlFor="file-upload" className="label-file">
-              Escolher arquivo
+      <div className="top-right-box">
+        {/* Bloco de atividades */}
+        {viewActivitiesVisible && (
+          <div className="input-container-upload">
+            <label id="labelMainContent" htmlFor="">
+              Disponibilize suas atividades
             </label>
+            <br />
             <input
-              id="file-upload"
-              className="input-file"
-              type="file"
-              onChange={handleFileChange}
+              id="inputOne"
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              placeholder="Nome da atividade"
             />
-            <p className="file-name">{fileName}</p>
+            <br />
+            <input
+              id="inputOne"
+              onChange={(e) => setDescription(e.target.value)}
+              type="text"
+              placeholder="Descrição da atividade"
+            />
+
+            <div className="row-aligned-elements">
+              <CustomDropdown
+                options={categories}
+                selected={category}
+                setSelected={setCategory}
+              />
+              <div className="label-file-container">
+                <label
+                  htmlFor="file-upload"
+                  className="label-file"
+                  id="label-file"
+                >
+                  Escolher arquivo
+                </label>
+                <input
+                  id="file-upload"
+                  className="input-file"
+                  type="file"
+                  onChange={handleFileChange}
+                />
+                <p className="file-name">{fileName}</p>
+              </div>
+            </div>
+
+            <div className="buttons">
+              <button
+                id="submit-main-content"
+                onClick={() => setTypeUser(true)}
+              >
+                Retornar
+              </button>
+              <button id="submit-main-content" onClick={handleClick}>
+                Cadastrar
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="buttons">
-          <button id="submit-main-content" onClick={() => setTypeUser(true)}>
-            Retornar
-          </button>
-          <button id="submit-main-content" onClick={handleClick}>
-            Cadastrar
-          </button>
-        </div>
+        {/* Bloco de Upload de Vídeo */}
+        {uploadVideoVisible && <UploadVideo />}
+
+        {/* Bloco de Sugestões */}
+        {viewSuggestionsVisible && !viewSuggestionsPageVisible && (
+          <SuggestionsUsers
+            setViewSuggestionsPageVisible={setViewSuggestionsPageVisible}
+          />
+        )}
+
+        {viewSuggestionsVisible && viewSuggestionsPageVisible && (
+          <SuggestionsPage
+            setViewSuggestionsPageVisible={setViewSuggestionsPageVisible}
+          />
+        )}
+
+        {/* Mensagem de status */}
+        {message && (
+          <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
+        )}
       </div>
-    )}
-
-    {/* Bloco de Upload de Vídeo */}
-    {uploadVideoVisible && <UploadVideo />}
-
-    {/* Bloco de Sugestões */}
-    {viewSuggestionsVisible && <SuggestionsUsers />}
-
-    {/* Mensagem de status */}
-    {message && (
-      <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
-    )}
-  </div>
-</div>
-
+    </div>
   );
 }
 

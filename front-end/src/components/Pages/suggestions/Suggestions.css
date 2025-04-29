@@ -51,7 +51,7 @@
 .form input {
     width: 80%;          /* Input is 80% of the form's width */
     padding: 3px;        /* Padding inside the input */
-    height: 30px;       /* Fixed height for the input */
+    height: 35px;       /* Fixed height for the input */
     border-radius: 5px;
     border: 1px solid #ccc;
     /* margin-top: 10px;  <-- REMOVE THIS */
@@ -83,6 +83,7 @@
   width: 100%;
   max-width: 300px;
   margin: 0 auto; /* Center the button */
+  margin-top: 30px; 
 }
 .form button:hover{
     background-color: #367c39;

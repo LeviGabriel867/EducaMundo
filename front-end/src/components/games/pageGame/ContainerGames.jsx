@@ -39,22 +39,7 @@ function ContainerGames({onViewGame}){
                     stateView = {()=>onViewGame("velha")} 
                     />
                 </div>
-                <div className="selected-game">
-                    <GameGalerry
-                    img = {imgTeste2}
-                    tittleGame = {"Jogo da velha"}
-                    description = {"Aqui vai ser o jogo da velha"}              
-                    stateView = {()=>onViewGame("velha")} 
-                    />
-                </div>
-                <div className="selected-game">
-                    <GameGalerry
-                    img = {imgTeste2}
-                    tittleGame = {"Jogo da velha"}
-                    description = {"Aqui vai ser o jogo da velha"}              
-                    stateView = {()=>onViewGame("velha")} 
-                    />
-                </div>  
+                 
             </div>
         </div>
             

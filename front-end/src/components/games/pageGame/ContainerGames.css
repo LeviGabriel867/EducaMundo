@@ -1,9 +1,9 @@
 /* Fundo da página ou seção de jogos */
 .container-wrapper {
-    background-color: #e6efff; /* cor clara azulada */
+    background-color: #BBCFFF;
     padding: 3rem 2rem; /* aumentamos o padding lateral */
-    min-height: 100vh;
     box-sizing: border-box;
+    height: 50vh;
 }
 
 /* Grid dos cards */
@@ -40,7 +40,7 @@
 /* Estilo individual dos cards */
 .selected-game {
     width: 100%;
-    height: 310px;
+    height: 330px;
     margin: 0;
     padding: 15px 15px;
     background-color: var(--card-background);

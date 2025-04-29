@@ -1,56 +1,92 @@
+/* === ESTILOS BASE (Mobile First - < 600px) === */
+html {
+  box-sizing: border-box; /* Melhora o cálculo de tamanho */
+  height: 100%;
+  font-size: 16px; /* Base para unidades REM */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; /* Herda box-sizing do html */
+}
+
+body {
+  margin: 0; /* Remove margens padrão */
+  font-family: sans-serif; /* Defina sua fonte preferida aqui */
+  line-height: 1.5;
+}
+
 .main-content {
   background-color: #f9f9f9;
   color: #333;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  justify-content: center; /* Centraliza a caixa horizontalmente */
+  align-items: flex-start; /* Alinha no topo em mobile, permitindo scroll */
+  padding: 10px; /* Menor padding em telas pequenas */
+  margin: 0 auto; /* Garante centralização se houver largura máxima */
 }
 
 .top-right-box {
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+  border-radius: 0; /* Sem bordas arredondadas na tela cheia */
+  padding: 15px; /* Padding reduzido para mobile */
+  box-shadow: none; /* Sem sombra em tela cheia */
+  width: 100%; /* Ocupa toda a largura */
+  max-width: 100%; /* Garante que não exceda a largura */
+  height: auto; /* Altura automática baseada no conteúdo */
+  min-height: calc(100dvh - 20px); /* Ocupa quase toda a altura da viewport */
+  max-height: none; /* Remove limite de altura */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Elementos internos esticam */
+  justify-content: flex-start; /* Conteúdo começa do topo */
+  margin: 0; /* Remove margem automática */
+}
+
+.input-container-upload {
+  width: 100%; /* Garante largura total */
 }
 
 .input-container-upload label {
-  font-size: 25px;
+  font-size: 1.25rem; /* ~20px - Usar REM para escalabilidade */
   font-weight: bold;
   color: #444;
+  text-align: center; /* Centralizado em mobile */
+  display: block; /* Garante que o text-align funcione */
+  margin-bottom: 15px;
 }
 
 .input-container-upload input[type="text"] {
   width: 100%;
   padding: 10px 12px;
-  margin: 10px 0;
+  margin-bottom: 15px; /* Espaçamento inferior */
+  margin-top: 5px; /* Espaçamento superior pequeno */
   border: 1px solid #ccc;
   border-radius: 6px;
   background-color: #f5f5f5;
   color: #333;
-  font-size: 14px;
+  font-size: 0.875rem; /* ~14px */
 }
 
 .label-file-container {
   margin: 15px 0;
+  width: 100%; /* Ocupa largura total */
 }
 
 .label-file {
-  display: inline-block;
+  display: block; /* Ocupa largura total */
   background-color: #ddd;
   color: #333;
-  padding: 8px 16px;
+  padding: 10px 16px; /* Padding ligeiramente maior */
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  margin-top: 27.5px;
+  text-align: center;
+  margin-top: 0; /* Reset margin */
+  width: 100%; /* Garante largura total */
 }
 
 .label-file:hover {
@@ -64,42 +100,53 @@
 .file-name {
   margin-top: 8px;
   color: #555;
-  font-size: 14px;
+  font-size: 0.8125rem; /* ~13px */
+  text-align: center; /* Centralizado */
+  word-break: break-all; /* Quebra nomes longos de arquivo */
 }
 
 .buttons {
-  margin: 0% auto;
-  margin-top: 20px;
+  margin: 20px 0 0 0; /* Margem superior, sem margem lateral ou inferior auto */
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column; /* Botões empilhados */
+  justify-content: center; /* Centraliza no eixo cruzado (horizontal) */
+  align-items: stretch; /* Botões esticam na largura */
+  gap: 10px; /* Espaço entre botões */
+  width: 100%;
 }
 
 .row-aligned-elements {
   display: flex;
-  align-items: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  flex-direction: column; /* Empilhado por padrão (mobile) */
+  align-items: stretch; /* Elementos esticam */
+  gap: 15px;
+  width: 100%; /* Ocupa largura total */
+  margin-top: 15px;
+}
+
+/* Estilo base para CustomDropdown e outros (se precisar) */
+.row-aligned-elements > * { /* Aplica a todos os filhos diretos */
+   width: 100%; /* Faz dropdown, etc., ocuparem toda a largura */
 }
 
 #submit-main-content {
   color: #fff;
-  padding: 10px 20px;
-  font-size: 18px;
+  padding: 12px 15px; /* Padding ajustado */
+  font-size: 1rem; /* ~16px */
   background-color: #7c3aed;
   border: none;
   border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100%; /* Largura total por padrão */
+  text-align: center;
 }
 
 #submit-main-content:hover {
   background-color: #6b21a8;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); /* Sombra mais suave */
 }
 
 .message {
@@ -111,71 +158,208 @@
   border-radius: 6px;
   text-align: center;
   font-weight: 500;
+  width: 100%;
+  font-size: 0.9rem;
 }
 
 .hidden {
   display: none;
 }
 
-/* Responsividade */
-
-/* Telas médias: tablets */
-@media (max-width: 1024px) {
-  .top-right-box {
-    padding: 25px;
-  }
-
-  .input-container-upload label {
-    font-size: 22px;
-  }
-
-  #submit-main-content {
-    width: 100%;
-    font-size: 16px;
-    padding: 10px 0;
-  }
-
-  .buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
+#labelMainContent{
+  font-size: 1.4rem;
 }
 
-/* Telas pequenas: celulares */
-@media (max-width: 600px) {
-  .top-right-box {
-    width: 130%;
-    padding: 0px;
+/* === Telas Maiores: Grandes Celulares / Tablets Pequenos (Portrait) === */
+@media (max-width: 400px) {
+ .dropdown-header{
+    margin-left: 0;
+    padding: 4.5px 4px;
+  }
+  .top-right-box{
+    width: 150%;
+    max-width: 150%;
+  }
+}
+.dropdown-header span{
+  font-size: 12px;
+}
+@media (min-width: 601px) {
+  .main-content {
+    padding: 20px; /* Aumenta padding geral */
+    align-items: center; /* Centraliza verticalmente agora */
   }
 
+  .top-right-box {
+    width: 90%; /* Limita um pouco a largura */
+    max-width: 600px; /* Limite máximo para não ficar largo demais */
+    min-height: auto; /* Remove a altura mínima da viewport */
+    max-height: 90vh; /* Limita a altura máxima */
+    padding: 20px;
+    border-radius: 10px; /* Reintroduz bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Reintroduz sombra */
+    justify-content: center; /* Centraliza conteúdo interno */
+  }
+  
   .input-container-upload label {
-    font-size: 20px;
-    text-align: center;
+    font-size: 1.375em; /* ~22px */
+    text-align: left; /* Alinha à esquerda */
   }
 
   .input-container-upload input[type="text"] {
-    font-size: 13px;
-  }
-
-  .row-aligned-elements {
-    flex-direction: column;
-    gap: 15px;
-    align-items: stretch;
+    font-size: 0.9375rem; /* ~15px */
   }
 
   .label-file {
-    width: 100%;
-    text-align: center;
+      display: inline-block; /* Volta a ser inline */
+      width: auto; /* Largura automática */
+      text-align: left; /* Texto alinhado à esquerda */
+      margin-top: 0; /* Garante reset da margem */
   }
 
-  .file-name {
-    text-align: center;
-    font-size: 13px;
+   .file-name {
+      text-align: left; /* Alinhado à esquerda */
+       display: inline-block; /* Permite ficar ao lado, se houver espaço */
+       margin-left: 10px; /* Espaço se ficar ao lado */
+   }
+
+   .row-aligned-elements {
+       flex-direction: row; /* Tenta alinhar em linha */
+       flex-wrap: wrap; /* Permite quebrar linha se não couber */
+       align-items: center; /* Alinha itens verticalmente */
+       gap: 20px;
+   }
+
+    /* Ajusta para dropdown e label/input file não ficarem 100% */
+   .row-aligned-elements > * {
+       width: auto;
+   }
+
+   /* Container do file input pode precisar de ajuste */
+   .label-file-container {
+      width: auto;
+      margin: 0; /* Reset de margem */
+      display: flex; /* Para alinhar label e nome */
+      align-items: center;
+      flex-wrap: wrap; /* Quebra se nome do arquivo for muito longo */
+   }
+
+
+  .buttons {
+    flex-direction: row; /* Botões lado a lado */
+    justify-content: flex-end; /* Alinha botões à direita */
+    gap: 15px;
+    align-items: center; /* Alinha verticalmente */
+    width: 100%; /* Container ainda ocupa largura total */
+    margin-top: 25px;
   }
 
   #submit-main-content {
-    font-size: 18px;
-    padding: 8px 15px;
-
+    width: auto; /* Largura automática baseada no conteúdo/padding */
+    padding: 10px 20px; /* Padding padrão desktop */
+    font-size: 1rem; /* ~16px */
   }
+}
+
+/* === Tablets (Landscape) / Laptops Pequenos === */
+@media (min-width: 769px) {
+  .top-right-box {
+    width: 85%;
+    max-width: 750px; /* Aumenta limite */
+    padding: 25px;
+    max-height: 85vh; /* Ajusta altura máxima */
+  }
+
+  .input-container-upload label {
+    font-size: 1.5rem; /* ~24px */
+  }
+
+  .row-aligned-elements {
+    gap: 25px; /* Mais espaço */
+  }
+
+   .label-file-container {
+      margin-top: 0; /* Ajuste fino se necessário */
+   }
+
+  .buttons {
+    justify-content: space-between; /* Espaço entre botões */
+    margin-top: 30px;
+  }
+
+   #submit-main-content {
+      font-size: 1.05rem; /* ~17px */
+   }
+}
+
+/* === Laptops/Desktops Médios === */
+@media (min-width: 1025px) {
+  .top-right-box {
+    width: 75%;
+    max-width: 900px; /* Limite maior */
+    padding: 30px;
+    max-height: 80vh; /* Limite de altura mais restritivo */
+  }
+
+  .input-container-upload label {
+    font-size: 1.5625rem; /* ~25px (Original) */
+  }
+
+   .input-container-upload input[type="text"] {
+      font-size: 1rem; /* ~16px - Tamanho maior para leitura */
+   }
+
+   .file-name {
+      font-size: 0.875rem; /* ~14px */
+   }
+
+  .row-aligned-elements {
+    gap: 30px; /* Espaço original */
+  }
+
+   #submit-main-content {
+      font-size: 1.125rem; /* ~18px (Original) */
+   }
+}
+
+
+/* === Desktops Grandes === */
+@media (min-width: 1367px) {
+   /* Aqui usamos os estilos mais próximos do seu original 'desktop' */
+   .top-right-box {
+     width: 70%; /* Como no original */
+     max-width: 1100px; /* Aumenta mais um pouco */
+     padding: 35px; /* Um pouco mais de padding */
+     max-height: 75vh;
+   }
+    /* Fontes e outros podem herdar do breakpoint anterior ou serem ajustados */
+}
+
+
+/* === Telas Muito Grandes (Ex: QHD, 4K) === */
+@media (min-width: 1921px) {
+   .main-content {
+      padding: 40px; /* Mais espaço nas laterais gerais */
+   }
+   .top-right-box {
+     /* NÃO aumenta a porcentagem da largura */
+     width: auto; /* Deixa o max-width controlar */
+     max-width: 1200px; /* Limita a largura MÁXIMA para legibilidade */
+     padding: 40px; /* Mais padding interno */
+     /* max-height pode ser ajustado se necessário, mas 75vh ainda é razoável */
+   }
+    /* Pode aumentar ligeiramente fontes se desejado, mas REMs ajudam */
+    /* html { font-size: 17px; } */ /* Exemplo: Leve aumento da fonte base */
+}
+
+/* === Telas Extremamente Grandes (> 2560px) === */
+@media (min-width: 2561px) {
+   .main-content {
+      padding: 50px;
+   }
+   .top-right-box {
+      max-width: 1300px; /* Aumenta só um pouco o limite máximo */
+      padding: 45px;
+      /* html { font-size: 18px; } */ /* Exemplo: Outro leve aumento */
+   }
 }

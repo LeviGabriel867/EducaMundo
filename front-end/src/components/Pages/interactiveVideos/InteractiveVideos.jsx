@@ -10,116 +10,153 @@ import { useSearch } from "../../../context/SearchContext.jsx";
 import "./InteractiveVideos.css";
 
 function InteractiveVideos() {
-    const [activeCategory, setActiveCategory] = useState(null);
-    const [videoData, setVideoData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const { searchQuery } = useSearch();
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [videoData, setVideoData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { searchQuery } = useSearch();
 
-    const options = [
-        {
-            img: PictureImg,
-            h1: "Vídeo musical educativo",
-            paragraph: "Clique aqui e veja as opções disponíveis.",
-            onClick: () => setActiveCategory("Vídeo musical educativo"),
-        },
-        {
-            img: MathImg,
-            h1: "Vídeo de matemática educativo", // Corrigido
-            paragraph: "Clique aqui e veja as opções disponíveis.",
-            onClick: () => setActiveCategory("Vídeo de matemática educativo"),
-        },
-        {
-            img: PortugueseImg,
-            h1: "Filmes gratuitos para educação especial",
-            paragraph: "Clique aqui e veja as opções disponíveis.",
-            onClick: () => setActiveCategory("Filmes gratuitos no YouTube para educação especial"),
+  const options = [
+    {
+      img: PictureImg,
+      h1: "Vídeo musical educativo",
+      paragraph: "Clique aqui e veja as opções disponíveis.",
+      onClick: () => setActiveCategory("Vídeo musical educativo"),
+    },
+    {
+      img: MathImg,
+      h1: "Vídeo de desenho educativo", // Corrigido
+      paragraph: "Clique aqui e veja as opções disponíveis.",
+      onClick: () => setActiveCategory("Vídeo de desenho educativo"),
+    },
+    {
+      img: PortugueseImg,
+      h1: "Filmes gratuitos para educação especial",
+      paragraph: "Clique aqui e veja as opções disponíveis.",
+      onClick: () =>
+        setActiveCategory("Filmes gratuitos no YouTube para educação especial"),
+    },
+  ];
+
+  const filteredOptions = options.filter((option) =>
+    option.h1.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    const fetchVideosWithTitles = async () => {
+      if (!activeCategory) {
+        setVideoData([]);
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `http://localhost:8080/videosWithTitles?category=${encodeURIComponent(
+            activeCategory
+          )}`
+        );
+
+        if (!response.ok) {
+          let errorMsg = `Erro ao buscar vídeos: ${response.status} ${response.statusText}`;
+          try {
+            const errorData = await response.json();
+            errorMsg = errorData.msg || errorMsg;
+          } catch {}
+          throw new Error(errorMsg);
         }
-    ];
 
-    const filteredOptions = options.filter((option) =>
-        option.h1.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+        const data = await response.json();
+        console.log("Dados recebidos (vídeos com títulos):", data);
+        setVideoData(data);
+      } catch (err) {
+        console.error("Erro ao buscar vídeos com títulos:", err);
+        setError(err.message);
+        setVideoData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    useEffect(() => {
-        const fetchVideosWithTitles = async () => {
-            if (!activeCategory) {
-                setVideoData([]);
-                return;
-            }
+    fetchVideosWithTitles();
+  }, [activeCategory]);
 
-            setLoading(true);
-            setError(null);
+  const filteredVideos = videoData.filter((video) => {
+    const title = video.title || "";
+    return title.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
-            try {
-                const response = await fetch(`http://localhost:8080/videosWithTitles?category=${encodeURIComponent(activeCategory)}`);
+  return (
+    <div>
+      <Header />
+      <div className="father">
+        <h1 className="paragraph">Vídeos Interativos</h1>{" "}
+        {/* Título fora da .son */}
+        <div className="son">
+          {activeCategory ? (
+            <div className="activeCategoryContent">
+              <h2 className="selected-category">Categoria: {activeCategory}</h2>
 
-                if (!response.ok) {
-                    let errorMsg = `Erro ao buscar vídeos: ${response.status} ${response.statusText}`;
-                    try {
-                        const errorData = await response.json();
-                        errorMsg = errorData.msg || errorMsg;
-                    } catch {}
-                    throw new Error(errorMsg);
-                }
+              {loading && <p>Carregando vídeos...</p>}
+              {error && <p className="error-message">Erro: {error}</p>}
 
-                const data = await response.json();
-                console.log("Dados recebidos (vídeos com títulos):", data);
-                setVideoData(data);
+              {!loading && !error && filteredVideos.length === 0 ? (
+                <p>
+                  Nenhum vídeo encontrado para "{searchQuery}" nesta categoria.
+                </p>
+              ) : (
+                filteredVideos.map((video, index) => (
+                  <div key={video._id || index} className="video-wrapper">
+                    <h1>{video.title || "Título não disponível"}</h1>
+                    <div className="video-container">
+                      <ReactPlayer
+                        url={video.URLs}
+                        controls
+                        width="100%"
+                        height="100%"
+                        style={{ position: "absolute", top: 0, left: 0 }}
 
-            } catch (err) {
-                console.error("Erro ao buscar vídeos com títulos:", err);
-                setError(err.message);
-                setVideoData([]);
-            } finally {
-                setLoading(false);
-            }
-        };
+                      />
+                    </div>
+                  </div>
+                ))
+              )}
 
-        fetchVideosWithTitles();
-    }, [activeCategory]);
-
-    const filteredVideos = videoData.filter(video => {
-        const title = video.title || "";
-        return title.toLowerCase().includes(searchQuery.toLowerCase());
-    });
-
-    return (
-        <div>
-            <Header />
-            <div className="father">
-  <h1 className="paragraph">Vídeos Interativos</h1> {/* Título fora da .son */}
-
-  <div className="son">
-    {activeCategory ? (
-      // Aqui entra o conteúdo da categoria ativa
-      <div className="activeCategoryContent">
-        {/* Seu conteúdo para categoria ativa aqui */}
-      </div>
-    ) : (
-      <div className="containerActivitiesInteractive">
-        {filteredOptions.map((option, index) => (
-          <div key={index} className="activityCard">
-            <ButtonActivities
-              img={option.img}
-              h1={option.h1}
-              paragraph={option.paragraph}
-              onClick={option.onClick}
-            />
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-
-  <div className="footer">
-    <p>Os vídeos são atualizados semanalmente para trazer novos conteúdos educativos.</p>
-  </div>
-</div>
-
-            <Footer />
+              <button
+                className="back-button"
+                onClick={() => setActiveCategory(null)}
+              >
+                Voltar às categorias
+              </button>
+            </div>
+          ) : (
+            <div className="containerActivitiesInteractive">
+              {filteredOptions.map((option, index) => (
+                <div key={index} className="activityCard">
+                  <ButtonActivities
+                    img={option.img}
+                    h1={option.h1}
+                    paragraph={option.paragraph}
+                    onClick={option.onClick}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-    );
+        <div className="footer">
+          <p>
+            Os vídeos são atualizados semanalmente para trazer novos conteúdos
+            educativos.
+          </p>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
 }
 
 export default InteractiveVideos;

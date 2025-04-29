@@ -1,4 +1,3 @@
-/* No seu arquivo Activities.css */
 
 .containerActivities {
     display: flex;
@@ -16,9 +15,9 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     
     flex-basis: 350px;
-    flex-grow: 1;
-    max-width: 450px;
-    padding: 1.5rem;
+    /*flex-grow: 1;*/
+    max-width: 330px;
+    padding: 15px 1px;
     min-height: 280px; /* AUMENTA a altura mínima para uniformizar */
     
     display: flex;

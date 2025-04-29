@@ -10,16 +10,18 @@
     text-align: center;
     justify-content: center;
     width: 65%; /* Alterar para 'max-width' */
-    
     background-color: #f0f4f8;
     margin: auto; /* Isso agora funciona corretamente */
+    margin-top: 5%;
     border-radius: 20px;
     height: auto;
 }
 
 
 .itensList {
-    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 15px;
     list-style-type: none; /* Remove os marcadores da lista */
     background-color: #f4f4f4; /* Fundo cinza claro */
@@ -52,9 +54,9 @@
 
 
 .SuggestionsButton{
-    width: 25%;
+    width: 20%;
     padding: 8px 0;
-    font-size: 1.1em;
+    font-size: 0.8em;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -68,9 +70,84 @@
     flex-direction: column;
     display: flex;
     margin: auto;
-    margin-top: 10px;   
+    margin-top: 30px;   
+}
+.DownloadSuggstionsButton{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 30%;
+    padding: 5px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #673AB7;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .SuggestionsButton:hover{
     background-color: #03c70d;
 
 }
+.iconDelete{
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+.iconDelete:hover{
+    color: darkred;
+}
+
+/* --- Seu CSS original --- */
+/* (mantém tudo o que você escreveu acima) */
+
+/* --- Media Queries para Responsividade --- */
+
+/* Estilo para dispositivos pequenos (até 400px) */
+@media (max-width: 400px) {
+    .SuggestionsPage-container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .itensList {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px;
+    }
+  
+    .iconDelete {
+      align-self: flex-end;
+      font-size: 22px;
+    }
+  
+    .SuggestionsButton, 
+    .DownloadSuggstionsButton {
+      width: 80%;
+      font-size: 0.9em;
+      padding: 10px 0;
+    }
+  }
+  
+  /* Estilo para telas grandes (acima de 1200px, desktops grandes) */
+  @media (min-width: 1200px) {
+    .SuggestionsPage-container {
+      max-width: 900px;
+    }
+  
+    .SuggestionsButton, 
+    .DownloadSuggstionsButton {
+      width: 250px;
+      font-size: 1em;
+    }
+  }
+  

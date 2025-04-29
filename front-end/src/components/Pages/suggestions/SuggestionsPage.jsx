@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 
 import "./SuggestionsPage.css"
 
-function SuggestionsPage() {
+function SuggestionsPage({ setViewSuggestionsPageVisible }) {
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState("")
@@ -93,7 +93,7 @@ function SuggestionsPage() {
     return (
         <div className="SuggestionsPage-container">
             <h2>Lista de Sugestões</h2>
-            <button onClick={()=> handleListSuggestions()}>Baixar lista</button>
+            <button onClick={()=> handleListSuggestions()} className="DownloadSuggstionsButton">Baixar lista</button>
             {loading ? (
                 <p>Carregando...</p>
             ) : error ? (
@@ -105,7 +105,7 @@ function SuggestionsPage() {
                             return (
                                 <li className="itensList" key={user._id}>
                                     {user.suggestionsUsers}
-                                    <MdDelete onClick={() => handleDeleteSuggestion(user._id)} />
+                                    <MdDelete className="iconDelete" onClick={() => handleDeleteSuggestion(user._id)} />
                                 </li>
                             );
                         })}
@@ -118,7 +118,7 @@ function SuggestionsPage() {
                 <p>Nenhuma sugestão disponível</p>
             )}
             <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
-            <button className="SuggestionsButton" onClick={() => navigate("/")}>Voltar</button>
+            <button className="SuggestionsButton"  onClick={() => setViewSuggestionsPageVisible(false)}>Voltar</button>
         </div>
     );
 }

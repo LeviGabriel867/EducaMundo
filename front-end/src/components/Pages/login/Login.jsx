@@ -35,6 +35,8 @@ function Login() {
   const [uploadVideoVisible, setUploadVideoVisible] = useState(false);
   const [viewActivitiesVisible, setViewActivitiesVisible] = useState(true);
   const [viewSuggestionsVisible, setViewSuggestionsVisible] = useState(false);
+  const [viewSuggestionsPageVisible, setViewSuggestionsPageVisible] =
+    useState(false);
 
   const showSidebar = () => setSideBar(!sideBar);
 
@@ -402,8 +404,10 @@ function Login() {
                 <MainContent
                   uploadVideoVisible={uploadVideoVisible}
                   viewSuggestionsVisible={viewSuggestionsVisible}
-                  viewActivitiesVisible={viewActivitiesVisible} // <-- ADICIONE ISSO
+                  viewActivitiesVisible={viewActivitiesVisible}
                   setTypeUser={setTypeUser}
+                  viewSuggestionsPageVisible={viewSuggestionsPageVisible}
+                  setViewSuggestionsPageVisible={setViewSuggestionsPageVisible}
                 />
 
                 {/*<GatewayAdm />*/}

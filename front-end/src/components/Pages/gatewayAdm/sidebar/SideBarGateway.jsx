@@ -20,12 +20,15 @@ function SideBarGateway({
     setViewSuggestionsVisible(false);
     setUploadVideoVisible(false);
     setViewActivitiesVisible(false);
-
+  
     if (option === "video") setUploadVideoVisible(true);
     if (option === "suggestions") setViewSuggestionsVisible(true);
     if (option === "activities") setViewActivitiesVisible(true);
+  
+    setTimeout(() => active(false), 200); // Espera 200ms
   }
-
+  
+  
   return (
     <div className="sideBarActive">
       <FaTimes onClick={closeSideBar} />

@@ -81,7 +81,7 @@ html, body {
 
 .services-system__main-content {
     /* Removido height: 50vh; */
-     margin-top: 3vh; 
+     margin-top: 5vh; 
     background: linear-gradient(         /* Padrão W3C (versão final) */
         to right,
         #AF87D6 12%,

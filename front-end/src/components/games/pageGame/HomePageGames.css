@@ -5,7 +5,7 @@
         #9854f7 43%,
         #9961e7 100%
     );
-    padding: 6vh;
+    padding: 11vh;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -58,7 +58,9 @@
     flex-wrap: wrap; /* Permite que os botões quebrem linha em telas menores */
 }
 
+  
 
+  
 .content-img{
     margin-top: 2vh;
 }
@@ -71,6 +73,13 @@
 }
 
 @media(max-width:400px){
+    .homePageGames {
+        min-height: calc(100dvh - -910px); /* assume que seu Header + Footer juntos têm ~60px */
+        display: flex;
+        flex-direction: column;
+      }
+      
+          
     .paragraph{
         padding: 1.2vh;
         font-size: 1.3rem;

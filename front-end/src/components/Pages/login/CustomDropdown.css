@@ -1,62 +1,468 @@
+/* === ESTILOS BASE (Mobile First - < 600px) === */
+html {
+  box-sizing: border-box;
+  font-size: 16px; /* Base para REM */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif; /* Defina sua fonte */
+  line-height: 1.5;
+}
+
+.main-content {
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo em mobile */
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.top-right-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  padding: 15px;
+  box-shadow: none;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: calc(100vh - 20px);
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin: 0;
+}
+
+.input-container-upload {
+  width: 100%;
+}
+
+.input-container-upload label {
+  font-size: 1.25rem; /* ~20px */
+  font-weight: bold;
+  color: #444;
+  text-align: center;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.input-container-upload input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 0.875rem; /* ~14px */
+}
+
+.label-file-container {
+  margin: 15px 0;
+  width: 100%;
+}
+
+.label-file {
+  display: block;
+  background-color: #ddd;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  margin-top: 0;
+  width: 100%;
+}
+
+.label-file:hover {
+  background-color: #ccc;
+}
+
+.input-file {
+  display: none;
+}
+
+.file-name {
+  margin-top: 8px;
+  color: #555;
+  font-size: 0.8125rem; /* ~13px */
+  text-align: center;
+  word-break: break-all;
+}
+
+.buttons {
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+.row-aligned-elements {
+  display: flex;
+  flex-direction: column; /* Empilhado em mobile */
+  align-items: stretch; /* Itens esticam */
+  gap: 15px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* Estilo base para filhos diretos de row-aligned (Dropdown, label-container) em mobile */
+.row-aligned-elements > * {
+  width: 100%; /* Força largura total */
+}
+
+#submit-main-content {
+  color: #fff;
+  padding: 12px 15px;
+  font-size: 1rem; /* ~16px */
+  background-color: #7c3aed;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+#submit-main-content:hover {
+  background-color: #6b21a8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* === ESTILOS DO DROPDOWN === */
 .dropdown {
-    position: relative;
-    font-family: sans-serif;
-  }
-  
-  .dropdown-header {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px 14px;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-    display: flex;
-    justify-content: space-between;
+  position: relative;
+  font-family: inherit; /* Herda a fonte do body */
+  width: 100%; /* Ocupa toda a largura disponível no seu container pai (em mobile) */
+}
+
+.dropdown-header {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  /* margin-bottom: 4px;  Removido ou ajustado conforme necessário */
+  cursor: pointer;
+  /* margin-left: 10.5vh; */ /* REMOVIDO - Principal causa de desalinhamento */
+  margin-left: 0;      /* GARANTIDO como 0 */
+  transition: border-color 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Garante que o header preencha o .dropdown */
+  text-align: left; /* Garante alinhamento do texto */
+}
+
+.dropdown-header:hover {
+  border-color: #a5b4fc; /* Cor do hover pode ser ajustada */
+}
+
+.dropdown-header span { /* Estilo para o texto dentro do header */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease;
+  flex-shrink: 0; /* Evita que o ícone encolha */
+  margin-left: 8px; /* Pequeno espaço entre texto e ícone */
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-list {
+  position: absolute;
+  top: calc(100% + 4px); /* Posiciona abaixo do header */
+  left: 0;
+  right: 0; /* Garante que estique com base no .dropdown */
+  width: 100%; /* Usa a largura do .dropdown */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Transições separadas */
+  z-index: 1000;
+}
+
+.dropdown-list.open {
+  max-height: 240px; /* Altura máxima da lista aberta */
+  opacity: 1;
+  overflow-y: auto; /* Scroll se necessário */
+}
+
+.dropdown-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap; /* Evita quebra de linha */
+}
+
+.dropdown-item:hover {
+  background-color: #eff6ff; /* Cor do hover pode ser ajustada */
+}
+/* === FIM ESTILOS DROPDOWN === */
+
+
+.message {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #dff0d8;
+  border: 1px solid #c3e6cb;
+  color: #3c763d;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* === Telas Maiores: Grandes Celulares / Tablets Pequenos (Portrait) === */
+@media (min-width: 601px) {
+  .main-content {
+    padding: 20px;
     align-items: center;
   }
-  
-  .dropdown-header:hover {
-    border-color: #3b82f6;
+
+  .top-right-box {
+    width: 90%;
+    max-width: 600px;
+    min-height: auto;
+    max-height: 90vh;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    justify-content: center;
   }
-  
-  .dropdown-icon {
-    transition: transform 0.3s ease;
+
+  .input-container-upload label {
+    font-size: 1.375rem; /* ~22px */
+    text-align: left;
   }
-  
-  .dropdown-icon.open {
-    transform: rotate(180deg);
+
+  .input-container-upload input[type="text"] {
+    font-size: 0.9375rem; /* ~15px */
   }
-  
-  .dropdown-list {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
+
+  .row-aligned-elements {
+    flex-direction: row; /* Alinha em linha */
+    flex-wrap: wrap; /* Permite quebra */
+    align-items: center; /* Alinha verticalmente */
+    gap: 20px;
+  }
+
+  /* Volta os filhos para largura automática para ficarem lado a lado */
+  .row-aligned-elements > * {
+    width: auto;
+  }
+
+  /* Ajustes específicos para o dropdown em linha */
+  .dropdown {
+    width: auto; /* Largura baseada no conteúdo */
+    flex-grow: 1; /* Permite que o dropdown cresça se houver espaço extra */
+    min-width: 180px; /* Largura mínima para não ficar muito espremido */
+  }
+
+  .dropdown-header {
+    width: 100%; /* Header preenche o .dropdown que agora é auto */
+    /* margin-bottom: 0;  */ /* Remove margin-bottom se estava causando espaço indesejado na linha */
+  }
+
+   .label-file-container {
+      width: auto; /* Largura automática */
+      margin: 0; /* Reseta margem */
+      display: flex; /* Para alinhar label e nome */
+      align-items: center;
+      flex-wrap: nowrap; /* Tenta manter na mesma linha */
+   }
+
+   .label-file {
+      display: inline-block; /* Volta a ser inline */
+      width: auto; /* Largura automática */
+      text-align: left;
+      margin-top: 0;
+       flex-shrink: 0; /* Evita que o botão encolha demais */
+   }
+
+   .file-name {
+      text-align: left;
+       display: inline-block;
+       margin-left: 10px;
+       white-space: nowrap;       /* Evita quebra de nome */
+       overflow: hidden;         /* Esconde o excesso */
+       text-overflow: ellipsis; /* Adiciona '...' */
+       max-width: 150px;        /* Limita a largura máxima do nome (ajuste conforme necessário) */
+   }
+
+  .buttons {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 15px;
+    align-items: center;
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 1000;
+    margin-top: 25px;
   }
-  
-  .dropdown-list.open {
-    max-height: 240px;
-    opacity: 1;
-    overflow-y: auto;
+
+  #submit-main-content {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 1rem; /* ~16px */
   }
-  
-  .dropdown-item {
-    padding: 10px 14px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+}
+
+/* === Tablets (Landscape) / Laptops Pequenos === */
+@media (min-width: 769px) {
+  .top-right-box {
+    width: 85%;
+    max-width: 750px;
+    padding: 25px;
+    max-height: 85vh;
   }
-  
-  .dropdown-item:hover {
-    background-color: #e0f0ff;
+
+  .input-container-upload label {
+    font-size: 1.5rem; /* ~24px */
   }
-  
+
+  .row-aligned-elements {
+    gap: 25px;
+    flex-wrap: nowrap; /* Tenta forçar a ficar na mesma linha neste breakpoint */
+  }
+
+   .dropdown {
+        min-width: 200px; /* Aumenta um pouco a largura mínima */
+        /* flex-grow: 0; */ /* Descomente se não quiser que ele cresça tanto */
+   }
+
+   .label-file-container {
+     /* Ajustes finos se necessários */
+   }
+
+  .buttons {
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+   #submit-main-content {
+      font-size: 1.05rem; /* ~17px */
+   }
+}
+
+/* === Laptops/Desktops Médios === */
+@media (min-width: 1025px) {
+  .top-right-box {
+    width: 75%;
+    max-width: 900px;
+    padding: 30px;
+    max-height: 80vh;
+  }
+
+  .input-container-upload label {
+    font-size: 1.5625rem; /* ~25px */
+  }
+
+   .input-container-upload input[type="text"] {
+      font-size: 1rem; /* ~16px */
+   }
+
+   .file-name {
+      font-size: 0.875rem; /* ~14px */
+      max-width: 200px; /* Permite nome um pouco maior */
+   }
+
+  .row-aligned-elements {
+    gap: 30px;
+  }
+
+  .dropdown {
+      min-width: 220px;
+  }
+
+   #submit-main-content {
+      font-size: 1.125rem; /* ~18px */
+   }
+}
+
+
+/* === Desktops Grandes === */
+@media (min-width: 1367px) {
+   .top-right-box {
+     width: 70%;
+     max-width: 1100px;
+     padding: 35px;
+     max-height: 75vh;
+   }
+
+   .dropdown {
+       min-width: 240px;
+   }
+   .file-name {
+       max-width: 250px;
+   }
+}
+
+
+/* === Telas Muito Grandes (Ex: QHD, 4K) === */
+@media (min-width: 1921px) {
+   .main-content {
+      padding: 40px;
+   }
+   .top-right-box {
+     width: auto;
+     max-width: 1200px;
+     padding: 40px;
+   }
+   .dropdown {
+       min-width: 260px;
+   }
+   .file-name {
+      max-width: 300px;
+   }
+   /* html { font-size: 17px; } */
+}
+
+/* === Telas Extremamente Grandes (> 2560px) === */
+@media (min-width: 2561px) {
+   .main-content {
+      padding: 50px;
+   }
+   .top-right-box {
+      max-width: 1300px;
+      padding: 45px;
+   }
+    .dropdown {
+       min-width: 280px;
+   }
+    .file-name {
+       max-width: 350px;
+    }
+   /* html { font-size: 18px; } */
+}

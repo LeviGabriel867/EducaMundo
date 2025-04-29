@@ -6,6 +6,13 @@ import CriancasABC from "../../../assets/criançasABC.png";
 import component from "../../../assets/component.png";
 import ButtonOptions from "../../button/ButtonOptions";
 import Header from "../../header/Header";
+import abcActivities from "../../../assets/abcActivities.png";
+import kid from "../../../assets/kid.png";
+import play from "../../../assets/play.png";
+import lampada from "../../../assets/lampada.png";
+
+
+
 import { useSearch } from "../../../context/SearchContext"; // Importa o contexto
 
 function ServicesSystem() {
@@ -15,25 +22,25 @@ function ServicesSystem() {
     const options = [
         {
             path: "/Activities",
-            img: component,
+            img: abcActivities,
             h1: "Atividades",
-            paragraph: "Descubra atividades lúdicas e educativas para crianças autistas.",
+            paragraph: "Descubra atividades divertidas e educativas para crianças autistas.",
         },
         {
             path: "/InteractiveVideos",
-            img: component,
-            h1: "Vídeos Interativos",
-            paragraph: "Aprenda com vídeos interativos e educativos. Diversão garantida.",
+            img: kid,
+            h1: "Vídeos Educativos",
+            paragraph: "Explore vídeos interativos e educativos para um aprendizado divertido.",
         },
         {
             path: "/games",
-            img: component,
+            img: play,
             h1: "Jogos Educativos",
-            paragraph: "Desenvolva competências com jogos educativos.",
+            paragraph: "Desperte a lógica das crianças com jogos interativos!.",
         },
         {
             path: "/Suggestions",
-            img: component,
+            img: lampada,
             h1: "Sua opinião importa",
             paragraph: "Compartilhe suas ideias e sugestões. Sua opinião é essencial.",
         }
