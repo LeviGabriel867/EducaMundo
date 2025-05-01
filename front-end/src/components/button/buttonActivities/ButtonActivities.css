@@ -24,7 +24,9 @@
   
   /* Style for the image */
   .container img {
-      max-width: 100%;  /* Ensure the image doesn't overflow the container */
+    display: flex;
+    margin: 0 auto ;
+      max-width: 44%;  /* Ensure the image doesn't overflow the container */
       height: auto;      /* Maintain aspect ratio */
       margin-bottom: 15px; /* Space between image and text */
       border-radius: 10px;    /* Optional: Rounded corners for the image */
