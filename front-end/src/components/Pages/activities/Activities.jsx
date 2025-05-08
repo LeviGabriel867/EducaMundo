@@ -42,7 +42,7 @@ function Activities() {
         {
             component: "math",
             img: MathImg,
-            h1: "Atividade de matemática básica",
+            h1: "Atividade de matemática ",
             paragraph: "Aqui é onde a matemática ganha vida e é apresentada de uma forma mais que especial.",
             onClick: () => setActiveComponent("math")    
         },

@@ -39,7 +39,7 @@ function Suggestions() {
 
                 <div className="container-header">
                     <h1>Suporte de contato</h1>
-                    <img src={educaMundo} alt="" />
+                    {/*<img src={educaMundo} alt="" />*/}
                 </div>
 
                 <h2>

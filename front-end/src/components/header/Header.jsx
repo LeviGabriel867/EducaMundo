@@ -1,5 +1,5 @@
 import React from "react";
-import educaMundoLogo from "../../assets/educaMundo.png";
+import educaMundoLogo from "../../assets/testeLogo2.png";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useSearch } from "../../context/SearchContext"; // Importa o contexto

@@ -91,19 +91,21 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 0; /* Adiciona padding, incluindo o topo */
+    padding: 0.4rem 0; /* Adiciona padding, incluindo o topo */
 
 }
 
 .services-system__main-image {
-    max-width: 100%;
+    width: auto;
     height: auto;  /* Alterado para auto para evitar distorção e manter proporção */
-    max-height: 300px; /* Adicionado um max-height para limitar o tamanho em telas grandes */
-    margin-bottom: 1rem;  /* Espaço abaixo da imagem */
+    max-height: 100px; /* Adicionado um max-height para limitar o tamanho em telas grandes */
+    max-width: 100px;
+    margin-bottom: 0.2rem;  
+    margin-top: 0.3rem;
     border-radius: 15px;
 }
 .services-system__title{
-     margin-bottom: 0.5rem; /*margem inferior*/
+     margin-bottom: 0.1rem; /*margem inferior*/
      color: #4a2563;  /*Cor do titulo*/
      text-align: start;
 
@@ -139,10 +141,10 @@ html, body {
    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 15px;
-    padding: 1.5rem;
+    padding: 0.2rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%;        /* Ajuste conforme necessário */
+    width:22%;        /* Ajuste conforme necessário */
     margin-bottom: 1rem; /* Adiciona margem inferior para espaçamento */
     transition: transform 0.5s, box-shadow 0.2s; /* Transição suave */
      display: flex;
@@ -157,9 +159,10 @@ html, body {
 }
 
 .button-options img, .ButtonOptions img {
-    max-width: 80px; /* Limita o tamanho do ícone */
+    max-width: 60px; /* Limita o tamanho do ícone */
     height: auto;
-    margin-bottom: 1rem;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 .button-options h3 {
@@ -168,13 +171,13 @@ html, body {
       font-size: 1.1rem;
 }
 
-.button-options p {
-    color: #666;
-    font-size: 0.9rem;
+.button-options h1 {
+    font-size: 1.4rem;
+    padding: 0px;
 }
 .ButtonOptions p {
     color: #666;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
 }
 
 
@@ -201,6 +204,7 @@ html, body {
         width: 80%;
         max-width: 1200px;
         margin: 2rem auto;
+        margin-left: 0;
         padding: 10px 25px;
     }
     .button-options {
@@ -296,10 +300,12 @@ html, body {
 .services-system__options-container {
     display: flex;
     flex-wrap: wrap; /* Importante! Deve estar aqui também. */
-    width: 80%;
-    max-width: 1200px;
-    margin: 2rem auto;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0.7rem auto;
     padding: 10px 25px;
+    margin-left: auto   ;
+    
 }
 @media(max-width: 400px){
     .services-system__main-image{

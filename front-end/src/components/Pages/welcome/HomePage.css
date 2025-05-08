@@ -125,7 +125,7 @@ body {
     font-weight: bold;
     margin-bottom: 0; /* Gap handles spacing now */
     color: #333; /* Darker color for better readability */
-    font-size: 1rem; /* Adjust size */
+    font-size: 0.9rem; /* Adjust size */
 }
 
 
@@ -147,9 +147,15 @@ body {
     /* REMOVE margin-top, gap handles spacing */
     /* margin-top: 2vh; REMOVED */
 }
+.login-container-homePage button{
+    width: 80%;
+    padding: 9px 3px;
+}
 /* Specific style for the main action button */
 .login-container-homePage a { /* Assuming the top one is the link */
-   font-size: 1.2rem; /* Slightly larger */
+   font-size: 1rem;
+   width: 70%;
+   padding: 8px 2px;
 }
 
 .login-container-homePage a:hover,

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoEducaMundo from "../../../assets/educaMundo.png";
+import logoEducaMundo from "../../../assets/logoEduca.png";
 import { useState } from "react";  // Removed useEffect, not needed here
 import Lapis from '../../../assets/lapis.png';
 import LapisInverter from '../../../assets/lapisInverter.png';

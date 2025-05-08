@@ -1,9 +1,8 @@
 /* Fundo da página ou seção de jogos */
 .container-wrapper {
     background-color: #BBCFFF;
-    padding: 3rem 2rem; /* aumentamos o padding lateral */
+    padding: 20px 0px 0px 0px; /* aumentamos o padding lateral */
     box-sizing: border-box;
-    height: 50vh;
 }
 
 /* Grid dos cards */
@@ -19,9 +18,11 @@
 
 /* Estilo dos itens do grid */
 .container-itens-games {
-    min-height: 280px;
-    height: 100%;
-    max-width: 300px;
+
+    min-height: 100px;
+    max-height: 200px;
+    min-width: 280px;
+    max-width: 250px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -36,14 +37,31 @@
     box-sizing: border-box;
     cursor: pointer;
 }
-.img-game{
-    max-width: 60%;
+
+.container-itens-games h1{
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
+.container-itens-games p {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.3;
+    max-height: 4.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.img-game{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;}
 
 /* Estilo individual dos cards */
 .selected-game {
     width: 100%;
-    height: 330px;
+    min-height: 110px;
+    max-height: 210px;
+    max-width: 300px;     
+    min-width: 250px;
     margin: 0;
     padding: 15px 15px;
     background-color: var(--card-background);

@@ -5,21 +5,23 @@
     gap: 1.5rem; /* Aumente o GAP se quiser mais espaço ENTRE os cards */
     justify-content: center;
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
     box-sizing: border-box;
+    margin: 0 auto;
+    margin-left: 0;
+    
 }
 
 .button-activities {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    
     flex-basis: 350px;
-    /*flex-grow: 1;*/
-    max-width: 330px;
-    padding: 15px 1px;
-    min-height: 280px; /* AUMENTA a altura mínima para uniformizar */
-    
+    min-width: 250px;
+    max-width: 300px;
+    padding: 10px 10px;
+    min-height: 110px;
+    max-height: 210px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,9 +31,9 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .button-activities p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #555;
-    line-height: 1.5;
+    line-height: 1.3;
     max-height: 4.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -49,15 +51,15 @@
 /* (Você PRECISA saber as classes ou tags corretas DENTRO do componente ButtonActivities) */
 /* Exemplo - adapte às suas classes reais */
 .button-activities img { /* Se a imagem estiver diretamente dentro */
-    width: 70px;  /* Aumenta tamanho da imagem (ajuste) */
-    height: 70px;
+    width: 60px;  /* Aumenta tamanho da imagem (ajuste) */
+    height: 60px;
     margin-bottom: 1rem; /* Mais espaço abaixo da imagem */
     object-fit: contain;
 }
 
 .button-activities h1 { /* Se o H1 estiver diretamente dentro */
-    font-size: 1.3rem; /* Aumenta fonte do título (ajuste) */
-    margin-bottom: 0.75rem; /* Espaço abaixo do título */
+    font-size: 1rem; /* Aumenta fonte do título (ajuste) */
+    margin-bottom: 0.5rem; /* Espaço abaixo do título */
 }
 
 
