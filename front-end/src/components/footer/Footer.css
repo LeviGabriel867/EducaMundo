@@ -13,12 +13,29 @@
 .footer-icon {
     font-size: 1.5rem;
     color: #000000;
-    margin: 0 0.5rem; /* Adiciona margem horizontal para espaçamento */
+    margin: 0 0.2rem; /* Adiciona margem horizontal para espaçamento */
 }
 @media(max-width: 1600px){
 
     .services-system__footer >*{
     }
         
+
+}
+
+@media(max-width: 400px){
+
+    .services-system__footer {
+        margin-top: auto;
+        padding: 0.2rem;
+        gap: 0;
+    }
+    .services-system__footer p{
+        font-size: 0.7rem;
+    }
+    .footer-icon{
+        font-size: 0.8rem;
+        gap: 0;
+    }
 
 }

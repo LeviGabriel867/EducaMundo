@@ -188,5 +188,11 @@
 }
 
 .container-all-games {
-    flex: 1; /* Faz o conteúdo principal ocupar o espaço restante */
+    flex: 1; 
+    margin-top: 3.25vh;
+    margin-bottom: 3.25vh;
+
+}
+.game h1{
+  font-size: 1.5rem;
 }

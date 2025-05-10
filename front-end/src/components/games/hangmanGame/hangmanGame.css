@@ -66,3 +66,9 @@
     margin-top:1rem;
     font-weight: bold;
 }
+
+@media (max-width: 400px) {
+    .hangman-container{
+        height: 50%;
+    }
+}

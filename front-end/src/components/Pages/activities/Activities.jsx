@@ -29,7 +29,7 @@ function Activities() {
             component: "pictures",
             img: PictureImg,
             h1: "Atividade de pintura educativa",
-            paragraph: "Aqui você encontra atividades de pintura de diferentes níveis e idades.",
+            paragraph: "Pintura para diferentes níveis e idades.",
             onClick: () => setActiveComponent("pictures")
         },
         {

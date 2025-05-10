@@ -74,7 +74,6 @@
 
 @media(max-width:400px){
     .homePageGames {
-        min-height: calc(100dvh - -910px); /* assume que seu Header + Footer juntos têm ~60px */
         display: flex;
         flex-direction: column;
       }
@@ -85,15 +84,18 @@
         font-size: 1.3rem;
         width: 100%;
         margin: 0%;
-        margin-top: 1vh;
+        margin-top: 3vh;
         
     }
     #paragraphOne{
-        font-size: 1.15rem;
+        font-size: 0.9rem;
     }
     #paragraphTwo{
         color: #e5d3ff;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
+    }
+    .content-img img{
+        width: 35%;
     }
     
     

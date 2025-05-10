@@ -256,7 +256,8 @@ body {
          /* width: 70%; REMOVED - Use max-width on container */
     }
      .login-container-homePage a {
-        font-size: 1rem; /* Main button slightly larger */
+        font-size: 1rem; 
+        padding: 5px;
      }
 
     .login-container-homePage p {

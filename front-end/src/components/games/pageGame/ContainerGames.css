@@ -88,3 +88,43 @@
         padding: 1rem;
     }
 }
+@media (max-width: 400px) {
+    .container-games {
+      grid-template-columns: repeat(2, 1fr); /* 2 colunas fixas */
+      gap: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 6.5vh;
+    }
+  
+    .container-itens-games {
+      max-width: 100%;
+      min-width: 0;
+      padding: 1rem;
+      min-height: auto;
+      max-height: none;
+    }
+  
+    .container-itens-games h1 {
+      font-size: 0.9rem;
+    }
+  
+    .container-itens-games p {
+      font-size: 0.75rem;
+      -webkit-line-clamp: 4;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .img-game {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .selected-game {
+      max-width: 100%;
+      min-width: 0;
+      padding: 1rem;
+    }
+  }
+  

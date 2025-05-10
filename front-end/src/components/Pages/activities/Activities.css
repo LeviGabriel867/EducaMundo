@@ -64,25 +64,34 @@
 
 
 
-/* Adapte as Media Queries se necessário para ajustar os tamanhos em telas menores */
-@media (max-width: 480px) {
-    .button-activities {
-        flex-basis: calc(100% - 2rem); /* Ocupa quase toda a largura, com margem */
-        max-width: none; /* Remove limite máximo */
-        padding: 1.2rem;
-        min-height: auto; /* Deixa altura ser automática */
-    }
-    .button-activities img {
-        width: 60px;
-        height: 60px;
-    }
-     .button-activities h1 {
-        font-size: 1.2rem;
-    }
-     .button-activities p {
-        font-size: 0.9rem;
-    }
+@media (max-width: 400px) {
     .containerActivities {
-        gap: 1rem; /* Menor gap em telas pequenas */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+        gap: 1rem; /* Espaço entre os botões */
+        padding: 1rem;
+    }
+
+    .button-activities {
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+        padding: 0.8rem;
+        min-height: auto;
+        box-sizing: border-box;
+    }
+
+    .button-activities img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .button-activities h1 {
+        font-size: 0.8rem;
+    }
+
+    .button-activities p {
+        font-size: 0.6rem;
+        max-height: none;
     }
 }
