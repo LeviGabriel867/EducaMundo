@@ -7,6 +7,8 @@ import PictureImg from "../../../assets/activitiesImage.png";
 import MathImg from "../../../assets/activitiesMath.png";
 import PortugueseImg from "../../../assets/activitiesPortuguese.png";
 import { useSearch } from "../../../context/SearchContext.jsx";
+import BackgroundLayout from "../../../assets/BackgroundLayout .png";
+import LogoVideo from "../../../assets/logoVideos.png";
 import "./InteractiveVideos.css";
 
 function InteractiveVideos() {
@@ -91,45 +93,63 @@ function InteractiveVideos() {
   return (
     <div>
       <Header />
-      <div className="father">
-        <h1 className="paragraph">Vídeos Interativos</h1>{" "}
+      <div
+        className={`father ${
+          activeCategory ? "background-pink" : "background-blue"
+        }`}
+      >
+        <h1
+          className={`paragraph ${
+            activeCategory ? "paragraph-inactive" : "paragraph-active"
+          }`}
+        >
+          Vídeos Interativos
+        </h1>{" "}
         {/* Título fora da .son */}
         <div className="son">
           {activeCategory ? (
             <div className="activeCategoryContent">
-              <h2 className="selected-category">Categoria: {activeCategory}</h2>
+              <div className="logo-container">
+                <img src={LogoVideo} alt="Logo Vídeos" />
+              </div>
 
-              {loading && <p>Carregando vídeos...</p>}
-              {error && <p className="error-message">Erro: {error}</p>}
+              <div className="videos-container">
+                <h2 className="selected-category">
+                  Categoria: {activeCategory}
+                </h2>
 
-              {!loading && !error && filteredVideos.length === 0 ? (
-                <p>
-                  Nenhum vídeo encontrado para "{searchQuery}" nesta categoria.
-                </p>
-              ) : (
-                filteredVideos.map((video, index) => (
-                  <div key={video._id || index} className="video-wrapper">
-                    <h1>{video.title || "Título não disponível"}</h1>
-                    <div className="video-container">
-                      <ReactPlayer
-                        url={video.URLs}
-                        controls
-                        width="100%"
-                        height="100%"
-                        style={{ position: "absolute", top: 0, left: 0 }}
+                {loading && <p>Carregando vídeos...</p>}
+                {error && <p className="error-message">Erro: {error}</p>}
 
-                      />
+                {!loading && !error && filteredVideos.length === 0 ? (
+                  <p>
+                    Nenhum vídeo encontrado para "{searchQuery}" nesta
+                    categoria.
+                  </p>
+                ) : (
+                  filteredVideos.map((video, index) => (
+                    <div key={video._id || index} className="video-wrapper">
+                      <h1>{video.title || "Título não disponível"}</h1>
+                      <div className="video-container">
+                        <ReactPlayer
+                          url={video.URLs}
+                          controls
+                          width="100%"
+                          height="100%"
+                          style={{ position: "absolute", top: 0, left: 0 }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))
-              )}
+                  ))
+                )}
 
-              <button
-                className="back-button"
-                onClick={() => setActiveCategory(null)}
-              >
-                Voltar às categorias
-              </button>
+                <button
+                  className="back-button"
+                  onClick={() => setActiveCategory(null)}
+                >
+                  Voltar às categorias
+                </button>
+              </div>
             </div>
           ) : (
             <div className="containerActivitiesInteractive">
