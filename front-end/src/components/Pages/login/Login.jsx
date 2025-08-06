@@ -52,8 +52,8 @@ function Login() {
     e.preventDefault();
 
     const endpoint = isLogin
-      ? "http://localhost:4080/auth/login"
-      : "http://localhost:4080/auth/register";
+      ? "http://localhost:8080/auth/login"
+      : "http://localhost:8080/auth/register";
 
     const data = isLogin
       ? { email, password }
