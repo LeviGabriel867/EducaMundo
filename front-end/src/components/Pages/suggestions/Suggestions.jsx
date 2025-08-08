@@ -4,6 +4,8 @@ import Footer from '../../footer/Footer.jsx'
 import educaMundo from '../../../assets/educaMundo.png';
 import './Suggestions.css';
 
+const API_URL =import.meta.env.VITE_API_URL;
+
 function Suggestions() {
     const [suggestions, setSuggestions] = useState("");
     const [message, setMessage] = useState("");
@@ -11,16 +13,16 @@ function Suggestions() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const data = { suggestionsUsers: suggestions }; //suggestionsUsers está recebendo o valor da variavel suggestions
+        const data = { suggestionsUsers: suggestions }; 
 
         try {
-            const response = await fetch("http://localhost:8080/api/suggestions", {
+            const response = await fetch(`${API_URL}/suggestions`, {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(data),
             });
             const result = await response.json();
-            setMessage(result.msg); // MSG vem da API
+            setMessage(result.msg); 
 
             if (response.ok) {
                 setMessage("Sugestão enviada com sucesso.");
@@ -39,7 +41,6 @@ function Suggestions() {
 
                 <div className="container-header">
                     <h1>Suporte de contato</h1>
-                    {/*<img src={educaMundo} alt="" />*/}
                 </div>
 
                 <h2>
@@ -48,7 +49,6 @@ function Suggestions() {
                     Estamos aqui para ouvir você e aprimorar sua experiência.
                 </h2>
 
-                {/* Apply the .form class DIRECTLY to the <form> element */}
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="suggestion">Deixe sua dúvida ou sugestão logo abaixo:</label>
                     <input

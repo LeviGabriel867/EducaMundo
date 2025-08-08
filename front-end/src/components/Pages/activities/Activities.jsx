@@ -14,8 +14,8 @@ import Footer from "../../footer/Footer.jsx";
 import './Activities.css';
 
 function Activities() {
-    const [activeComponent, setActiveComponent] = useState(null); // Estado para armazenar o componente ativo
-    const { searchQuery } = useSearch(); // Obtém o termo de busca do contexto
+    const [activeComponent, setActiveComponent] = useState(null); 
+    const { searchQuery } = useSearch(); 
 
     const options = [
         {
@@ -48,7 +48,6 @@ function Activities() {
         },
     ];
 
-    // Filtra as opções com base no termo de busca
     const filteredOptions = options.filter((option) =>
         option.h1.toLowerCase().includes(searchQuery.toLowerCase())
     );

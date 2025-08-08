@@ -25,7 +25,7 @@ function SideBarGateway({
     if (option === "suggestions") setViewSuggestionsVisible(true);
     if (option === "activities") setViewActivitiesVisible(true);
   
-    setTimeout(() => active(false), 200); // Espera 200ms
+    setTimeout(() => active(false), 200); 
   }
   
   

@@ -1,5 +1,4 @@
-// hangmanGame.js
-import React, { useState, useEffect } from 'react'; // Importante importar useState e useEffect
+import React, { useState, useEffect } from 'react'; 
 import getWord from './words.js';
 import img1 from './img/img1.png';
 import img2 from './img/img2.png';
@@ -7,7 +6,7 @@ import img3 from './img/img3.png';
 import img4 from './img/img4.png';
 import img5 from './img/img5.png';
 import img6 from './img/img6.png';
-import img7 from './img/img7.png'; // Importe todas as imagens
+import img7 from './img/img7.png'; 
 import './hangmanGame.css';
 
 function HangmanGame({ onBack }) {

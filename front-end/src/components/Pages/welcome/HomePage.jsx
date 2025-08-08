@@ -9,20 +9,17 @@ import { useMediaQuery } from 'react-responsive';
 import "./HomePage.css";
 
 function HomePage() {
-    //const [login, setLogin] = useState(true);
-    const [login, setLogin] = useState(false); // Initialize to false
+    const [login, setLogin] = useState(false); 
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
     return (
         <>
-            {login ? (  //  Check login state *first*
+            {login ? ( 
                 
-                //<HangmanGame/>
                 <Login />
             ) : (
                 <>
                 {isMobile ? (
-                    // Mobile Layout
                     <div className="welcome">
                         <div className="grid-container-mobile">
                             <div className="lapis-top-homePage">
@@ -52,7 +49,6 @@ function HomePage() {
 
 
                 ) : (
-                    // Desktop Layout
                     <div className="welcome">
 
                                 <div className="left-side">

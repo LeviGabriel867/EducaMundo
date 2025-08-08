@@ -9,6 +9,7 @@ import PortugueseImg from "../../../assets/activitiesPortuguese.png";
 import { useSearch } from "../../../context/SearchContext.jsx";
 import BackgroundLayout from "../../../assets/BackgroundLayout .png";
 import LogoVideo from "../../../assets/logoVideos.png";
+const API_URL = import.meta.env.VITE_API_URL;
 import "./InteractiveVideos.css";
 
 function InteractiveVideos() {
@@ -56,7 +57,7 @@ function InteractiveVideos() {
 
       try {
         const response = await fetch(
-          `http://localhost:8080/api/videos/withTitles?category=${encodeURIComponent(
+          `${API_URL}/videos/withTitles?category=${encodeURIComponent(
             activeCategory
           )}`
         );
@@ -105,7 +106,6 @@ function InteractiveVideos() {
         >
           Vídeos Interativos
         </h1>{" "}
-        {/* Título fora da .son */}
         <div className="son">
           {activeCategory ? (
             <div className="activeCategoryContent">

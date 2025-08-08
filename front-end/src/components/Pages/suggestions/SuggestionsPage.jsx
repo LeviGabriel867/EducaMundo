@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
+const API_URL = import.meta.env.VITE_API_URL;
 
 import "./SuggestionsPage.css"
 
@@ -8,7 +9,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState("")
-    const [isVisible, setIsVisible] = useState(false); // Estado para controlar a visibilidade
+    const [isVisible, setIsVisible] = useState(false); 
     const [isLogin, setIsLogin] = useState(true);  
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
         const fetchSuggestions = async () => {
             setLoading(true);
             try {
-                const response = await fetch("http://localhost:8080/api/suggestions");
+                const response = await fetch(`${API_URL}/suggestions`);
 
                 if (!response.ok) throw new Error("Erro ao buscar sugestões");
 
@@ -38,7 +39,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
 
     const handleListSuggestions = async() =>{
         try {
-            const response = await fetch("http://localhost:8080/api/suggestions/download");
+            const response = await fetch(`${API_URL}/suggestions/download`);
 
             if(!response.ok){
                 throw new Error("Erro in generating list")
@@ -62,7 +63,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
 
     const handleDeleteSuggestion = async(id) => {
         try {
-            const response =await fetch(`http://localhost:8080/api/suggestions/${id}`,{
+            const response =await fetch(`${API_URL}/suggestions/${id}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type": "Application/json"
@@ -73,11 +74,11 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
                 setIsVisible(true)
 
                 setTimeout(() => {
-                    setIsVisible(false); // Começa o fade-out
+                    setIsVisible(false); 
                 }, 2500);
             
                 setTimeout(() => {
-                    setMessage(""); // Remove a mensagem completamente
+                    setMessage(""); 
                 }, 3500);
 
 
@@ -101,7 +102,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
             ) : suggestions.length > 0 ? (    
                     <ul>
                        {suggestions.map((user) => {
-                            console.log(user);  // Verifique o objeto do usuário e seu _id
+                            console.log(user);  
                             return (
                                 <li className="itensList" key={user._id}>
                                     {user.suggestionsUsers}

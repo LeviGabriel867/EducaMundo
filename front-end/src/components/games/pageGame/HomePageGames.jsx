@@ -12,12 +12,12 @@ function HomePageGames() {
 
     const handleViewGame = (gameId) => {
         setViewGame(gameId);
-        setRenderParagraph(false); // Esconde o parágrafo ao selecionar um jogo
+        setRenderParagraph(false); 
     };
 
     const handleBackToGames = () => {
         setViewGame(null);
-        setRenderParagraph(true); // Mostra o parágrafo novamente ao voltar
+        setRenderParagraph(true);
     }
 
     return (
@@ -35,9 +35,9 @@ function HomePageGames() {
                 {viewGame === "forca" ? (
                     <HangmanGame onBack={handleBackToGames}/>
                 ) : viewGame === "velha" ? (
-                    <Game onBack={handleBackToGames}/> // Troque por um componente Jogo da Velha, se existir
+                    <Game onBack={handleBackToGames}/>
                 ) : (
-                    renderParagraph && <ContainerGames onViewGame={handleViewGame} /> // Mostra ContainerGames apenas se o parágrafo estiver visível
+                    renderParagraph && <ContainerGames onViewGame={handleViewGame} /> 
                 )}
             </div> 
         </div>

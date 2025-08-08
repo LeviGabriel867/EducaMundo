@@ -1,4 +1,3 @@
-//import './ButtonOptions.css'; //AS atividades tmb puxa esse style
 
 function ButtonOptions({ img, h1, paragraph, onClick }) {
     return (

@@ -12,6 +12,9 @@ import GatewayAdm from "../gatewayAdm/gatewayAdm.jsx";
 import SideBarGateway from "../gatewayAdm/sidebar/sideBarGateway.jsx";
 import HeaderGateway from "../gatewayAdm/headerGatewayAdm/HeaderGateway.jsx";
 import MainContent from "../gatewayAdm/mainContent/MainContent.jsx";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 import "./Login.css";
 
 function Login() {
@@ -27,9 +30,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [isVisible, setIsVisible] = useState(false); // Estado para controlar a visibilidade
+  const [isVisible, setIsVisible] = useState(false); 
   const [isLogin, setIsLogin] = useState(true);
-  const [viewSuggestions, setViewSuggestions] = useState(true); // Controla a visibilidade do ViewSuggestions
+  const [viewSuggestions, setViewSuggestions] = useState(true); 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [sideBar, setSideBar] = useState(false);
   const [uploadVideoVisible, setUploadVideoVisible] = useState(false);
@@ -52,8 +55,8 @@ function Login() {
     e.preventDefault();
 
     const endpoint = isLogin
-      ? "http://localhost:8080/api/auth/login"
-      : "http://localhost:8080/api/auth/register";
+      ? `${API_URL}/auth/login`
+      : `${API_URL}/auth/register`;
 
     const data = isLogin
       ? { email, password }
@@ -79,17 +82,17 @@ function Login() {
         setIsVisible(true);
 
         setTimeout(() => {
-          setIsVisible(false); // Começa o fade-out
+          setIsVisible(false); 
         }, 2500);
 
         setTimeout(() => {
-          setMessage(""); // Remove a mensagem completamente
+          setMessage(""); 
         }, 3500);
 
         if (isLogin) {
           localStorage.setItem("token", result.token);
-          setTypeUser(false); // Ir para a próxima tela ao fazer login
-          setUploadVideo(true); // Resetar o estado uploadVideo
+          setTypeUser(false); 
+          setUploadVideo(true);
         }
       } else {
         setMessage(result.message || "Usúario não cadastrado.");
@@ -130,7 +133,7 @@ function Login() {
     formData.append("image", img);
 
     try {
-      const response = await fetch("http://localhost:8080/api/activities/single", {
+      const response = await fetch(`${API_URL}/activities/single`, {
         method: "POST",
         body: formData,
       });
@@ -415,7 +418,6 @@ function Login() {
                   setViewSuggestionsPageVisible={setViewSuggestionsPageVisible}
                 />
 
-                {/*<GatewayAdm />*/}
               </>
             </div>
           )}

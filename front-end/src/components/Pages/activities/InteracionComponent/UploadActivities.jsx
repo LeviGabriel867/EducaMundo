@@ -1,32 +1,32 @@
 import { useState, useEffect } from "react";
 import { FaFileDownload } from "react-icons/fa";
-
+const API_URL = import.meta.env.VITE_API_URL;
 import './UploadActivities.css';
 
 function UploadActivities({ category }) {
     const [activities, setActivities] = useState([]);
-    const [loading, setLoading] = useState(true); // Add loading state
-    const [error, setError] = useState(null); // Add error state
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
 
 
     useEffect(() => {
         const fetchActivities = async () => {
-            setLoading(true); // Set loading to true before fetching
-            setError(null);   // Clear any previous errors
+            setLoading(true); 
+            setError(null);  
             try {
                 const response = await fetch(
-                    `http://localhost:8080/api/activities?category=${category}`
+                    `${API_URL}/activities?category=${category}`
                 );
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`); // More specific error
+                    throw new Error(`HTTP error! Status: ${response.status}`); 
                 }
                 const data = await response.json();
                 setActivities(data);
             } catch (error) {
                 console.error("Erro ao buscar atividades:", error);
-                setError(error.message); // Set the error state
+                setError(error.message); 
             } finally {
-                setLoading(false); // Set loading to false after fetching (success or failure)
+                setLoading(false); 
             }
         };
         fetchActivities();
@@ -35,7 +35,7 @@ function UploadActivities({ category }) {
     function downloadImg({ idImg, nameFile }) {
         const fetchImg = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/activities/download/${idImg}`);
+                const response = await fetch(`${API_URL}/activities/download/${idImg}`);
 
                 if (!response.ok) {
                     throw new Error("Erro ao baixar PDF");
@@ -64,11 +64,11 @@ function UploadActivities({ category }) {
         <div className="containerUploaded">
             <h1>{category}</h1>
 
-            {loading ? (  // Display loading message
+            {loading ? (  
                 <p className="loading-message">Carregando atividades...</p>
-            ) : error ? ( // Display error message
+            ) : error ? ( 
                 <p className="error-message">Erro ao carregar atividades: {error}</p>
-            ) : activities.length === 0 ? ( // Check for empty array
+            ) : activities.length === 0 ? ( 
                 <p className="empty-message">Nenhuma atividade encontrada para esta categoria.</p>
             ) : (
                 <ul>
@@ -77,7 +77,7 @@ function UploadActivities({ category }) {
                             <h2>{activity.name}</h2>
                             <h3>{activity.description}</h3>
                             <div className="image-wrapper">
-                                <img src={`http://localhost:8080/${activity.path}`} alt={activity.name} />
+                                <img src={`${API_URL}/${activity.path}`} alt={activity.name} />
                             </div>
                             <button className="download-button" onClick={() => downloadImg({ idImg: activity._id, nameFile: activity.name })}>
                                 <span className="button-icon">{<FaFileDownload />}</span> Baixar como PDF

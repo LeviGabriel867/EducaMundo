@@ -4,7 +4,7 @@ import CustomDropdown from "../../login/CustomDropdown";
 import UploadVideo from "../../login/UploadVideo";
 import SuggestionsUsers from "../../login/SuggetionsUsers";
 import SuggestionsPage from "../../suggestions/SuggestionsPage";
-
+const API_URL = import.meta.env.VITE_API_URL;   
 function MainContent({
   uploadVideoVisible,
   viewSuggestionsVisible,
@@ -47,7 +47,7 @@ function MainContent({
     formData.append("image", img);
 
     try {
-      const response = await fetch("http://localhost:8080/api/activities/single", {
+      const response = await fetch(`${API_URL}/activities/single`, {
         method: "POST",
         body: formData,
       });
@@ -92,7 +92,6 @@ function MainContent({
   return (
     <div className="main-content">
       <div className="top-right-box">
-        {/* Bloco de atividades */}
         {viewActivitiesVisible && (
           <div className="input-container-upload">
             <label id="labelMainContent" htmlFor="">
@@ -151,10 +150,8 @@ function MainContent({
           </div>
         )}
 
-        {/* Bloco de Upload de Vídeo */}
         {uploadVideoVisible && <UploadVideo />}
 
-        {/* Bloco de Sugestões */}
         {viewSuggestionsVisible && !viewSuggestionsPageVisible && (
           <SuggestionsUsers
             setViewSuggestionsPageVisible={setViewSuggestionsPageVisible}
@@ -167,7 +164,6 @@ function MainContent({
           />
         )}
 
-        {/* Mensagem de status */}
         {message && (
           <p className={`message ${isVisible ? "" : "hidden"}`}>{message}</p>
         )}

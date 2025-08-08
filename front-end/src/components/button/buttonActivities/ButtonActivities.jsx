@@ -5,7 +5,7 @@ function ButtonActivities({ shouldShowComponent, Component, img, h1, paragraph, 
     return (
         <div className='container' style={{ cursor: "pointer" }}>
             {shouldShowComponent ? (
-                <Component />  // Renderizando o componente corretamente
+                <Component />  
             ) : (
                 <ButtonOptions
                     img={img}

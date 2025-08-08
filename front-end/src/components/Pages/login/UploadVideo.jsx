@@ -1,8 +1,11 @@
 import { useState } from "react";
 import CustomDropdown from "./CustomDropdown";
 import './UploadVideo.css';
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 function UploadVideo() {
-  const [URLs, setURLs] = useState(""); //Precisam ser os mesmo nomes da API
+  const [URLs, setURLs] = useState(""); 
   const [category, setCategory] = useState(""); 
   const [message, setMessage] = useState("")
   const categories = [
@@ -17,14 +20,14 @@ function UploadVideo() {
     const data = {URLs, category}
     
     try {
-        const response = await fetch("http://localhost:8080/api/videos/upload", {
+        const response = await fetch(`${API_URL}/videos/upload`, {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(data)
     })
 
     const result = await response.json();
-    setMessage(result.msg) //MSG vem da API
+    setMessage(result.msg)
 
     if(response.ok){
         setMessage("Envio realizado com sucesso.")
@@ -47,7 +50,7 @@ function UploadVideo() {
             <input type="text" placeholder="URL" value={URLs} onChange={(e) => setURLs(e.target.value)} required />
 
             <CustomDropdown options={categories} selected={category} setSelected={setCategory} width='100%' /> 
-            <button id="button-uploadVideo" type="submit">Enviar</button> {/*Por está dentro de um form, a propriedade Submit já faz o envio de forma encapsulada*/}
+            <button id="button-uploadVideo" type="submit">Enviar</button> 
         </form>
       {message && <p>{message}</p>}
     </div>

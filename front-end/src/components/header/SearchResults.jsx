@@ -4,9 +4,9 @@ import { useLocation } from "react-router-dom";
 function SearchResults() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const searchQuery = queryParams.get("q"); // Obtém o termo de busca da URL
+    const searchQuery = queryParams.get("q"); 
 
-    // Simulação de dados por tela (substitua pelos dados reais)
+  
     const dataByScreen = {
         "/Activities": [
             { id: 1, name: "Atividade de pintura", description: "Atividades de pintura para diferentes níveis." },
@@ -22,11 +22,9 @@ function SearchResults() {
         ],
     };
 
-    // Obtém os dados da tela atual
-    const currentPath = location.state?.currentPath || "/Activities"; // Substitua pelo caminho atual
+    const currentPath = location.state?.currentPath || "/Activities";
     const data = dataByScreen[currentPath] || [];
 
-    // Filtra os dados com base no termo de busca
     const filteredData = data.filter((item) =>
         item.name.toLowerCase().includes(searchQuery?.toLowerCase() || "")
     );

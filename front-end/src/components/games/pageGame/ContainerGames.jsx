@@ -20,7 +20,7 @@ function ContainerGames({onViewGame}){
                     img = {imgTeste2}
                     tittleGame = {"Jogo da velha"}
                     description = {"Aqui vai ser o jogo da velha"}              
-                    stateView = {()=>onViewGame("velha")} //sunstituo a logica boolena por uma logica de renderização com strings e estado inicial como null
+                    stateView = {()=>onViewGame("velha")} 
                     />
                 </div>
                 <div className="selected-game">

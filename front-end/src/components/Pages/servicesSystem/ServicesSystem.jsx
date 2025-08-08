@@ -13,12 +13,11 @@ import lampada from "../../../assets/lampada.png";
 
 
 
-import { useSearch } from "../../../context/SearchContext"; // Importa o contexto
+import { useSearch } from "../../../context/SearchContext"; 
 
 function ServicesSystem() {
-    const { searchQuery } = useSearch(); // Obtém o termo de busca do contexto
+    const { searchQuery } = useSearch(); 
 
-    // Dados simulados que serao usados na pesquisa e também para exibir as opções de atividades
     const options = [
         {
             path: "/Activities",
@@ -46,7 +45,6 @@ function ServicesSystem() {
         }
     ];
 
-    // Filtra as opções com base no termo de busca
     const filteredOptions = options.filter((option) =>
         option.h1.toLowerCase().includes(searchQuery.toLowerCase())
     );
