@@ -56,7 +56,7 @@ function InteractiveVideos() {
 
       try {
         const response = await fetch(
-          `http://localhost:8080/videosWithTitles?category=${encodeURIComponent(
+          `http://localhost:8080/api/videos/withTitles?category=${encodeURIComponent(
             activeCategory
           )}`
         );

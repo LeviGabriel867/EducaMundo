@@ -15,7 +15,7 @@ function UploadActivities({ category }) {
             setError(null);   // Clear any previous errors
             try {
                 const response = await fetch(
-                    `http://localhost:8080/activities?category=${category}`
+                    `http://localhost:8080/api/activities?category=${category}`
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`); // More specific error
@@ -35,7 +35,7 @@ function UploadActivities({ category }) {
     function downloadImg({ idImg, nameFile }) {
         const fetchImg = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/download/${idImg}`);
+                const response = await fetch(`http://localhost:8080/api/activities/download/${idImg}`);
 
                 if (!response.ok) {
                     throw new Error("Erro ao baixar PDF");

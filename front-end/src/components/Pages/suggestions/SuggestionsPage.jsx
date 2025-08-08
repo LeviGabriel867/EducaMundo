@@ -17,7 +17,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
         const fetchSuggestions = async () => {
             setLoading(true);
             try {
-                const response = await fetch("http://localhost:8080/suggestions");
+                const response = await fetch("http://localhost:8080/api/suggestions");
 
                 if (!response.ok) throw new Error("Erro ao buscar sugestões");
 
@@ -38,7 +38,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
 
     const handleListSuggestions = async() =>{
         try {
-            const response = await fetch("http://localhost:8080/downloadSuggestions");
+            const response = await fetch("http://localhost:8080/api/suggestions/download");
 
             if(!response.ok){
                 throw new Error("Erro in generating list")
@@ -62,7 +62,7 @@ function SuggestionsPage({ setViewSuggestionsPageVisible }) {
 
     const handleDeleteSuggestion = async(id) => {
         try {
-            const response =await fetch(`http://localhost:8080/deleteSuggestions/${id}`,{
+            const response =await fetch(`http://localhost:8080/api/suggestions/${id}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type": "Application/json"

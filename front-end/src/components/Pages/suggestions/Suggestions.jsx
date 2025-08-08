@@ -14,7 +14,7 @@ function Suggestions() {
         const data = { suggestionsUsers: suggestions }; //suggestionsUsers está recebendo o valor da variavel suggestions
 
         try {
-            const response = await fetch("http://localhost:8080/suggestions", {
+            const response = await fetch("http://localhost:8080/api/suggestions", {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(data),

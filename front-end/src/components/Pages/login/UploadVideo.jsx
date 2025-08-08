@@ -17,7 +17,7 @@ function UploadVideo() {
     const data = {URLs, category}
     
     try {
-        const response = await fetch("http://localhost:8080/uploadVideos", {
+        const response = await fetch("http://localhost:8080/api/videos/upload", {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(data)

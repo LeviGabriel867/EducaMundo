@@ -1,96 +1,108 @@
-/* General Reset and Body Styles */
-body, html {
+/* Reset e Estilos Gerais */
+:root {
+  --primary-color: #3616AC;
+  --secondary-color: #6CDFFF;
+  --accent-color: #32CD32;
+  --dark-accent: #002f87;
+  --light-bg: #E6E6FA;
+  --light-gray: #F5F5F5;
+  --text-dark: #333;
+  --text-light: #fff;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
-  height: 100%;
-  overflow: hidden; /* Prevent scrollbars on the body itself initially */
 }
 
-/* Main container for the two-column layout */
+body, html {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Layout Principal */
 .container-login {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  overflow: hidden;
 }
 
-/* Left Column Styles - Keep as is */
+/* Coluna Esquerda - Estilização */
 .left-side {
-  background-color: #3616AC;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   flex: 1;
-  padding: 30px 40px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .left-side .header-left-side {
   position: absolute;
-  top: 30px;
-  left: 40px;
-  text-align: left;
+  top: 2rem;
+  left: 2rem;
+  width: calc(100% - 4rem);
 }
 
 .left-side .header-left-side h1 {
-  font-size: 1.7em;
-  margin: 0 0 4px 0;
-  font-weight: bold;
+  font-size: 1.7rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 .left-side .header-left-side h2 {
-  font-size: 0.85em;
-  display: flex;
-  margin: 0;
-  font-weight: normal;
+  font-size: 0.85rem;
   font-family: "Times New Roman", serif;
   font-style: italic;
-  align-items: center;
-  justify-content: center;
-  color:#6CDFFF;
-  font-weight: bold;
+  color: var(--secondary-color);
+  font-weight: 600;
 }
 
 .left-side > h1 {
-  font-size: 2em;
-  font-weight: bold;
-  margin-top: 60px;
-  margin-bottom: 12px;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 3rem 0 1rem;
+  text-align: center;
 }
 
 .left-side > h2 {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
   max-width: 450px;
-  line-height: 1.3;
-  color:#6CDFFF;
+  text-align: center;
+  color: var(--secondary-color);
 }
 
 .left-side > img {
   max-width: 70%;
   max-height: 40vh;
   height: auto;
-  margin-top: 15px;
-  display: block;
+  margin: 1rem 0;
+  object-fit: contain;
 }
 
-/* Right Column Styles */
+/* Coluna Direita - Estilização */
 .container-right {
-  background-color: #E6E6FA;
+  background-color: var(--light-bg);
   flex: 1;
-  position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-y: auto;
 }
 
-/* Pencil Border Areas */
+/* Bordas Decorativas */
 .lapis-top-area, .lapis-bottom {
   position: absolute;
   left: 0;
@@ -107,411 +119,322 @@ body, html {
   bottom: 0;
 }
 
-.lapis-top-area img, .lapis-bottom img {
+.lapis-top-area img, 
+.lapis-bottom img {
   width: 100%;
   height: auto;
-  display: block;
-  max-height: 20vh; /* Default max height */
+  max-height: 20vh;
 }
 
-/* Central Content Area on Right Side */
+/* Área de Conteúdo Principal */
 .content-area-login {
   position: relative;
   z-index: 2;
-  box-sizing: border-box;
-  padding: 15px 40px;   /* Default padding */
-  display: flex;
-  /* Changed to flex-grow instead of height/min-height for better flex behavior */
+  padding: 2rem;
   flex-grow: 1;
-  flex-direction: column; /* Content inside stacks vertically */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center content vertically and horizontally */
-  overflow-y: auto;      /* Allow vertical scroll ONLY if content overflows this area */
-  /* Add some default vertical space that can be overridden by media queries */
-  margin-top: 0; /* Default no margin */
-  margin-bottom: 0; /* Default no margin */
+  justify-content: center;
+  margin: 10vh 0;
 }
 
-/* Inner Content Wrapper (holds image and form) */
-/* Added this selector for clarity based on 400px rule */
 .content-area-login .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Takes width from parent (.content-area-login) */
-  max-width: 380px; /* Limit content width like the form */
+  width: 100%;
+  max-width: 380px;
 }
 
-
-/* ABC Image */
+/* Imagem ABC */
 .abc-login {
-  display: block;
-  max-width: 250px; /* Default max-width */
-  max-height: 25vh; /* Default max-height */
+  max-width: 250px;
+  max-height: 25vh;
   height: auto;
-  margin: 0 auto 20px auto;
-  flex-shrink: 0;
+  margin: 0 auto 1.5rem;
 }
 
-/* Login Form Container */
+/* Formulário de Login */
 .form-login {
   width: 100%;
-  /* max-width is now handled by the .content wrapper */
-  /* max-width: 380px; */
   margin: 0 auto;
-  flex-shrink: 0;
-  margin-bottom: 0; /* Default no margin */
 }
 
-/* Input Field Container */
 .input-container {
-  margin-bottom: 15px;
-  text-align: left;
+  margin-bottom: 1rem;
 }
 
 .input-container label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #333;
-  font-size: 0.9em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-/* Input Fields */
 .input-container input[type="text"],
 .input-container input[type="password"] {
   width: 100%;
-  padding: 10px 15px;
+  padding: 0.75rem 1rem;
   border: 1px solid #c5c3c3;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   background-color: #f0f0f0;
-  box-sizing: border-box;
-  font-size: 0.95em;
-  color: #333;
+  font-size: 0.95rem;
+  transition: var(--transition);
 }
 
-/* Placeholder Text Styling */
+.input-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: #fff;
+}
+
 .input-container input::placeholder {
   color: #888;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
-/* Button Container */
+/* Botões */
 .button-container {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* Submit/Action Buttons */
-/* !!! RECOMMENDATION: Use classes instead of duplicate IDs !!! */
-#submit {
-  background-color: #32CD32;
-  color: white;
+.btn {
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 0.95em;
-  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  white-space: nowrap;
+  transition: var(--transition);
   flex-grow: 1;
-  flex-basis: 120px;
+  text-align: center;
+  min-width: 120px;
+  margin-bottom: 1.5rem;
 }
 
-#submit:hover {
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
   background-color: #228B22;
 }
 
-/* Feedback Message Styling */
+/* Mensagens */
 .message {
   text-align: center;
-  margin-top: 10px;
-  padding: 8px;
+  margin-top: 1rem;
+  padding: 0.75rem;
   border-radius: 5px;
-  font-weight: bold;
-  font-size: 0.85em;
-  opacity: 1;
-  transition: opacity 0.5s ease-out, margin-top 0.3s ease, padding 0.3s ease, height 0.3s ease;
-  height: auto;
-  overflow: hidden;
-  width: 100%; /* Ensure message takes full width of its container */
-  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 0.85rem;
+  width: 100%;
+  transition: var(--transition);
 }
-/* ... (rest of message styles remain the same) ... */
+
 .message:not(.hidden) {
- color: #155724;
+  background-color: rgba(0, 128, 0, 0.1);
+  color: #155724;
 }
 
 .message.hidden {
-opacity: 0;
-height: 0;
-margin-top: 0;
-padding-top: 0;
-padding-bottom: 0;
-border: none;
-}
-.container-activities h1{
-  background-color: #002266;
-  color: white;
-  padding: 10px;
-}
-.resume, .input-container-upload{
-  background-color: white;
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  width: 50%;
-  padding: 45px;
-  margin: 0% auto;
-  margin-top: 9vh;
-  border-radius: 15px;
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
-.input-container-upload label{
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0%;
+/* Estilos do Portal Administrativo */
+.container-activities h1 {
+  background-color: transparent;
+  color: var(--text-light);
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
 }
-.input-container-upload input{
- width: 90%;
- padding: 5px;
- border-radius: 8px;
-}
-.left-side-admPortal{
-  background-color: white;
-  display: flex;
-  flex-direction: column;
 
+.resume, .input-container-upload {
+  background-color: var(--text-light);
+  width: 80%;
+  max-width: 800px;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
-.container-activities{
-  background-color: #F5F5F5;
+
+.input-container-upload label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: block;
 }
-/* Barra lateral */
+
+.input-container-upload input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+/* Menu Lateral */
 .menu-left {
-  width: 20%;
-  background-color: #002f87;
-  color: white;
+  width: 250px;
+  background-color: var(--dark-accent);
+  color: var(--text-light);
+  padding: 1.5rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  min-height: 100vh;
 }
 
 .menu-left h1 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+  text-align: center;
 }
 
 .menu-left button {
   width: 80%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
   background-color: #0044cc;
-  color: white;
+  color: var(--text-light);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 16px;
-  text-align: center;
+  font-size: 0.9rem;
+  transition: var(--transition);
 }
 
 .menu-left button:hover {
   background-color: #003399;
 }
 
-/* Conteúdo principal */
 .main-content {
-  width: 80%;
-  padding: 20px;
-  background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex: 1;
+  padding: 1.5rem;
+  background-color: var(--light-gray);
 }
 
-.resume {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Responsividade */
+@media (max-width: 1024px) {
+  .container-login {
+    flex-direction: column;
+  }
+  
+  .left-side, .container-right {
+    min-height: 50vh;
+  }
+  
+  .content-area-login {
+    margin: 5vh 0;
+  padding: 1.5rem;
+  justify-content: flex-start;
+  min-height: calc(100vh - 20vh);
+  margin-top: 10vh;
+  }
+  
+  .lapis-top-area img, .lapis-bottom img {
+    max-height: 15vh;
+  }
 }
-
-.resume h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.resume p {
-  font-size: 1rem;
-  margin: 5px 0;
-}
-
-.input-container-upload {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.input-container-upload h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.input-container-upload label {
-  font-size: 0.85rem;
-  margin-bottom: 0px;
-  display: block;
-}
-
-.input-container-upload input,
-.input-container-upload textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.input-container-upload button {
-  padding: 10px 20px;
-  background-color: #0044cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.input-container-upload button:hover {
-  background-color: #003399;
-}
-
-/* ============================================ */
-/* ========== RESPONSIVE STYLES =============== */
-/* ============================================ */
 
 @media (max-width: 768px) {
-  /* Allow body scrolling on smaller screens */
-  body, html {
-    overflow: auto;
+  .resume, .input-container-upload {
+    width: 90%;
+    padding: 1.5rem;
   }
-
-  /* Ensure right container takes full width */
-  .container-right {
-    width: 100%;
-  }
-
-  /* Apply vertical margins to push content area from edges */
-  .content-area-login {
-    padding: 15px 25px; /* Adjust padding slightly */
-    margin-top: 8vh;    /* Add margin similar to 400px rule */
-    margin-bottom: 10vh;/* Add margin similar to 400px rule */
-    /* Ensure it can still scroll if margins make content overflow */
-    overflow-y: auto;
-  }
-
-  /* Adjust inner content wrapper width */
-  .content-area-login .content {
-      max-width: 90%; /* Allow content to take more width */
-  }
-
-  /* Reduce pencil height */
-  .lapis-top-area img, .lapis-bottom img {
-    max-height: 16vh; /* Reduce height, value between default and 400px */
-  }
-
-  /* Reduce image size */
-  .abc-login {
-    max-width: 180px;
-    max-height: 18vh; /* Use max-height */
-  }
-
-  /* Add bottom margin to form */
-  .form-login {
-    margin-bottom: 4vh; /* Add margin similar to 400px rule */
-  }
-
-  /* Stack buttons vertically */
+  
   .button-container {
     flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+    gap: 0.75rem;
   }
-
-  #submit { /* Affects all buttons using this ID */
+  
+  .btn {
     width: 100%;
-    flex-basis: auto;
-    flex-grow: 0;
-    font-size: 0.9em;
-    padding: 12px 15px;
   }
-
-   /* Adjust input field style */
-  .input-container input[type="text"],
-  .input-container input[type="password"] {
-    font-size: 0.9em;
-    padding: 9px 12px;
+  
+  .menu-left {
+    width: 200px;
   }
 }
 
-
-/* Further refinement for very small screens */
-@media (max-width: 400px) {
-
-  /* Refine margins/padding for very small screens */
+@media (max-width: 576px) {
+  .left-side, .container-right {
+    padding: 1.5rem;
+  }
+  
+  .left-side > h1 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .left-side > h2 {
+    font-size: 1rem;
+  }
+  
+  .abc-login {
+    max-width: 180px;
+  }
+  
   .content-area-login {
-    padding: 10px 15px; /* Further reduce padding */
-    margin-top: 10vh;   /* Keep original margin */
-    margin-bottom: 14vh;/* Keep original margin */
+    padding: 1rem;
+    margin-top: 8vh;
+    margin-bottom: 8vh;
   }
-
-   /* Adjust inner content wrapper width */
-  .content-area-login .content {
-      max-width: 95%; /* Allow content to take more width */
-      /* Apply font-size/color from original rule if needed */
-       font-size: 0.8rem;
-       color: #3616AC; /* Assuming this color was intended */
+  
+  .menu-left {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
   }
+  
+  .menu-left h1 {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .menu-left button {
+    width: auto;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+}
 
-   /* Further reduce pencil height */
+@media (max-width: 400px) {
+  .content-area-login {
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+  }
+  
   .lapis-top-area img, .lapis-bottom img {
-    max-height: 15vh; /* Further reduced height */
+    max-height: 12vh;
   }
-  .content{
-    margin-top: 2vh;
-    margin-bottom: 2vh
-  }
-
-  .lapis-container-bottom{
-    margin-bottom: 7vh;
-  }
-  .lapis-container-bottom img{
-    height: 15vh;
-  }
-   /* Further reduce image size */
+  
   .abc-login {
     max-width: 150px;
-    max-height: 12vh; /* Match pencil height reduction */
-    /* height: 15vh; <-- Replace fixed height with max-height */
   }
-
-  /* Keep form bottom margin */
-  .form-login {
-    margin-bottom: 5vh;
-  }
-
-  /* Button styles are likely inherited correctly from 768px,
-     but you can add specific tweaks here if needed */
-  #submit {
-     font-size: 0.85em; /* Slightly smaller font */
+  
+  .input-container input[type="text"],
+  .input-container input[type="password"] {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
   }
 }

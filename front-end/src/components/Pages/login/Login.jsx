@@ -52,8 +52,8 @@ function Login() {
     e.preventDefault();
 
     const endpoint = isLogin
-      ? "http://localhost:8080/auth/login"
-      : "http://localhost:8080/auth/register";
+      ? "http://localhost:8080/api/auth/login"
+      : "http://localhost:8080/api/auth/register";
 
     const data = isLogin
       ? { email, password }
@@ -102,8 +102,19 @@ function Login() {
 
   const handleFileChange = (e) => {
     if (e.target.files.length > 0) {
-      setFileName(e.target.files[0].name);
-      setImg(e.target.files[0]);
+      const file = e.target.files[0];
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+      if (!allowedTypes.includes(file.type)) {
+        setMessage("Apenas arquivos de imagem são permitidos (jpeg, png, gif, webp)." );
+        setIsVisible(true);
+        setImg("");
+        setFileName("Nenhum arquivo escolhido");
+        setTimeout(() => setIsVisible(false), 2500);
+        setTimeout(() => setMessage(""), 3500);
+        return;
+      }
+      setFileName(file.name);
+      setImg(file);
     }
   };
 
@@ -119,7 +130,7 @@ function Login() {
     formData.append("image", img);
 
     try {
-      const response = await fetch("http://localhost:8080/single", {
+      const response = await fetch("http://localhost:8080/api/activities/single", {
         method: "POST",
         body: formData,
       });
@@ -352,18 +363,12 @@ function Login() {
                             )}
 
                             <div className="button-container">
-                              <button id="submit" type="submit">
+                              <button className="btn btn-primary" type="submit">
                                 {isLogin ? "Login" : "Cadastrar"}
                               </button>
+                              
                               <button
-                                id="submit"
-                                type="button"
-                                onClick={() => setIsLogin(!isLogin)}
-                              >
-                                {isLogin ? "Criar conta" : "Já tenho conta"}
-                              </button>
-                              <button
-                                id="submit"
+                                className="btn btn-primary"
                                 type="button"
                                 onClick={() => setHomePage(false)}
                               >

@@ -53,9 +53,10 @@ body {
   position: sticky;
   top: 20px;
   align-self: flex-start;
-  width: 400px;
+  width: 500px;
+  min-width: 400px;
   padding: 1rem;
-  margin-right: 1rem; /* Aumente este valor para mais espaçamento */
+  margin-right: 5rem; /* Aumente este valor para mais espaçamento */
   display: flex;
   flex-direction: column;
   align-items: center; /* Centraliza horizontalmente */
@@ -71,8 +72,9 @@ body {
 }
 
 .videos-container {
-  flex: 1;
-  max-width: 800px; /* Ajuste conforme necessário */
+  flex: 1; /* Permite que ocupe o espaço restante */
+  margin: 0 auto;
+  max-width: 1000px; /* Ajuste conforme necessário */
 }
 
 /* Mantenha o restante do CSS existente */
@@ -118,7 +120,8 @@ body {
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%; /* Aumenta o espaço usado */
-  /* Limita em telas grandes */
+  max-width: 1000px;
+  min-width: 700px;
 }
 
 .video-wrapper h1 {

@@ -1,369 +1,217 @@
-/* Reset CSS Básico - Use um reset adequado em um projeto real */
+/* Reset CSS Básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none; /* Remove sublinhados de links globalmente */
-    list-style: none; /* Remove marcadores de listas */
+    text-decoration: none;
+    list-style: none;
 }
 
 body {
-    font-family: sans-serif; /* Usa uma fonte adequada */
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
 }
+
 html, body {
     height: 100%;
-    overflow-x: hidden; /* evita scroll horizontal */
-    overflow-y: auto;   /* garante que scroll vertical apareça */
-  }
-  
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
+/* Estilos principais */
 .services-system {
     display: flex;
-    flex-direction: column; 
-    overflow-y: auto; /* permite scroll interno se necessário */
-
-    min-height: 100vh; /* Garante que o container ocupe pelo menos a altura total da viewport */
-}
-
-
-
-.services-system__logo {
-    height: 50px; /* Ajusta o tamanho do logo conforme necessário */
-}
-
-.services-system__search-bar {
-    display: flex;
-    width: 30%;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 25px;  /* Cantos arredondados para a barra de pesquisa */
-    padding: 0.5rem 1rem; /* Usa rem para padding */
-    background-color: white;
-}
-
-.services-system__search-bar input {
-    border: none;
-    outline: none;
-    flex-grow: 1; /* Permite que o input ocupe o espaço disponível */
-    margin-right: 0.5rem;
-    font-size: 1rem;
-}
-
-
-.services-system__search-bar label {
-    display: flex;
-    align-items: center;
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    color: #555; /* Cor do ícone e do texto */
-    white-space: nowrap;
-}
-
-.search-icon {
-    margin-right: 0.3rem;
-    font-size: 1.2rem;
-}
-
-.services-system__nav {
-    display: flex;
-    gap: 1.5rem;  /* Espaçamento entre os itens de navegação */
-}
-
-.services-system__nav li a {
-    color: #fff; /* Cor dos links de navegação */
-    font-weight: bold;
-    transition: color 0.4s;
-}
-
-.services-system__nav li a:hover {
-    font-size: 1.05rem;
-    color: #ddd; /* Cor mais clara ao passar o mouse */
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .services-system__main-content {
-    /* Removido height: 50vh; */
-     margin-top: 5vh; 
-    background: linear-gradient(         /* Padrão W3C (versão final) */
-        to right,
-        #AF87D6 12%,
-        #9854f7 43%,
-        #9961e7 100%
-    );
+    margin-top: 5vh;
+    background: linear-gradient(to right, #AF87D6 12%, #9854f7 43%, #9961e7 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.4rem 0; /* Adiciona padding, incluindo o topo */
-
+    padding: 1rem 0;
 }
 
 .services-system__main-image {
     width: auto;
-    height: auto;  /* Alterado para auto para evitar distorção e manter proporção */
-    max-height: 100px; /* Adicionado um max-height para limitar o tamanho em telas grandes */
+    height: auto;
+    max-height: 100px;
     max-width: 100px;
-    margin-bottom: 0.2rem;  
-    margin-top: 0.3rem;
+    margin: 0.5rem 0;
     border-radius: 15px;
 }
-.services-system__title{
-     margin-bottom: 0.1rem; /*margem inferior*/
-     color: #4a2563;  /*Cor do titulo*/
-     text-align: start;
 
-
+.services-system__title {
+    margin-bottom: 0.5rem;
+    color: #4a2563;
+    text-align: center;
+    width: 100%;
 }
 
-.services-system__options-container {
+.services-system__text-section {
     display: flex;
-    justify-content: space-around; /* Distribui os botões horizontalmente */
-    flex-wrap: wrap; /* Permite quebra de linha em telas menores */
-    width: 80%; /* Limita a largura do container */
-    max-width: 1200px; /* Largura máxima para telas maiores */
-    margin: 2rem auto; /* Centraliza o container e adiciona margem vertical */
-    padding: 10px 25px; /*Espaçamento interno*/
+    flex-direction: column;
+    align-items: center;
+    font: italic 16px/1.5 'Open Sans', sans-serif;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-.services-system__text-section{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   font: italic 16px/1.5 'Open Sans', sans-serif;
-      width: 70%; /*Largura*/
-     padding: 20px; /*Espaçamento*/
-     border-radius: 10px; /*Borda arredondada*/
-
-}
-.services-system-origin{
+.services-system-origin {
     text-align: start;
-    width: 50%;
-    margin-left: 3%;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
 }
+
+/* Container de opções - principal melhoria */
+.services-system__options-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    justify-items: center;
+}
+
 .button-options {
-   background-color: #fff;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 15px;
-    padding: 0.2rem;
+    padding: 1.5rem 1rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width:22%;        /* Ajuste conforme necessário */
-    margin-bottom: 1rem; /* Adiciona margem inferior para espaçamento */
-    transition: transform 0.5s, box-shadow 0.2s; /* Transição suave */
-     display: flex;
-     flex-direction: column;
-
-
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 250px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .button-options:hover {
-    transform: translateY(-5px); /* Leve elevação ao passar o mouse */
+    transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.button-options img, .ButtonOptions img {
-    max-width: 60px; /* Limita o tamanho do ícone */
+.button-options img {
+    max-width: 60px;
     height: auto;
-    margin-bottom: auto;
-    margin-top: auto;
+    margin: 0 auto;
 }
 
 .button-options h3 {
     color: #333;
-    margin-bottom: 0.5rem;
-      font-size: 1.1rem;
+    margin: 0.8rem 0;
+    font-size: 1.1rem;
 }
 
 .button-options h1 {
     font-size: 1.4rem;
-    padding: 0px;
+    margin: 0.5rem 0;
 }
-.ButtonOptions p {
+
+.button-options p {
     color: #666;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
 }
-
-
 
 /* Media Queries para Responsividade */
 /* Dispositivos pequenos (telefones) */
 @media (max-width: 600px) {
+    .services-system__text-section,
+    .services-system-origin {
+        width: 95%;
+        padding: 10px;
+    }
     
-
-    .services-system__search-bar {
-        margin-bottom: 1rem; /* Espaço entre a pesquisa e a navegação */
-        width: 100%;
-    }
-
-     .services-system__nav {
-        justify-content: center; /* Centraliza os links de navegação horizontalmente */
-        width: 100%; /* A navegação ocupa a largura total em telas pequenas */
-    }
-
     .services-system__options-container {
-        display: flex;
-        justify-content: space-around; /* Distribui os botões horizontalmente */
-        flex-wrap: wrap; /* Permite quebra de linha (já está presente, mas reforçando) */
-        width: 80%;
-        max-width: 1200px;
-        margin: 2rem auto;
-        margin-left: 0;
-        padding: 10px 25px;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        width: 95%;
     }
+    
     .button-options {
-        width: 90%;
-        margin-bottom: 10px; /* Menos margem para espaçamento mais próximo */
+        max-width: 100%;
+        min-height: 180px;
+        padding: 1rem;
     }
-
-    .services-system__main-image{
-        max-height: none; /*remove a altura maxima em mobile*/
-    }
-
-    .services-system-origin{
-         width: 95%; /*Ajusta a largura*/
-         margin-left: auto; /*Centraliza*/
-         margin-right: auto;/*Centraliza*/
+    
+    .services-system__main-image {
+        max-height: 80px;
     }
 }
-
-/* ... (todo o seu CSS anterior, incluindo o reset, estilos gerais, etc.) ... */
-
-/* Media Queries para Responsividade */
-
-/* Dispositivos pequenos (telefones) */
-@media (max-width: 600px) {
-    
-
-    .services-system__search-bar {
-        margin-bottom: 1rem; /* Espaço entre a pesquisa e a navegação */
-        width: 100%;
-    }
-
-     .services-system__nav {
-        justify-content: center; /* Centraliza os links de navegação horizontalmente */
-        width: 100%; /* A navegação ocupa a largura total em telas pequenas */
-    }
-
-    .services-system__options-container {
-       flex-direction: column;
-        align-items: center; /* Centraliza os botões */
-    }
-    .button-options {
-        width: 90%;
-        margin-bottom: 10px; /* Menos margem para espaçamento mais próximo */
-    }
-
-    .services-system__main-image{
-        max-height: none; /*remove a altura maxima em mobile*/
-    }
-
-    .services-system-origin{
-         width: 95%; /*Ajusta a largura*/
-         margin-left: auto; /*Centraliza*/
-         margin-right: auto;/*Centraliza*/
-    }
-}
-
 
 /* Dispositivos médios (tablets) */
-@media (min-width: 601px) and (max-width: 1024px) {
-  /* ... (seus estilos para tablets - já estão bons) ... */
-   .button-options {
-      width: 45%;
-      margin-bottom: 1.5rem; /* Ajusta o espaçamento para tablets */
-  }
-   .services-system-origin{
-         width: 70%; /*Ajusta a largura*/
-
+@media (min-width: 601px) and (max-width: 900px) {
+    .services-system__options-container {
+        grid-template-columns: repeat(2, 1fr);
     }
-}
-
-/* Notebooks (ajuste aqui) */
-@media (min-width: 1025px) and (max-width: 1440px) { /* Adicionando/ajustando para notebooks */
-  .services-system__options-container {
-    justify-content: space-around; /* Mantém a distribuição, mas pode ajustar se necessário */
-    flex-wrap: wrap;        /* Garante a quebra de linha */
-  }
-  .button-options {
-      width: auto;        /* Permite que os botões se ajustem ao conteúdo */
-      max-width: 30%;  /* Ajuste este valor!  Pode ser necessário diminuir (ex: 28%) */
-      margin: 0.5rem;    /* Reduz a margem, se necessário, para dar mais espaço */
-  }
-}
-
-/* Desktop (telas maiores) - pode precisar de ajustes também, dependendo do seu design */
-@media (min-width: 1441px) {
-    /* Seus estilos para desktop (se houverem). Se não houver, pode deixar vazio. */
-     .services-system__options-container {
-         justify-content: space-around; /*garante o espaçamento*/
-     }
-}
-
-/* Estilos para .services-system__options-container (fora das media queries, para aplicar a todos os tamanhos) */
-.services-system__options-container {
-    display: flex;
-    flex-wrap: wrap; /* Importante! Deve estar aqui também. */
-    width: 100%;
-    max-width: 1500px;
-    margin: 0.7rem auto;
-    padding: 10px 25px;
-    margin-left: auto   ;
     
-}
-@media(max-width: 400px){
-    .services-system__main-image{
-        height: 100%;
-        width: 15%;	
-        margin: 0%;
-        padding: 0%;
-    }
-    .services-system__main-content{
-        height: 13vh;
-        margin-top: 2vh;
-        padding: 0%;
-        padding-top: 2px;
-        margin-bottom: 5%;
-    }
-    .services-system__text-section {
-        width: 100%;
-        padding: 5px 0px 0px 0px;
-        
-    }
-    .services-system__text-section h2{
-        font-size: 0.8rem;
-        width: 100%;
-        margin: 0 ;                /* remove espaçamento externo */
-        padding: 0;              /* remove espaçamento interno */
-        display: block;          /* garante comportamento de bloco */
-        box-sizing: border-box;
-        margin-left: 3.5vh;
-
-    }
-    .services-system__options-container{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Duas colunas */
-        gap: 0.5rem; 
-        
-    }
     .button-options {
-        font-size: 0.75rem;     /* fonte menor */
-        padding: 8px 12px;      /* menos padding */
-        min-width: 0;           /* deixa o botão caber dentro da grid */
-        width: 100%;            /* ocupa toda a coluna */
-        box-sizing: border-box; /* inclui padding no tamanho */
-        height: 20vh;
+        min-height: 220px;
     }
-    .ButtonOptions img{
-        width: 5vh;
-        height: 7vh;
+}
+
+/* Dispositivos grandes (desktops) */
+@media (min-width: 901px) {
+    .services-system__options-container {
+        grid-template-columns: repeat(4, 1fr);
     }
-    .ButtonOptions h1{
-        font-size: 0.8rem;
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 400px) {
+    .services-system__main-image {
+        height: 70px;
+        width: auto;
     }
-    .ButtonOptions p{
-        font-size: 0.6rem;
+    
+    .services-system__main-content {
+        height: auto;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
     }
-    .services-system__title{
-        font-size: 0.8rem;
+    
+    .services-system__text-section h2 {
+        font-size: 0.9rem;
+        margin: 0;
+        padding: 0;
     }
-    .services-system__description{
-        font-size: 0.6rem;
+    
+    .button-options {
+        height: auto;
+        padding: 0.8rem;
+    }
+    
+    .button-options img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .button-options h1 {
+        font-size: 1rem;
+    }
+    
+    .button-options p {
+        font-size: 0.7rem;
+    }
+    
+    .services-system__title {
+        font-size: 0.9rem;
+    }
+    
+    .services-system__description {
+        font-size: 0.7rem;
     }
 }
