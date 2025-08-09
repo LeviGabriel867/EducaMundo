@@ -9,7 +9,7 @@ import LapisInverter from "../../../assets/lapisInverter.png";
 import abc from "../../../assets/criançasABC.png";
 import { useMediaQuery } from "react-responsive";
 import GatewayAdm from "../gatewayAdm/gatewayAdm.jsx";
-import SideBarGateway from "../gatewayAdm/sidebar/sideBarGateway.jsx";
+import SideBarGateway from "../gatewayAdm/sidebar/SideBarGateway.jsx";
 import HeaderGateway from "../gatewayAdm/headerGatewayAdm/HeaderGateway.jsx";
 import MainContent from "../gatewayAdm/mainContent/MainContent.jsx";
 
