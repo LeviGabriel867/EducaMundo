@@ -40,6 +40,13 @@ function MainContent({
   };
 
   const handleClick = async () => {
+    if (!name || name.trim() === "") {
+      setMessage("O nome da atividade é obrigatório!");
+      setIsVisible(true);
+      setTimeout(() => setIsVisible(false), 2500);
+      setTimeout(() => setMessage(""), 3500);
+      return;
+    }
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);

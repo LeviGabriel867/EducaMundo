@@ -22,6 +22,10 @@ export async function createActivity(req, res) {
         const { name, category, description } = req.body;
         const imageUrl = req.file.path; // URL da imagem na Cloudinary
 
+        if (!name || name.trim() === "") {
+            return res.status(400).json({ error: "O campo 'name' (nome da atividade) é obrigatório." });
+        }
+
         const newActivity = new ActivitiesModel({
             name,
             path: imageUrl, // Salva a URL
